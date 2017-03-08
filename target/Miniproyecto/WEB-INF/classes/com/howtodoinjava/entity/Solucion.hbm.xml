@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 28, 2017 9:07:39 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.howtodoinjava.entity.Solucion" table="solucion" schema="public">
+        <composite-id name="id" class="com.howtodoinjava.entity.SolucionId">
+            <key-property name="sol" type="string">
+                <column name="sol" />
+            </key-property>
+            <key-property name="resuelveid" type="int">
+                <column name="resuelveid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="resuelve" class="com.howtodoinjava.entity.Resuelve" update="false" insert="false" fetch="select">
+            <column name="resuelveid" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
