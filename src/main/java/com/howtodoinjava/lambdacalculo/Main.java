@@ -43,6 +43,15 @@ public class Main {
            System.out.println(variables.toString());
         } **/
         
+            
+        Tokenizar tok = new Tokenizar();
+        tok.tokenizacion("hola(x3,x4,x5)");
+        /*
+         * Min 
+         * Comentario
+         */
+        
+        
         TerminoId terminoid = null;
         TerminoManager terminoManager = null;
         //tengo que copiar todo esto para usarlo
