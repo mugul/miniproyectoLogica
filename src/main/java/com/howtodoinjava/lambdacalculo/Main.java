@@ -20,78 +20,44 @@ import org.antlr.runtime.RecognitionException;
 public class Main {
     
     public static void main(String args[])
-    {
-        
-        /** TODO code application logic her<e
-        String string = "nombre(x1,x2,x3,v,p)";
-        String name;
-        List<String> variables = new LinkedList<>();
-        
-        
-        StringTokenizer token, subToken;
-        token = new StringTokenizer(string,"(");
-        
-        string = token.nextToken();
-        System.out.println(string);
-        
-        subToken = new StringTokenizer(token.nextToken().toString().replace(")", ""),",");    
-         
-         
-       while( subToken.hasMoreElements()) {
-           
-           variables.add(subToken.nextElement().toString());
-           System.out.println(variables.toString());
-        } **/
-        
-            
-        Tokenizar tok = new Tokenizar();
-        tok.tokenizacion("hola(x3,x4,x5)");
-        /*
-         * Min 
-         * Comentario
-         * 
-         * 
-         * bhvhkvk.vj
-         * bjlbj
-         * 
-         */
-        
-        
-        
+    {       
+       
+        //Iniciamos el lexer y parser
         TerminoId terminoid = null;
         TerminoManager terminoManager = null;
-        //tengo que copiar todo esto para usarlo
-        // expresion boleana hasta ahora solo puede ser xi
         ANTLRStringStream in = new ANTLRStringStream( "x2 /\\ x4");
-        //ANTLRStringStream axiom = new ANTLRFileStream("x1");
-        //creamo el lexer        
         TermLexer lexer = new TermLexer(in);
-        //TermLexer lexerAxio = new TermLexer(axiom);
-
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        //CommonTokenStream tokaxiom  = new CommonTokenStream(lexerAxio);
-
         TermParser parser = new TermParser(tokens);
-        //TermParser parseraxi = new TermParser(tokaxiom);
-        //defino tipo termino
         Term term;
-        try //si la sintanxis no es correcta ocurre una Exception
-            {
-            
-            //parseo el termino     
-            term=parser.start_rule(terminoid,terminoManager);
-            System.out.println(term.toString());
-            System.out.println(term.maxVar());
-            System.out.println(term.occur(new Var(4)));
-            System.out.println(term.kappa().toString());
 
+        try{
+            //Iniciamos el termino     
+            term = parser.start_rule(terminoid,terminoManager);
+            
+            //Tokenizamos el nombre introducido
+            Tokenizar tok = new Tokenizar();
+            tok.tokenizacion("hola(x3,x4,x5)");
+            
+            
+            System.out.println(tok.vars.toString());
+            String tt = tok.vars.remove(0);
+            
+            Brackear brack = new Brackear();
+            Term t = brack.appBrack(tok.vars, term);
+            
+            System.out.println(t.toString());
+            
+            //System.out.println(term.maxVar());
+            //System.out.println(term.occur(new Var(4)));
+            System.out.println(t.kappa().toString());
 
             //Le aplico Bracket y cambio las variables, todas las variables estan indexadas
             //Term  brackTerm = new Bracket(new Var(2), term );
-            Term bar = new Bracket( new Var(1),(new Bracket(new Var(4), new Bracket(new Var(2), term))));
+            //Term bar = new Bracket( new Var(1),(new Bracket(new Var(4), new Bracket(new Var(2), term))));
             //System.out.println(brackTerm.toString());
 
-             System.out.println(bar.toString());
+            //System.out.println(bar.toString());
             /*Term combTerm = brackTerm.traducBD(); 
              System.out.println(combTerm.toString());
 
@@ -124,9 +90,7 @@ public class Main {
             String msg1 = parseraxi.getErrorMessage(e, TermParser.tokenNames);
             */
 
-       }
-        
-    
+       }    
     }
     
 }
