@@ -30,6 +30,8 @@ public class Const extends Term
         return this;
     }
     
+   
+    
     public int setAlias(int currentAlia)
     {
         if(alias != null)
@@ -139,4 +141,12 @@ public class Const extends Term
     protected Object clone() throws CloneNotSupportedException{
         return this;
     }
+
+    @Override
+    public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        return this;
+    }
+
+   
+   
 }

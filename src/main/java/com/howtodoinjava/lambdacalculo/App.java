@@ -55,6 +55,11 @@ public class App extends Term{
         else
             return new App(new Const("K"),this);
     }
+
+    @Override
+    public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        return new App(p.sustParall(Vars, varsTerm), q.sustParall(Vars, varsTerm));
+    }
     
     private class Tripla
     {

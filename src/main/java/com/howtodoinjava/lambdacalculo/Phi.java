@@ -148,4 +148,9 @@ public class Phi extends Term{
         phi.alias=this.alias;
         return phi;
     }
+
+    @Override
+    public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        return this;
+    }
 }

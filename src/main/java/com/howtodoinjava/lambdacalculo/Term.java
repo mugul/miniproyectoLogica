@@ -5,6 +5,7 @@
 package com.howtodoinjava.lambdacalculo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -78,6 +79,8 @@ public abstract class Term implements Cloneable, Serializable{
     
     public abstract Term sust(Var x,Term t);
     
+    public abstract Term sustParall(ArrayList<Var>  Vars, ArrayList<Term> varsTerm);
+    
     public abstract int setAlias(int currentAlia);
     
     public abstract Tipo esRedex();
@@ -107,7 +110,6 @@ public abstract class Term implements Cloneable, Serializable{
             term=aux.substring(1, aux.length()-1);
         else
             term=aux;
-        
         return term;
     }
     

@@ -9,6 +9,8 @@ import com.howtodoinjava.parse.IsNotInDBException;
 import com.howtodoinjava.parse.TermLexer;
 import com.howtodoinjava.parse.TermParser;
 import com.howtodoinjava.service.TerminoManager;
+import java.sql.Array;
+import java.util.ArrayList;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -25,32 +27,69 @@ public class Main {
         //Iniciamos el lexer y parser
         TerminoId terminoid = null;
         TerminoManager terminoManager = null;
-        ANTLRStringStream in = new ANTLRStringStream( "x2 /\\ x4");
+        ANTLRStringStream in = new ANTLRStringStream( "p /\\ q == r");
         TermLexer lexer = new TermLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         TermParser parser = new TermParser(tokens);
         Term term;
 
+        TerminoId termid = null;
+        TerminoManager termManager = null;
+        ANTLRStringStream in1 = new ANTLRStringStream( "t");
+        TermLexer lexer1 = new TermLexer(in1);
+        CommonTokenStream tokens1 = new CommonTokenStream(lexer1);
+        TermParser parser1 = new TermParser(tokens1);
+        Term term1;
+        
+        TerminoId termid1 = null;
+        TerminoManager termManager1 = null;
+        ANTLRStringStream in2 = new ANTLRStringStream( "p\\/q");
+        TermLexer lexer2 = new TermLexer(in2);
+        CommonTokenStream tokens2 = new CommonTokenStream(lexer2);
+        TermParser parser2 = new TermParser(tokens2);
+        Term term2;
+        
+        ANTLRStringStream in3 = new ANTLRStringStream("p := p \\/q");
+        TermLexer lexer3 = new TermLexer(in3);
+        CommonTokenStream tokens3 = new CommonTokenStream(lexer3);
+        TermParser parser3 = new TermParser(tokens3);
+        ArrayList<Object> arr;
+        
         try{
-            //Iniciamos el termino     
-            term = parser.start_rule(terminoid,terminoManager);
             
+            arr=parser2.instantiate();
+            term = parser.start_rule(terminoid,terminoManager);
+            term1 = parser.start_rule(termid,termManager);
+            term2 = parser.start_rule(termid1,termManager1);
+                    
+            System.out.println(arr.toString());        
+            ArrayList<Term> lisTerm = new ArrayList<Term>();
+            lisTerm.add(term1);
+            lisTerm.add(term2);
+            //Iniciamos el termino   
+            //System.out.println(term.toString());
+            //System.out.println(term1.toString());
+            //System.out.println(term2.toString());
             //Tokenizamos el nombre introducido
             Tokenizar tok = new Tokenizar();
-            tok.tokenizacion("hola(x3,x4,x5)");
+            tok.tokenizacion("Hola(p,q)");
             
             
-            System.out.println(tok.vars.toString());
+            //System.out.println(tok.vars.toString());
             String tt = tok.vars.remove(0);
             
             Brackear brack = new Brackear();
-            Term t = brack.appBrack(tok.vars, term);
             
-            System.out.println(t.toString());
+            ArrayList<Var> lis= brack.listVars(tok.vars, term);
+            
+            
+            term.sustParall(lis, lisTerm);
+            
+            //System.out.println(t.toString());
             
             //System.out.println(term.maxVar());
             //System.out.println(term.occur(new Var(4)));
-            System.out.println(t.kappa().toString());
+            
 
             //Le aplico Bracket y cambio las variables, todas las variables estan indexadas
             //Term  brackTerm = new Bracket(new Var(2), term );

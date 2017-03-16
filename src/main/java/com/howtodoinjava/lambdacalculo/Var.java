@@ -5,6 +5,7 @@
 package com.howtodoinjava.lambdacalculo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -211,6 +212,24 @@ public class Var extends Term{
     @Override
     protected Object clone() throws CloneNotSupportedException{
         return this;
+    }
+
+    @Override
+    public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        Var var = null;
+        int i= 0;
+        for (Iterator<Var> it = Vars.iterator(); it.hasNext();) {
+            var = it.next();
+            if (this.occur(var)) 
+                break;
+            i++;
+        }
+        if (this.occur(var)) 
+            return varsTerm.get(i);
+        else 
+            return this;
+        
+        
     }
     
 }

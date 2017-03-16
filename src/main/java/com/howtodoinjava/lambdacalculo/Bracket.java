@@ -187,4 +187,23 @@ public class Bracket extends Term{
         term.alias=this.alias;
         return term;
     }
-}
+
+    @Override
+    public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        ArrayList<Var> aux = new ArrayList<Var>();
+        for (Iterator<Var> it = Vars.iterator(); it.hasNext();) {
+            Var var = it.next();
+            if (!(var.occur(x))) {
+                aux.add(x);               
+            }   
+        }
+        if (aux.size() != 0) {
+            return new Bracket((Var) x,t.sustParall(aux, varsTerm));
+        }else{
+            return this;
+        }
+        
+            
+        }
+    }
+

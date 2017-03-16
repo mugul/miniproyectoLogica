@@ -36,11 +36,13 @@ public class Brackear {
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             TermParser parser = new TermParser(tokens);
             Term term2 = parser.start_rule(terminoid,terminoManager);
-            t = new Bracket((Var) term2, t);
+            term = new Bracket((Var) term2, term);
  
             }  
             
-           
+           Term termAux = term.traducBD();
+           System.out.println(termAux.traducBD().toString());
+        
         //comprobar las instancias
         return term;
         
@@ -48,8 +50,28 @@ public class Brackear {
             System.out.println("ERROR:");
             return null;
         }
+    }
         
+        public ArrayList<Var>  listVars(ArrayList<String>  vars, Term term) throws RecognitionException{
         
+        TerminoId terminoid = null;
+        TerminoManager terminoManager = null;
+        Term t;
+        ArrayList<Var> auxList = new ArrayList<Var>();
+
+            for(int i = vars.toArray().length -1;  0 <= i ; i--){
+            ANTLRStringStream in = new ANTLRStringStream(vars.get(i).toString());    
+            TermLexer lexer = new TermLexer(in);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            TermParser parser = new TermParser(tokens);
+            Term term2 = parser.start_rule(terminoid,terminoManager);
+            auxList.add((Var) term2);
+ 
+            }  
+            
+     
+        return auxList;
+            
     }    
     
     
