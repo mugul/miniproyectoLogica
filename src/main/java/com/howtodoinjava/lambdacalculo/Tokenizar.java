@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.howtodoinjava.lambdacalculo;
 
 import java.util.ArrayList;
@@ -24,21 +20,21 @@ public class Tokenizar {
     StringTokenizer token, subToken;
     
     token = new StringTokenizer(string, "(");
-    System.out.println(string);   
-    
-    string = token.nextToken();
+    this.vars.add(token.nextToken());
 
     subToken = new StringTokenizer(token.nextToken().toString().replace(")", ""),",");    
 
 
-   while( subToken.hasMoreElements()) {
-       //string = subToken.nextElement();
-       
-       vars.add(subToken.nextElement().toString());
-       System.out.println(vars.toString());
+    while( subToken.hasMoreElements()) {
+       String aux = subToken.nextElement().toString();
+       try{
+           if ((aux.length() < 3) && !(aux.startsWith(" ")) ) {
+                vars.add(aux);
+           }
+        }catch(Exception e){
+           System.out.println("ERROR: Introduzca nuevamente los datos");
+        }           
+    }    
     }
-    
-    }
-    
     
 }
