@@ -1,6 +1,6 @@
 grammar Term;
 
-@header {package com.howtodoinjava.parse; 
+@header{package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.entity.Termino;
 import com.howtodoinjava.entity.TerminoId;
@@ -8,9 +8,8 @@ import com.howtodoinjava.lambdacalculo.*;
 import com.howtodoinjava.service.TerminoManager;
 import java.util.Iterator;}
 
-
 // Parser Rules
-start_rule[TerminoId terminoid, TerminoManager terminoManager] returns [Term value]: eq           { $value=$eq.value;};
+start_rule[TerminoId terminoid, TerminoManager terminoManager]  returns [Term value]: eq           { $value=$eq.value;};
 
 eq returns [Term value]: term eqtail          { Term aux=$term.value;
                                                 for(Iterator<Term> i = $eqtail.value.iterator(); i.hasNext();) 
@@ -19,70 +18,43 @@ eq returns [Term value]: term eqtail          { Term aux=$term.value;
                                               };
 
 eqtail returns [ArrayList<Term> value]:    
-    '===' term tail1=eqtail                    {ArrayList<Term> aux=$tail1.value; aux.add(0,$term.value); $value=aux;}
+    '==' term tail1=eqtail                    {ArrayList<Term> aux=$tail1.value; aux.add(0,$term.value); $value=aux;}
 
    |                                          {$value=new ArrayList<Term>();};
 
-term returns [Term value]: disyconj disyconjtail  { Term aux=$disyconj.value; 
-                                                    ArrayList<ParserPair> rightList = new ArrayList<ParserPair>();
-                                                    Term aux2=null;
-                                                    boolean left, right;
-                                                    left = false;
-                                                    right = false;
-                                                    for(Iterator<ParserPair> i = $disyconjtail.value.iterator(); i.hasNext();)
-                                                    {
-                                                       ParserPair pair = i.next();
-                                                       if (pair.symbol.equals("\\Leftarrow "))
-                                                       {
-                                                          if (right)
-                                                          {
-                                                            if (rightList.size() > 0) aux2 = rightList.remove(0).term;
-                                                            for(Iterator<ParserPair> j = rightList.iterator(); j.hasNext();)
-                                                            {
-                                                              ParserPair pair2 = j.next();
-                                                              aux2=new App(new App(new Const(pair2.symbol),aux2),pair2.term);
-                                                              if (!j.hasNext())
-                                                                 aux = new App(new App(new Const(pair2.symbol),aux2),aux);
-                                                            }
-                                                            rightList = new ArrayList<ParserPair>();
-                                                          }
-                                                          left = true;
-                                                          right = false;
-                                                          aux=new App(new App(new Const(pair.symbol),pair.term),aux); 
-                                                       }
-                                                       else if (pair.symbol.equals("\\Rightarrow "))
-                                                       {
-                                                          if (left)
-                                                             rightList = new ArrayList<ParserPair>();
-                                                          left = false;
-                                                          right = true;
-                                                          rightList.add(0,pair);
-                                                       }
-                                                    }
-                                                    if (rightList.size() > 0) aux2 = rightList.remove(0).term;
-                                                    for(Iterator<ParserPair> j = rightList.iterator(); j.hasNext();)
-                                                    {
-                                                       ParserPair pair2 = j.next();
-                                                       aux2=new App(new App(new Const(pair2.symbol),aux2),pair2.term);
-                                                       if (!j.hasNext())
-                                                          aux = new App(new App(new Const(pair2.symbol),aux2),aux);
-                                                    }
-                                                    $value=aux;
+term returns [Term value]: disyconj disyconjtail  { 
+                                                    if ($disyconjtail.value == null)
+                                                       $value = $disyconj.value;
+                                                    else
+                                                       $value = new App($disyconjtail.value,$disyconj.value);
                                                   };
 
-disyconjtail returns [ArrayList<ParserPair> value]:  
+disyconjtail returns [Term value]:  
 
-     '==>' disyconj tail2=disyconjtail        {ArrayList<ParserPair> aux=$tail2.value; 
-                                               aux.add(0,new ParserPair("\\Rightarrow ",$disyconj.value)); $value=aux;
+     '==>' disyconj tail2=disyconjtail        {
+                                               if ($tail2.value == null)
+                                                  $value = new App(new Const("\\Rightarrow "),$disyconj.value);
+                                               else
+                                               $value=new App(new Const("\\Rightarrow "),new App($tail2.value,$disyconj.value));
                                               }
 
-   | '<==' disyconj tail3=disyconjtail        {ArrayList<ParserPair> aux=$tail3.value; 
-                                               aux.add(0,new ParserPair("\\Leftarrow ", $disyconj.value)); $value=aux;
+   |                                          {$value=null;};
+
+disyconj returns [Term value]: conc conctail  { Term aux=$conc.value;
+                                                for(Iterator<Term> i = $conctail.value.iterator(); i.hasNext();) 
+                                                   aux=new App(new App(new Const("\\Leftarrow "),i.next()),aux);
+                                                $value=aux;
+                                              };
+
+conctail returns [ArrayList<Term> value]:
+
+     '<==' conc tail3=conctail                {ArrayList<Term> aux=$tail3.value; 
+                                               aux.add(0,$conc.value); $value=aux;
                                               }
 
-   |                                          {$value=new ArrayList<ParserPair>();};
+   |                                          {$value=new ArrayList<Term>();};
 
-disyconj returns [Term value]: neg negtail         { Term aux=$neg.value; 
+conc returns [Term value]: neg negtail             { Term aux=$neg.value; 
                                                      for(Iterator<ParserPair> i = $negtail.value.iterator(); i.hasNext();)
                                                      {
                                                         ParserPair pair = i.next();
@@ -110,30 +82,79 @@ neg returns [Term value]:
 
       '!' n=neg                               {$value=new App(new Const("\\neg "),$n.value);}
 
-     | '(' eq ')'                             {$value=$eq.value;}
+     | CAPITALLETTER                          {$value = new Var((new Integer((int)$CAPITALLETTER.text.charAt(0))).intValue());}
 
-     | X                                      {$value =new Var((new Integer($X.text.substring(1))).intValue());}
+     | LETTER                                 {$value = new Var((new Integer((int)$LETTER.text.charAt(0))).intValue());}
 
-     | WORD '(' arguments ')'                 {Term aux = new Const($WORD.text+" ");
-                                               for(Iterator<Term> i = $arguments.value.iterator(); i.hasNext();) 
+     | 'true'                                 {$value = new Const("true ");}
+
+     | 'false'                                {$value = new Const("false ");}
+
+     | CAPITALLETTER '_{' eq '}^{' LETTER '}' {Var letter = new Var((new Integer((int)$LETTER.text.charAt(0))).intValue());
+                                               Var capl = new Var((new Integer((int)$CAPITALLETTER.text.charAt(0))).intValue());
+                                               $value = new App(new Bracket(letter,capl),$eq.value);
+                                              } 
+
+     | WORD '(' arguments ')'                 {Term aux = new Const($WORD.text);
+                                               for(Iterator<Var> i = $arguments.value.iterator(); i.hasNext();) 
                                                   aux=new App(aux,i.next());
                                                $value=aux;
+                                              }
+
+     | '(' eq ')'                             {$value=$eq.value;};
+
+instantiate returns [ArrayList<Object> value]: 
+
+     arguments ':=' explist                   {ArrayList<Object> arr=new ArrayList<Object>();
+                                               arr.add($arguments.value);
+                                               arr.add($explist.value);
+                                               $value = arr;
                                               };
+
+explist returns [ArrayList<Term> value]: 
+
+     eq  explisttail                          {ArrayList<Term> aux = $explisttail.value;
+                                               aux.add(0,$eq.value);
+                                               $value = aux;
+                                              };
+
+explisttail returns [ArrayList<Term> value]: 
+
+     ',' eq tail6=explisttail                 {ArrayList<Term> aux = $tail6.value;
+                                               aux.add(0,$eq.value);
+                                               $value =aux;
+                                              }
+
+     |                                        {$value = new ArrayList<Term>();};
 
 X:
    'X' NUMBER
 
   | 'x' NUMBER;
 
-arguments returns [ArrayList<Term> value]: X ',' arg=arguments {ArrayList<Term> aux=$arg.value; 
-                                                             aux.add(0,new Var((new Integer($X.text.substring(1))).intValue())); 
-                                                             $value=aux;
-                                                            }
+arguments returns [ArrayList<Var> value]: LETTER ',' arg=arguments {ArrayList<Var> aux=$arg.value; 
+                                                            Var v=new Var((new Integer((int)$LETTER.text.charAt(0))).intValue());
+                                                            aux.add(0,v); 
+                                                            $value=aux;
+                                                           }
 
-                                         | X                {ArrayList<Term> list=new ArrayList<Term>();
-                                                             list.add(0,new Var((new Integer($X.text.substring(1))).intValue()));
+                                         | CAPITALLETTER ',' arg=arguments {ArrayList<Var> aux=$arg.value; 
+                                                     Var v=new Var((new Integer((int)$CAPITALLETTER.text.charAt(0))).intValue());
+                                                            aux.add(0,v); 
+                                                            $value=aux;
+                                                           }
+
+                                         | LETTER          {ArrayList<Var> list=new ArrayList<Var>();
+                                                            Var v=new Var((new Integer($LETTER.text.charAt(0))).intValue());
+                                                            list.add(0,v);
+                                                            $value = list;
+                                                           }
+
+                                         | CAPITALLETTER   {ArrayList<Var> list=new ArrayList<Var>();
+                                                       Var v=new Var((new Integer($CAPITALLETTER.text.charAt(0))).intValue());
+                                                             list.add(0,v);
                                                              $value = list;
-                                                            };
+                                                           };
 
 INITIALDIGIT: '1'..'9';
 
