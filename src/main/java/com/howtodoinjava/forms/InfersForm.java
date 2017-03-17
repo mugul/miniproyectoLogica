@@ -11,7 +11,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author shamuel
  */
 public class InfersForm {
-     
+    
+    @NotEmpty(message="no debe dejar este campo vacío")
+     private String pasoAnt;     
      @NotEmpty(message="no debe dejar este campo vacío")
      private String nStament;
      @NotEmpty(message="no debe dejar este campo vacío")
@@ -22,10 +24,19 @@ public class InfersForm {
     public  InfersForm() {
     }
 
-    public  InfersForm(String nombre, String algoritmo, String leib) {
-       this.nStament = nombre;
-       this.instanciacion = algoritmo;
-       this.leibniz = leib;
+    public InfersForm(String pasoAnt, String nStament, String instanciacion, String leibniz) {
+        this.pasoAnt = pasoAnt;
+        this.nStament = nStament;
+        this.instanciacion = instanciacion;
+        this.leibniz = leibniz;
+    }
+
+    public void setPasoAnt(String pasoAnt) {
+        this.pasoAnt = pasoAnt;
+    }
+
+    public String getPasoAnt() {
+        return pasoAnt;
     }
 
     public String getnStament() {
@@ -62,6 +73,9 @@ public class InfersForm {
             return false;
         }
         final InfersForm other = (InfersForm) obj;
+        if ((this.pasoAnt == null) ? (other.pasoAnt != null) : !this.pasoAnt.equals(other.pasoAnt)) {
+            return false;
+        }
         if ((this.nStament == null) ? (other.nStament != null) : !this.nStament.equals(other.nStament)) {
             return false;
         }
@@ -76,10 +90,11 @@ public class InfersForm {
    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + (this.nStament != null ? this.nStament.hashCode() : 0);
-        hash = 73 * hash + (this.instanciacion != null ? this.instanciacion.hashCode() : 0);
-        hash = 73 * hash + (this.leibniz != null ? this.leibniz.hashCode() : 0);
+        int hash = 5;
+        hash = 41 * hash + (this.pasoAnt != null ? this.pasoAnt.hashCode() : 0);
+        hash = 41 * hash + (this.nStament != null ? this.nStament.hashCode() : 0);
+        hash = 41 * hash + (this.instanciacion != null ? this.instanciacion.hashCode() : 0);
+        hash = 41 * hash + (this.leibniz != null ? this.leibniz.hashCode() : 0);
         return hash;
     }
 }
