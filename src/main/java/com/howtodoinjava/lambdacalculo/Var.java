@@ -135,6 +135,17 @@ public class Var extends Term{
         }
     }
     
+    @Override
+    public String toStringInf() {
+        if(alias == null ) {
+            return "x_{"+indice+"}";
+        }
+        else {
+            //tomo en cueta que no lleva _ al final
+            return alias;
+        }
+    }
+    
     public ToString toStringAbrv(ToString toString)
     {
         if(alias == null)
@@ -224,12 +235,12 @@ public class Var extends Term{
                 break;
             i++;
         }
-        if (this.occur(var)) 
+        if (this.occur(var) && (varsTerm.size() ==  Vars.size())) 
             return varsTerm.get(i);
         else 
             return this;
         
         
     }
-    
+  
 }

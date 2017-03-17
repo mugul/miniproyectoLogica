@@ -110,6 +110,12 @@ public class Const extends Term
         return con;
     }
     
+    @Override
+    public String toStringInf() {
+        return con;
+    }
+
+    
     public ToString toStringAbrvV1(ToString toString)
     {
         toString.term=this.toString();
@@ -147,6 +153,7 @@ public class Const extends Term
         return this;
     }
 
+    
    
    
 }

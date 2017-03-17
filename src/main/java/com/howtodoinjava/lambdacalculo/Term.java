@@ -98,6 +98,8 @@ public abstract class Term implements Cloneable, Serializable{
     @Override
     public abstract String toString();
     
+    public abstract String toStringInf();
+    
     public abstract ToString toStringAbrvV1(ToString toString);
     
     public abstract ToString toStringAbrv(ToString toString);
@@ -106,11 +108,27 @@ public abstract class Term implements Cloneable, Serializable{
     {
         String term;
         String aux= this.toString();
-        if(aux.startsWith("("))
+        System.out.println("aux"+aux.toString());
+        System.out.println(aux.length()-1);
+        if(aux.startsWith("(")){
             term=aux.substring(1, aux.length()-1);
-        else
+            System.out.println("1 "+term.toString());
+        } else{
             term=aux;
+            System.out.println("2 "+term.toString());
+        }   
         return term;
+    }
+    
+    public String toStringFinalInf()
+    {
+        String term;
+        String aux= this.toString();
+        if(aux.startsWith("("))            
+            term = aux.substring(1, aux.length()-1);            
+        else{
+            term=aux;
+        }return term;
     }
     
     public void toStringAbrvFinal(ToString toString)

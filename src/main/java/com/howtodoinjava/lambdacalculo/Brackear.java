@@ -4,15 +4,9 @@
  */
 package com.howtodoinjava.lambdacalculo;
 
-import com.howtodoinjava.entity.TerminoId;
-import com.howtodoinjava.parse.TermLexer;
-import com.howtodoinjava.parse.TermParser;
-import com.howtodoinjava.service.TerminoManager;
+
 import java.util.ArrayList;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.Parser;
-import org.antlr.runtime.RecognitionException;
+
 
 /**
  *
@@ -23,55 +17,27 @@ public class Brackear {
     public Brackear() {
     }
     
-    public Term appBrack(ArrayList<String> vars, Term term) throws RecognitionException{
-        TerminoId terminoid = null;
-        TerminoManager terminoManager = null;
-        Term t;
-        t = term; 
-        try{
-
-            for(int i = vars.toArray().length -1;  0 <= i ; i--){
-            ANTLRStringStream in = new ANTLRStringStream(vars.get(i).toString());    
-            TermLexer lexer = new TermLexer(in);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            TermParser parser = new TermParser(tokens);
-            Term term2 = parser.start_rule(terminoid,terminoManager);
-            term = new Bracket((Var) term2, term);
- 
-            }  
-            
-           Term termAux = term.traducBD();
-           System.out.println(termAux.traducBD().toString());
+    public Term appBrack(ArrayList<String> vars, Term term){
+        MakeTerm mk = new MakeTerm();
         
-        //comprobar las instancias
+        for(int i = vars.toArray().length -1;  0 <= i ; i--){
+            term = new Bracket((Var) mk.makeTerm(vars.get(i).toString()), term);     
+        }  
         return term;
-        
-        }catch(Exception e){                   
-            System.out.println("ERROR:");
-            return null;
-        }
     }
         
-        public ArrayList<Var>  listVars(ArrayList<String>  vars, Term term) throws RecognitionException{
-        
-        TerminoId terminoid = null;
-        TerminoManager terminoManager = null;
-        Term t;
-        ArrayList<Var> auxList = new ArrayList<Var>();
+    
+    public ArrayList<Var>  listVars(ArrayList<String>  vars){
 
-            for(int i = vars.toArray().length -1;  0 <= i ; i--){
-            ANTLRStringStream in = new ANTLRStringStream(vars.get(i).toString());    
-            TermLexer lexer = new TermLexer(in);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            TermParser parser = new TermParser(tokens);
-            Term term2 = parser.start_rule(terminoid,terminoManager);
-            auxList.add((Var) term2);
- 
-            }  
-            
-     
+        ArrayList<Var> auxList = new ArrayList<Var>();
+        MakeTerm mk = new MakeTerm();
+
+        for(int i = vars.toArray().length -1;  0 <= i ; i--){
+            auxList.add((Var) mk.makeTerm(vars.get(i).toString()));
+        }  
+
         return auxList;
-            
+
     }    
     
     
@@ -94,4 +60,5 @@ public class Brackear {
                 }       
         return true;
     }
+
 }

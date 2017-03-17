@@ -14,7 +14,7 @@ import java.util.List;
 public class App extends Term{
     
     public Term p;
-    Term q;
+    public Term q;
     
     public App(Term p1,Term q1)
     {
@@ -60,6 +60,7 @@ public class App extends Term{
     public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
         return new App(p.sustParall(Vars, varsTerm), q.sustParall(Vars, varsTerm));
     }
+
     
     private class Tripla
     {
@@ -359,6 +360,37 @@ public class App extends Term{
         return "("+izq+" "+der+")";
         //return "("+p.toString()+q.toString()+")";
     }
+    
+    @Override
+    //Nuevo toString
+    public String toStringInf() {
+        
+        String izq;
+        String der;
+        
+        if(p.alias == null){
+            if(p instanceof App){
+                System.out.println("inst APP");    
+                izq=p.toStringFinalInf();
+            }else{
+                System.out.println("else");
+                izq=p.toStringInf();
+            }    
+        }
+        else
+            izq = p.alias;//.split("@")[0].replace("_", "\\_");
+        
+        if(q.alias == null)
+            der=q.toStringInf();
+        else
+            der=q.alias;//.split("@")[0].replace("_","\\_");
+        
+        
+        return "("+der+" "+izq+")";
+        //return "("+p.toString()+q.toString()+")";
+    }
+    
+    
     
     public ToString toStringAbrv(ToString toString)
     {

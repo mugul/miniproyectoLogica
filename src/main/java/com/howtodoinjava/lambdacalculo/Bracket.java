@@ -129,6 +129,15 @@ public class Bracket extends Term{
             return "(\\lambda "+x.toString()+"."+t.alias.split("@")[0].replace("_", "\\_") +")";
     }
     
+    public String toStringInf()
+    {
+        if(t.alias == null)
+            return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
+        else
+            return "(\\lambda "+x.toStringInf()+"."+t.alias +")";//.split("@")[0].replace("_", "\\_") +")";
+    }
+    
+    
     public ToString toStringAbrv(ToString toString)
     {
         if(t.alias == null)
@@ -191,13 +200,17 @@ public class Bracket extends Term{
     @Override
     public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
         ArrayList<Var> aux = new ArrayList<Var>();
+        int i = 0;
         for (Iterator<Var> it = Vars.iterator(); it.hasNext();) {
             Var var = it.next();
             if (!(var.occur(x))) {
-                aux.add(x);               
-            }   
+                aux.add(x);     
+                varsTerm.remove(i);
+            } 
+            i++;
         }
         if (aux.size() != 0) {
+            
             return new Bracket((Var) x,t.sustParall(aux, varsTerm));
         }else{
             return this;
@@ -205,5 +218,7 @@ public class Bracket extends Term{
         
             
         }
+
+    
     }
 

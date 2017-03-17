@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
  * @author shamuel
  */
 public class Tokenizar {
-
+    String name;
     ArrayList<String> vars;
     
     public Tokenizar() {
@@ -17,24 +17,23 @@ public class Tokenizar {
     
     public void tokenizacion(String string){
     
-    StringTokenizer token, subToken;
+        StringTokenizer token, subToken;
     
-    token = new StringTokenizer(string, "(");
-    this.vars.add(token.nextToken());
+        token = new StringTokenizer(string, "(");
+        name = token.nextToken();
 
-    subToken = new StringTokenizer(token.nextToken().toString().replace(")", ""),",");    
+        subToken = new StringTokenizer(token.nextToken().toString().replace(")", ""),",");    
 
-
-    while( subToken.hasMoreElements()) {
-       String aux = subToken.nextElement().toString();
-       try{
-           if ((aux.length() < 3) && !(aux.startsWith(" ")) ) {
-                vars.add(aux);
-           }
-        }catch(Exception e){
-           System.out.println("ERROR: Introduzca nuevamente los datos");
-        }           
-    }    
+        while( subToken.hasMoreElements()) {
+           String aux = subToken.nextElement().toString();
+           try{
+               if ((aux.length() < 2) && !(aux.startsWith(" ")) ) {
+                    vars.add(aux);
+               }
+            }catch(Exception e){
+               System.out.println("ERROR: Introduzca nuevamente los datos");
+            }           
+        }    
     }
     
 }
