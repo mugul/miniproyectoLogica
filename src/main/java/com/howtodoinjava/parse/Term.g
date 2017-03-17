@@ -156,6 +156,10 @@ arguments returns [ArrayList<Var> value]: LETTER ',' arg=arguments {ArrayList<Va
                                                              $value = list;
                                                            };
 
+lambda returns [Term value]: 'lambda' LETTER '.' eq        {Var v=new Var((new Integer($LETTER.text.charAt(0))).intValue());
+                                                            $value = new Bracket(v,$eq.value);
+                                                           };
+
 INITIALDIGIT: '1'..'9';
 
 DIGIT: '0'|INITIALDIGIT;

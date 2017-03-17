@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-16 16:35:04
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-17 13:30:40
 package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.entity.Termino;
@@ -14,8 +14,10 @@ import java.util.ArrayList;
 
 public class TermParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "CAPITALLETTER", "LETTER", "WORD", "NUMBER", "X", "INITIALDIGIT", "DIGIT", "WHITESPACE", "'=='", "'==>'", "'<=='", "'\\\\/'", "'/\\\\'", "'!'", "'true'", "'false'", "'_{'", "'}^{'", "'}'", "'('", "')'", "':='", "','"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "CAPITALLETTER", "LETTER", "WORD", "NUMBER", "X", "INITIALDIGIT", "DIGIT", "WHITESPACE", "'=='", "'==>'", "'<=='", "'\\\\/'", "'/\\\\'", "'!'", "'true'", "'false'", "'_{'", "'}^{'", "'}'", "'('", "')'", "':='", "','", "'lambda'", "'.'"
     };
+    public static final int T__28=28;
+    public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
     public static final int T__24=24;
@@ -1014,6 +1016,45 @@ public class TermParser extends Parser {
     }
     // $ANTLR end "arguments"
 
+
+    // $ANTLR start "lambda"
+    // Term.g:159:1: lambda returns [Term value] : 'lambda' LETTER '.' eq ;
+    public final Term lambda() throws RecognitionException {
+        Term value = null;
+
+        Token LETTER32=null;
+        Term eq33 = null;
+
+
+        try {
+            // Term.g:159:28: ( 'lambda' LETTER '.' eq )
+            // Term.g:159:30: 'lambda' LETTER '.' eq
+            {
+            match(input,27,FOLLOW_27_in_lambda1224); 
+            LETTER32=(Token)match(input,LETTER,FOLLOW_LETTER_in_lambda1226); 
+            match(input,28,FOLLOW_28_in_lambda1228); 
+            pushFollow(FOLLOW_eq_in_lambda1230);
+            eq33=eq();
+
+            state._fsp--;
+
+            Var v=new Var((new Integer((LETTER32!=null?LETTER32.getText():null).charAt(0))).intValue());
+                                                                        value = new Bracket(v,eq33);
+                                                                       
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return value;
+    }
+    // $ANTLR end "lambda"
+
     // Delegated rules
 
 
@@ -1137,5 +1178,9 @@ public class TermParser extends Parser {
     public static final BitSet FOLLOW_arguments_in_arguments1104 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LETTER_in_arguments1152 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_lambda1224 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LETTER_in_lambda1226 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_lambda1228 = new BitSet(new long[]{0x00000000008E0070L});
+    public static final BitSet FOLLOW_eq_in_lambda1230 = new BitSet(new long[]{0x0000000000000002L});
 
 }
