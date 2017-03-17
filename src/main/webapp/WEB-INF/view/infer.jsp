@@ -39,9 +39,10 @@
     <center>
     <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
 
-        Numero de statement: <sf:input path="nStament" id="n_statement" value="${nStament}"/><sf:errors path="nStament" cssClass="error" /><br/>
-        Instaciacion:<br><sf:textarea path="instanciacion" id="instanciacion_id" style="height: 80px; width: 526px;" /><sf:errors path="instanciacion" cssClass="error" /><br/>
-        Leibniz:<br><sf:textarea path="leibniz" id="leibniz_id" style="height: 80px; width: 526px;" /><sf:errors path="leibniz" cssClass="error" /><br/>
+        Paso anterior: <sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
+        <br>Numero de statement: <sf:input path="nStament" id="n_statement" value="${nStament}"/><sf:errors path="nStament" cssClass="error" /></br>
+        <br>Instaciacion:<sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+        <br>Leibniz:<sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
 
         <input type="submit" value="Inferir"> <input type="button" value="limpiar" onclick="limpiar()">
     </sf:form> ${mensaje}
