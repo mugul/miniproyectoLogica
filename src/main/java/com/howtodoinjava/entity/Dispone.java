@@ -1,6 +1,13 @@
 package com.howtodoinjava.entity;
 // Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+
 
 
 /**
@@ -9,6 +16,10 @@ package com.howtodoinjava.entity;
 public class Dispone  implements java.io.Serializable {
 
 
+    @Id
+    @Column(name="id")
+    @GeneratedValue( strategy= GenerationType.SEQUENCE, generator="dispone_id_seq")
+    @SequenceGenerator(name="dispone_id_seq", sequenceName="dispone_id_seq")
      private int id;
      private Usuario usuario;
      private Metateorema metateorema;

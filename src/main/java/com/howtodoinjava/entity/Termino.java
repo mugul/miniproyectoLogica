@@ -2,6 +2,7 @@ package com.howtodoinjava.entity;
 // Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 import com.howtodoinjava.lambdacalculo.Term;
+import org.springframework.util.SerializationUtils;
 
 
 
@@ -68,8 +69,10 @@ public class Termino  implements java.io.Serializable {
         return this.termobject;
     }
     
-    public void setTermObject(Term termobject) {
-        this.termobject = termobject;
+    public void setTermObject(Term t)
+    {
+         this.termobject=t;
+         this.serializado= SerializationUtils.serialize(t);
     }
 
     @Override

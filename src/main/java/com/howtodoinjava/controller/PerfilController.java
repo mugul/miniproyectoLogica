@@ -162,11 +162,27 @@ public class PerfilController {
             Teorema teorema = new Teorema();
             Resuelve resuelve = new Resuelve();
             
-            Categoria categoria = new Categoria();
-            categoria.setNombre(agregarTeorema.getCategoria());
-            categoria.setId(16);
-            
+            Categoria categoria = new Categoria(agregarTeorema.getCategoria());
+//            categoria.setNombre(agregarTeorema.getCategoria());
             categoriaManager.addCategoria(categoria);
+            
+
+                        Categoria categoria1 = new Categoria("Categoria1");
+//            categoria.setNombre(agregarTeorema.getCategoria());
+            categoriaManager.addCategoria(categoria1);
+
+                        Categoria categoria2 = new Categoria("Categoria2");
+//            categoria.setNombre(agregarTeorema.getCategoria());
+            categoriaManager.addCategoria(categoria2);
+
+                        Categoria categoria3 = new Categoria("Categoria3");
+//            categoria.setNombre(agregarTeorema.getCategoria());
+            categoriaManager.addCategoria(categoria3);
+
+                        Categoria categoria4 = new Categoria("Categoria4");
+//            categoria.setNombre(agregarTeorema.getCategoria());
+            categoriaManager.addCategoria(categoria4);
+
             
             Usuario user=usuarioManager.getUsuario(username);
             

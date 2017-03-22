@@ -6,7 +6,9 @@
     <class name="com.howtodoinjava.entity.Teorema" table="teorema" schema="public">
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="sequence">
+                <param name="sequence">teorema_id_seq</param>
+            </generator> 
         </id>
         <many-to-one name="categoria" class="com.howtodoinjava.entity.Categoria" fetch="select">
             <column name="categoriaid" not-null="true" />
