@@ -6,7 +6,6 @@ package com.howtodoinjava.dao;
 
 import com.howtodoinjava.entity.Publicacion;
 import com.howtodoinjava.entity.PublicacionId;
-import com.howtodoinjava.entity.Termino;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author federico
  */
 @Repository
-public class PublicacionDAOImpl implements PublicacionDAO{
+public class PublicacionDaoImpl implements PublicacionDAO{
 
     @Autowired
     private SessionFactory sessionFactory;

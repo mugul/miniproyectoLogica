@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author miguel
  */
-public class CategoriaDAOImpl implements CategoriaDAO {
+public class CategoriaDaoImpl implements CategoriaDAO {
     
     @Autowired
     private SessionFactory sessionFactory;

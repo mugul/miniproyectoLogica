@@ -19,6 +19,10 @@ public class Const extends Term
     {
         con=cons;
     }
+
+    public String getCon() {
+        return con;
+    }
  
     public boolean occur(Var x)
     {

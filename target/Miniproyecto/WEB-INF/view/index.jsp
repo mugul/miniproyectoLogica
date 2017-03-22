@@ -14,7 +14,7 @@
 
     <body>
         <div class="row-fluid" style="margin-left: 50px; height:552px; width: 1100px; overflow: hidden;">
-        <h1>Inicie sesión o regístrese para continuar</h1>
+        <p contenteditable="true">Inicie sesión o regístrese para continuar </p>
         <center>
         <sf:form method="POST" modelAttribute="usuariolog">
             <table>

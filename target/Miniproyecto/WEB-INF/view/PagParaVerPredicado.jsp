@@ -13,11 +13,12 @@
     </head>
     
     <body>
-        <h1>Hello World! ${predicado.id}</h1>
-        <p> ${predicado.id}  </p>
-        <p> ${predicado.usuario}  </p>
-        <p> ${predicado.predicado}  </p>
-        <p> ${predicado.alias}  </p>
-        <p> ${predicado.predserializado}  </p>
+        <h1>Hello World!</h1>
+        <p> ${id}  </p>
+        <p> ${usuario}  </p>
+        <p> ${predicado}  </p>
+        <p> ${alias}  </p>
+        <p> ${predserializado}  </p>
+        
     </body>
 </html>

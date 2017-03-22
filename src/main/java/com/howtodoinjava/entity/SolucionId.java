@@ -1,5 +1,5 @@
 package com.howtodoinjava.entity;
-// Generated Feb 28, 2017 9:07:39 PM by Hibernate Tools 3.2.1.GA
+// Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 
 

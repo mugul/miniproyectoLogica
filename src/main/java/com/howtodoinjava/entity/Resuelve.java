@@ -1,5 +1,5 @@
 package com.howtodoinjava.entity;
-// Generated Feb 28, 2017 9:07:39 PM by Hibernate Tools 3.2.1.GA
+// Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -14,8 +14,6 @@ public class Resuelve  implements java.io.Serializable {
      private int id;
      private Usuario usuario;
      private Teorema teorema;
-     private String teoserializadoizq;
-     private String teoserializadoder;
      private String nombreteorema;
      private String numeroteorema;
      private boolean resuelto;
@@ -25,21 +23,17 @@ public class Resuelve  implements java.io.Serializable {
     }
 
 	
-    public Resuelve(int id, Usuario usuario, Teorema teorema, String teoserializadoizq, String teoserializadoder, String numeroteorema, boolean resuelto) {
+    public Resuelve(int id, Usuario usuario, Teorema teorema, String numeroteorema, boolean resuelto) {
         this.id = id;
         this.usuario = usuario;
         this.teorema = teorema;
-        this.teoserializadoizq = teoserializadoizq;
-        this.teoserializadoder = teoserializadoder;
         this.numeroteorema = numeroteorema;
         this.resuelto = resuelto;
     }
-    public Resuelve(int id, Usuario usuario, Teorema teorema, String teoserializadoizq, String teoserializadoder, String nombreteorema, String numeroteorema, boolean resuelto, Set solucions) {
+    public Resuelve(int id, Usuario usuario, Teorema teorema,  String nombreteorema, String numeroteorema, boolean resuelto, Set solucions) {
        this.id = id;
        this.usuario = usuario;
        this.teorema = teorema;
-       this.teoserializadoizq = teoserializadoizq;
-       this.teoserializadoder = teoserializadoder;
        this.nombreteorema = nombreteorema;
        this.numeroteorema = numeroteorema;
        this.resuelto = resuelto;
@@ -67,20 +61,7 @@ public class Resuelve  implements java.io.Serializable {
     public void setTeorema(Teorema teorema) {
         this.teorema = teorema;
     }
-    public String getTeoserializadoizq() {
-        return this.teoserializadoizq;
-    }
-    
-    public void setTeoserializadoizq(String teoserializadoizq) {
-        this.teoserializadoizq = teoserializadoizq;
-    }
-    public String getTeoserializadoder() {
-        return this.teoserializadoder;
-    }
-    
-    public void setTeoserializadoder(String teoserializadoder) {
-        this.teoserializadoder = teoserializadoder;
-    }
+
     public String getNombreteorema() {
         return this.nombreteorema;
     }

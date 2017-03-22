@@ -1,5 +1,5 @@
 package com.howtodoinjava.entity;
-// Generated Feb 28, 2017 9:07:39 PM by Hibernate Tools 3.2.1.GA
+// Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -12,24 +12,34 @@ public class Teorema  implements java.io.Serializable {
 
 
      private int id;
+     private Categoria categoria;
      private String enunciadoizq;
      private String enunciadoder;
+     private String teoserializadoizq;
+     private String teoserializadoder;
+     private boolean ocultartrue;
      private Set resuelves = new HashSet(0);
 
     public Teorema() {
     }
 
-	
-    public Teorema(int id, String enunciadoizq, String enunciadoder) {
-        this.id = id;
+    public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, String teoserializadoizq, String teoserializadoder, boolean ocultartrue) {
+        this.categoria = categoria;
         this.enunciadoizq = enunciadoizq;
         this.enunciadoder = enunciadoder;
+        this.teoserializadoizq = teoserializadoizq;
+        this.teoserializadoder = teoserializadoder;
+        this.ocultartrue = ocultartrue;
     }
-    public Teorema(int id, String enunciadoizq, String enunciadoder, Set resuelves) {
-       this.id = id;
-       this.enunciadoizq = enunciadoizq;
-       this.enunciadoder = enunciadoder;
-       this.resuelves = resuelves;
+
+    public Teorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String teoserializadoizq, String teoserializadoder, boolean ocultartrue) {
+        this.id = id;
+        this.categoria = categoria;
+        this.enunciadoizq = enunciadoizq;
+        this.enunciadoder = enunciadoder;
+        this.teoserializadoizq = teoserializadoizq;
+        this.teoserializadoder = teoserializadoder;
+        this.ocultartrue = ocultartrue;
     }
    
     public int getId() {
@@ -38,6 +48,13 @@ public class Teorema  implements java.io.Serializable {
     
     public void setId(int id) {
         this.id = id;
+    }
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
+    
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
     public String getEnunciadoizq() {
         return this.enunciadoizq;
@@ -53,14 +70,38 @@ public class Teorema  implements java.io.Serializable {
     public void setEnunciadoder(String enunciadoder) {
         this.enunciadoder = enunciadoder;
     }
-    public Set getResuelves() {
-        return this.resuelves;
+    public boolean isOcultartrue() {
+        return this.ocultartrue;
     }
     
+    public void setOcultartrue(boolean ocultartrue) {
+        this.ocultartrue = ocultartrue;
+    }
+
+    public void setTeoserializadoizq(String teoserializadoizq) {
+        this.teoserializadoizq = teoserializadoizq;
+    }
+
+    public void setTeoserializadoder(String teoserializadoder) {
+        this.teoserializadoder = teoserializadoder;
+    }
+
     public void setResuelves(Set resuelves) {
         this.resuelves = resuelves;
     }
-    
+
+    public String getTeoserializadoizq() {
+        return teoserializadoizq;
+    }
+
+    public String getTeoserializadoder() {
+        return teoserializadoder;
+    }
+
+    public Set getResuelves() {
+        return resuelves;
+    }
+
 }
 
 

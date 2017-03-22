@@ -14,6 +14,7 @@
             <li ${misPublicacionesMenu}><a href="mispublic?comb=n" style="padding-right:0px">Mis publicaciones</a></li>
             <li ${computarMenu}><a href="ingresar" style="padding-right:0px">computar</a></li>-->
             <li ${perfilMenu}><a href="./">Perfil</a></li>
+            <li ${agregarTeoremaMenu}><a href="guardarteo">Agregar Teorema</a></li>
             <li><a href="close">cerrar sesi&oacute;n</a></li>
           </ul>
         </div>

@@ -48,7 +48,18 @@ public class TeoremaDaoImpl implements TeoremaDAO{
             return this.sessionFactory.getCurrentSession().createQuery("FROM Teorema").list();
 	}
         
-        
+	@Override
+        public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder){
+            
+            String sql="FROM Teorema WHERE enunciadoizq = :enunciadoizq AND enunciadoder = :enunciadoder";
+            List<Teorema> list = this.sessionFactory.getCurrentSession().createQuery(sql).setParameter("enunciadoizq",enunciadoizq).setParameter("enunciadoder",enunciadoder).list();
+           
+            if(list.isEmpty()) {
+                return null;
+            } else {
+                return list.get(0);
+            }
+        }
 //	@Override
 //	public List<Termino> getAllTeoremasByUser(String username)
 //        {

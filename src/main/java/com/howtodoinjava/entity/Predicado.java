@@ -1,5 +1,5 @@
 package com.howtodoinjava.entity;
-// Generated Feb 28, 2017 9:07:39 PM by Hibernate Tools 3.2.1.GA
+// Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -14,16 +14,18 @@ public class Predicado  implements java.io.Serializable {
      private String predicado;
      private String alias;
      private String predserializado;
+     private int numargumentos;
 
     public Predicado() {
     }
 
-    public Predicado(PredicadoId id, Usuario usuario, String predicado, String alias, String predserializado) {
+    public Predicado(PredicadoId id, Usuario usuario, String predicado, String alias, String predserializado, int numargumentos) {
        this.id = id;
        this.usuario = usuario;
        this.predicado = predicado;
        this.alias = alias;
        this.predserializado = predserializado;
+       this.numargumentos = numargumentos;
     }
    
     public PredicadoId getId() {
@@ -60,6 +62,13 @@ public class Predicado  implements java.io.Serializable {
     
     public void setPredserializado(String predserializado) {
         this.predserializado = predserializado;
+    }
+    public int getNumargumentos() {
+        return this.numargumentos;
+    }
+    
+    public void setNumargumentos(int numargumentos) {
+        this.numargumentos = numargumentos;
     }
 
 

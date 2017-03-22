@@ -1,8 +1,7 @@
 package com.howtodoinjava.service;
 
-import java.util.List;
-
 import com.howtodoinjava.entity.Usuario;
+import java.util.List;
 
 public interface UsuarioManager {
     public void addUsuario(Usuario usuario);

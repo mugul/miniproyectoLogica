@@ -70,7 +70,7 @@ public class EvaluarController {
         Predicado pred = predicadoManager.getPredicado(predId);
 //        predId = pred.getId();
         System.out.print(pred);
-//        map.addAttribute("id",pred.getId());
+        map.addAttribute("id",pred.getId());
         map.addAttribute("usuario",pred.getUsuario());
         map.addAttribute("predicado",pred.getPredicado());
         map.addAttribute("alias",pred.getAlias());

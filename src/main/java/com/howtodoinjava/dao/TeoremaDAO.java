@@ -23,6 +23,7 @@ public interface TeoremaDAO {
     
     public List<Teorema> getAllTeoremas();
     
+    public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder);
 //    public List<Teorema> getTeoremasByCategoria(Categoria categoria);
 //
 //    public List<Teorema> getPublicTeoremas(Categoria categoria);

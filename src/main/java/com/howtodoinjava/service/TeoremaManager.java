@@ -21,6 +21,9 @@ public interface TeoremaManager {
     
     public List<Teorema> getAllTeoremas();
     
+    public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder);
+    
+    
 }
 
 

@@ -8,12 +8,14 @@ import com.howtodoinjava.dao.TeoremaDAO;
 import com.howtodoinjava.entity.Teorema;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author miguel
  */
+@Service
 public class TeoremaManagerImpl implements TeoremaManager {
        
     @Autowired
@@ -42,4 +44,11 @@ public class TeoremaManagerImpl implements TeoremaManager {
     public List<Teorema> getAllTeoremas(){
         return teoremaDAO.getAllTeoremas();
     }
+    
+    @Override
+    @Transactional
+    public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder){
+        return teoremaDAO.getTeoremaByEnunciados(enunciadoizq,enunciadoder);
+    }
+
 }

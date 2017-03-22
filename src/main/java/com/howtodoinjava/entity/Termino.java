@@ -1,8 +1,7 @@
 package com.howtodoinjava.entity;
-// Generated 20/05/2014 05:39:04 AM by Hibernate Tools 3.2.1.GA
+// Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 import com.howtodoinjava.lambdacalculo.Term;
-import org.springframework.util.SerializationUtils;
 
 
 
@@ -17,16 +16,24 @@ public class Termino  implements java.io.Serializable {
      private Usuario usuario;
      private String combinador;
      private byte[] serializado;
-     public Term termObject;
+     private Term termobject;
 
     public Termino() {
     }
 
+	
     public Termino(TerminoId id, Usuario usuario, String combinador, byte[] serializado) {
+        this.id = id;
+        this.usuario = usuario;
+        this.combinador = combinador;
+        this.serializado = serializado;
+    }
+    public Termino(TerminoId id, Usuario usuario, String combinador, byte[] serializado, Term termobject) {
        this.id = id;
        this.usuario = usuario;
        this.combinador = combinador;
        this.serializado = serializado;
+       this.termobject = termobject;
     }
    
     public TerminoId getId() {
@@ -57,24 +64,21 @@ public class Termino  implements java.io.Serializable {
     public void setSerializado(byte[] serializado) {
         this.serializado = serializado;
     }
-    
-    public Term getTermObject()
-    {
-        return this.termObject;
+    public Term getTermObject() {
+        return this.termobject;
     }
     
-    public void setTermObject(Term t)
-    {
-         this.termObject=t;
-         this.serializado= SerializationUtils.serialize(t);
+    public void setTermObject(Term termobject) {
+        this.termobject = termobject;
     }
-    
+
+    @Override
     public String toString()
     {
-        return this.termObject.toString();
+        return this.termobject.toString();
     }
-
-
 
 
 }
+
+

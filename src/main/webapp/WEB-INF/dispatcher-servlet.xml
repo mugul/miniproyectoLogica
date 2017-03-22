@@ -81,11 +81,14 @@
         <property name="configurationClass">
             <value>org.hibernate.cfg.AnnotationConfiguration</value>
         </property>
+        
+        
         <property name="hibernateProperties">
             <props>
+                <prop key="hibernate.enable_lazy_load_no_trans"> true </prop> 
                 <prop key="hibernate.dialect">${jdbc.dialect}</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
             </props>
         </property> 
     </bean>
@@ -93,16 +96,19 @@
     <bean id="usuarioDAO" class="com.howtodoinjava.dao.UsuarioDaoImpl"></bean>
     <bean id="usuarioManager" class="com.howtodoinjava.service.UsuarioManagerImpl"></bean>
     <bean id="terminoDAO" class="com.howtodoinjava.dao.TerminoDaoImpl"></bean>
-    <bean id="PublicacionDAO" class="com.howtodoinjava.dao.PublicacionDAOImpl"></bean>
+    <bean id="PublicacionDAO" class="com.howtodoinjava.dao.PublicacionDaoImpl"></bean>
     <bean id="terminoManager" class="com.howtodoinjava.service.TerminoManagerImpl"></bean>
-    <bean id="predicadoDAO" class="com.howtodoinjava.dao.PredicadoDAOImpl"></bean>
+    <bean id="predicadoDAO" class="com.howtodoinjava.dao.PredicadoDaoImpl"></bean>
     <bean id="predicadoManager" class="com.howtodoinjava.service.PredicadoManagerImpl">
     </bean>
-    <bean id="categoriaDAO" class="com.howtodoinjava.dao.CategoriaDAOImpl"></bean>
+    <bean id="categoriaDAO" class="com.howtodoinjava.dao.CategoriaDaoImpl"></bean>
     <bean id="categoriaManager" class="com.howtodoinjava.service.CategoriaManagerImpl">
     </bean>
     <bean id="teoremaDAO" class="com.howtodoinjava.dao.TeoremaDaoImpl"></bean>
     <bean id="teoremaManager" class="com.howtodoinjava.service.TeoremaManagerImpl">
+    </bean>
+    <bean id="resuelveDAO" class="com.howtodoinjava.dao.ResuelveDaoImpl"></bean>
+    <bean id="resuelveManager" class="com.howtodoinjava.service.ResuelveManagerImpl">
     </bean>
  
     <tx:annotation-driven />
