@@ -34,6 +34,7 @@ import com.howtodoinjava.lambdacalculo.Term;
 import com.howtodoinjava.parse.IsNotInDBException;
 import com.howtodoinjava.parse.TermLexer;
 import com.howtodoinjava.parse.TermParser;
+import com.howtodoinjava.service.CategoriaManager;
 import com.howtodoinjava.service.ResuelveManager;
 import com.howtodoinjava.service.TeoremaManager;
 import javax.servlet.http.HttpSession;
@@ -55,6 +56,8 @@ public class PerfilController {
     private ResuelveManager resuelveManager;
     @Autowired
     private TeoremaManager teoremaManager;
+    @Autowired
+    private CategoriaManager categoriaManager;
     @Autowired
     private HttpSession session;
     
@@ -161,6 +164,9 @@ public class PerfilController {
             
             Categoria categoria = new Categoria();
             categoria.setNombre(agregarTeorema.getCategoria());
+            categoria.setId(16);
+            
+            categoriaManager.addCategoria(categoria);
             
             Usuario user=usuarioManager.getUsuario(username);
             
@@ -223,9 +229,12 @@ public class PerfilController {
                     der = new Const("true");
                 }
                 
+                
                 teorema.setEnunciadoizq(izq.toString());
                 teorema.setEnunciadoder(der.toString());
-                
+                teorema.setTeoserializadoizq(izq.toString());
+                teorema.setTeoserializadoder(der.toString());
+                teorema.setOcultartrue(true);
                 // FALTA SETEAR LOS SERIALIZADOS, QUE AUN ESTAN EN LA TABLA RESUELVE, Y NO EN LA TABLA TEOREMA
                 //      esta en RESUELVE cambia a TEOREMA
 //     private String teoserializadoizq;
