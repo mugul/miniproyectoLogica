@@ -362,7 +362,7 @@ public class App extends Term{
     }
     
     
-    //----------------------------------------------------------------
+    //---------------------------------+++++++++++++++++++++++++
     public String toStringInf() {
         
         String izq; // SIEMPRE EL p
