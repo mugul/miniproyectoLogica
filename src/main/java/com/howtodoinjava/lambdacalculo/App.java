@@ -361,33 +361,53 @@ public class App extends Term{
         //return "("+p.toString()+q.toString()+")";
     }
     
-    @Override
-    //Nuevo toString
+    
+    //----------------------------------------------------------------
     public String toStringInf() {
         
-        String izq;
-        String der;
-        
-        if(p.alias == null){
-            if(p instanceof App){
-                System.out.println("inst APP");    
-                izq=p.toStringFinalInf();
+        String izq; // SIEMPRE EL p
+        String der; //Siempre el q
+        der = "1S";
+        izq = "13S";
+        //Termino Izq
+        if( (q.alias == null) && (p.alias == null)) { 
+            
+           if((p instanceof App) && (q instanceof App)){
+                System.out.println(1);
+                return q.toStringInf()+" "+p.toStringInf();
+                    
+            }else if(!(p instanceof App) && (q instanceof App)){
+                System.out.println(2);
+                 if( ((App) q).p instanceof Const ){
+                     return p.toStringInf()+" "+q.toStringInf();
+                 }else{
+                     return p.toStringInf()+" ("+q.toStringInf()+")" ;
+                 }     
+            }else if( (p instanceof App) && !(q instanceof App)){ 
+                System.out.println(3);
+                String sim = ((App) p).p.toStringInf();
+                if (((App) p).p instanceof Const ) {
+                    return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
+               }else{
+                    return q.toStringInf()+" "+sim+" ("+ ((App) p).q.toStringInf()+")";
+                }
+                
             }else{
-                System.out.println("else");
-                izq=p.toStringInf();
-            }    
+                System.out.println(4);
+                return p.toStringInf()+" "+q.toStringInf();
+            }   
+           
+        }else if( (q.alias == null) &&  (p.alias != null)) {
+            
+            
+        }else if( (q.alias != null) && (p.alias == null)) {
+            
+            
+        }else {
+            return p.alias+" "+q.alias;
         }
-        else
-            izq = p.alias;//.split("@")[0].replace("_", "\\_");
         
-        if(q.alias == null)
-            der=q.toStringInf();
-        else
-            der=q.alias;//.split("@")[0].replace("_","\\_");
-        
-        
-        return "("+der+" "+izq+")";
-        //return "("+p.toString()+q.toString()+")";
+        return izq+" "+der;
     }
     
     

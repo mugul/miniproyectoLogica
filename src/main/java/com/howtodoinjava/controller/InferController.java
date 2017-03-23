@@ -312,9 +312,9 @@ public class InferController {
             der = new App(leibnizTerm,der).reducir();
             
             if (izq.equals(pasoAntTerm)) {
-                pasoPost = der.toString();
+                pasoPost = der.toStringInf();
             }else if(der.equals(pasoAntTerm)) {
-                pasoPost = izq.toString();
+                pasoPost = izq.toStringInf();
             }else{
                 pasoPost = "Regla~de~inferencia~no~validad";
             }

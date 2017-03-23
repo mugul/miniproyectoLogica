@@ -131,10 +131,13 @@ public class Bracket extends Term{
     
     public String toStringInf()
     {
-        if(t.alias == null)
+        if(t.alias == null) {
+            //FALTA IMPLEMENTAR FINAL
             return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
-        else
-            return "(\\lambda "+x.toStringInf()+"."+t.alias +")";//.split("@")[0].replace("_", "\\_") +")";
+        }
+        else {
+            return "(\\lambda "+x.toStringInf()+"."+t.alias +")";
+        }//.split("@")[0].replace("_", "\\_") +")";
     }
     
     

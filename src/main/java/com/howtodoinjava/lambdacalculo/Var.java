@@ -138,10 +138,9 @@ public class Var extends Term{
     @Override
     public String toStringInf() {
         if(alias == null ) {
-            return "x_{"+indice+"}";
-        }
-        else {
-            //tomo en cueta que no lleva _ al final
+            char ascii = (char) indice; 
+            return ""+ascii;
+        }else {
             return alias;
         }
     }
