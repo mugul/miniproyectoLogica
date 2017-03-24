@@ -68,11 +68,11 @@ conc returns [Term value]: neg negtail             { Term aux=$neg.value;
 
 negtail returns [ArrayList<ParserPair> value]:
 
-     '\\/' neg tail4=negtail                  {ArrayList<ParserPair> aux=$tail4.value;
+     ('\\/' | '\\vee') neg tail4=negtail                  {ArrayList<ParserPair> aux=$tail4.value;
                                                aux.add(0,new ParserPair("\\vee ",$neg.value)); $value=aux;
                                               }
 
-   | '/\\' neg tail5=negtail                  {ArrayList<ParserPair> aux=$tail5.value; 
+   | ('/\\' | '\\wedge') neg tail5=negtail                  {ArrayList<ParserPair> aux=$tail5.value; 
                                                aux.add(0,new ParserPair("\\wedge ",$neg.value)); $value=aux;
                                               }
 

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-17 13:30:40
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-24 15:32:02
 package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.entity.Termino;
@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 public class TermParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "CAPITALLETTER", "LETTER", "WORD", "NUMBER", "X", "INITIALDIGIT", "DIGIT", "WHITESPACE", "'=='", "'==>'", "'<=='", "'\\\\/'", "'/\\\\'", "'!'", "'true'", "'false'", "'_{'", "'}^{'", "'}'", "'('", "')'", "':='", "','", "'lambda'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "CAPITALLETTER", "LETTER", "WORD", "NUMBER", "X", "INITIALDIGIT", "DIGIT", "WHITESPACE", "'=='", "'==>'", "'<=='", "'\\\\/'", "'\\\\vee'", "'/\\\\'", "'\\\\wedge'", "'!'", "'true'", "'false'", "'_{'", "'}^{'", "'}'", "'('", "')'", "':='", "','", "'lambda'", "'.'"
     };
+    public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
     public static final int T__26=26;
@@ -33,6 +34,7 @@ public class TermParser extends Parser {
     public static final int EOF=-1;
     public static final int X=8;
     public static final int WORD=6;
+    public static final int T__30=30;
     public static final int T__19=19;
     public static final int T__16=16;
     public static final int T__15=15;
@@ -156,7 +158,7 @@ public class TermParser extends Parser {
             if ( (LA1_0==12) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==EOF||LA1_0==21||LA1_0==24||LA1_0==26) ) {
+            else if ( (LA1_0==EOF||LA1_0==23||LA1_0==26||LA1_0==28) ) {
                 alt1=2;
             }
             else {
@@ -268,7 +270,7 @@ public class TermParser extends Parser {
             if ( (LA2_0==13) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==EOF||LA2_0==12||LA2_0==21||LA2_0==24||LA2_0==26) ) {
+            else if ( (LA2_0==EOF||LA2_0==12||LA2_0==23||LA2_0==26||LA2_0==28) ) {
                 alt2=2;
             }
             else {
@@ -384,7 +386,7 @@ public class TermParser extends Parser {
             if ( (LA3_0==14) ) {
                 alt3=1;
             }
-            else if ( (LA3_0==EOF||(LA3_0>=12 && LA3_0<=13)||LA3_0==21||LA3_0==24||LA3_0==26) ) {
+            else if ( (LA3_0==EOF||(LA3_0>=12 && LA3_0<=13)||LA3_0==23||LA3_0==26||LA3_0==28) ) {
                 alt3=2;
             }
             else {
@@ -486,7 +488,7 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "negtail"
-    // Term.g:69:1: negtail returns [ArrayList<ParserPair> value] : ( '\\\\/' neg tail4= negtail | '/\\\\' neg tail5= negtail | );
+    // Term.g:69:1: negtail returns [ArrayList<ParserPair> value] : ( ( '\\\\/' | '\\\\vee' ) neg tail4= negtail | ( '/\\\\' | '\\\\wedge' ) neg tail5= negtail | );
     public final ArrayList<ParserPair> negtail() throws RecognitionException {
         ArrayList<ParserPair> value = null;
 
@@ -500,15 +502,17 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:69:46: ( '\\\\/' neg tail4= negtail | '/\\\\' neg tail5= negtail | )
+            // Term.g:69:46: ( ( '\\\\/' | '\\\\vee' ) neg tail4= negtail | ( '/\\\\' | '\\\\wedge' ) neg tail5= negtail | )
             int alt4=3;
             switch ( input.LA(1) ) {
             case 15:
+            case 16:
                 {
                 alt4=1;
                 }
                 break;
-            case 16:
+            case 17:
+            case 18:
                 {
                 alt4=2;
                 }
@@ -517,9 +521,9 @@ public class TermParser extends Parser {
             case 12:
             case 13:
             case 14:
-            case 21:
-            case 24:
+            case 23:
             case 26:
+            case 28:
                 {
                 alt4=3;
                 }
@@ -533,15 +537,23 @@ public class TermParser extends Parser {
 
             switch (alt4) {
                 case 1 :
-                    // Term.g:71:6: '\\\\/' neg tail4= negtail
+                    // Term.g:71:6: ( '\\\\/' | '\\\\vee' ) neg tail4= negtail
                     {
-                    match(input,15,FOLLOW_15_in_negtail400); 
-                    pushFollow(FOLLOW_neg_in_negtail402);
+                    if ( (input.LA(1)>=15 && input.LA(1)<=16) ) {
+                        input.consume();
+                        state.errorRecovery=false;
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        throw mse;
+                    }
+
+                    pushFollow(FOLLOW_neg_in_negtail408);
                     neg13=neg();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_negtail_in_negtail406);
+                    pushFollow(FOLLOW_negtail_in_negtail412);
                     tail4=negtail();
 
                     state._fsp--;
@@ -553,15 +565,23 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:75:6: '/\\\\' neg tail5= negtail
+                    // Term.g:75:6: ( '/\\\\' | '\\\\wedge' ) neg tail5= negtail
                     {
-                    match(input,16,FOLLOW_16_in_negtail433); 
-                    pushFollow(FOLLOW_neg_in_negtail435);
+                    if ( (input.LA(1)>=17 && input.LA(1)<=18) ) {
+                        input.consume();
+                        state.errorRecovery=false;
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        throw mse;
+                    }
+
+                    pushFollow(FOLLOW_neg_in_negtail447);
                     neg14=neg();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_negtail_in_negtail439);
+                    pushFollow(FOLLOW_negtail_in_negtail451);
                     tail5=negtail();
 
                     state._fsp--;
@@ -620,8 +640,8 @@ public class TermParser extends Parser {
                 case 1 :
                     // Term.g:83:7: '!' n= neg
                     {
-                    match(input,17,FOLLOW_17_in_neg526); 
-                    pushFollow(FOLLOW_neg_in_neg530);
+                    match(input,19,FOLLOW_19_in_neg538); 
+                    pushFollow(FOLLOW_neg_in_neg542);
                     n=neg();
 
                     state._fsp--;
@@ -633,7 +653,7 @@ public class TermParser extends Parser {
                 case 2 :
                     // Term.g:85:8: CAPITALLETTER
                     {
-                    CAPITALLETTER15=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg572); 
+                    CAPITALLETTER15=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg584); 
                     value = new Var((new Integer((int)(CAPITALLETTER15!=null?CAPITALLETTER15.getText():null).charAt(0))).intValue());
 
                     }
@@ -641,7 +661,7 @@ public class TermParser extends Parser {
                 case 3 :
                     // Term.g:87:8: LETTER
                     {
-                    LETTER16=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg609); 
+                    LETTER16=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg621); 
                     value = new Var((new Integer((int)(LETTER16!=null?LETTER16.getText():null).charAt(0))).intValue());
 
                     }
@@ -649,7 +669,7 @@ public class TermParser extends Parser {
                 case 4 :
                     // Term.g:89:8: 'true'
                     {
-                    match(input,18,FOLLOW_18_in_neg653); 
+                    match(input,20,FOLLOW_20_in_neg665); 
                     value = new Const("true ");
 
                     }
@@ -657,7 +677,7 @@ public class TermParser extends Parser {
                 case 5 :
                     // Term.g:91:8: 'false'
                     {
-                    match(input,19,FOLLOW_19_in_neg697); 
+                    match(input,21,FOLLOW_21_in_neg709); 
                     value = new Const("false ");
 
                     }
@@ -665,16 +685,16 @@ public class TermParser extends Parser {
                 case 6 :
                     // Term.g:93:8: CAPITALLETTER '_{' eq '}^{' LETTER '}'
                     {
-                    CAPITALLETTER18=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg740); 
-                    match(input,20,FOLLOW_20_in_neg742); 
-                    pushFollow(FOLLOW_eq_in_neg744);
+                    CAPITALLETTER18=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg752); 
+                    match(input,22,FOLLOW_22_in_neg754); 
+                    pushFollow(FOLLOW_eq_in_neg756);
                     eq19=eq();
 
                     state._fsp--;
 
-                    match(input,21,FOLLOW_21_in_neg746); 
-                    LETTER17=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg748); 
-                    match(input,22,FOLLOW_22_in_neg750); 
+                    match(input,23,FOLLOW_23_in_neg758); 
+                    LETTER17=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg760); 
+                    match(input,24,FOLLOW_24_in_neg762); 
                     Var letter = new Var((new Integer((int)(LETTER17!=null?LETTER17.getText():null).charAt(0))).intValue());
                                                                    Var capl = new Var((new Integer((int)(CAPITALLETTER18!=null?CAPITALLETTER18.getText():null).charAt(0))).intValue());
                                                                    value = new App(new Bracket(letter,capl),eq19);
@@ -685,14 +705,14 @@ public class TermParser extends Parser {
                 case 7 :
                     // Term.g:98:8: WORD '(' arguments ')'
                     {
-                    WORD20=(Token)match(input,WORD,FOLLOW_WORD_in_neg763); 
-                    match(input,23,FOLLOW_23_in_neg765); 
-                    pushFollow(FOLLOW_arguments_in_neg767);
+                    WORD20=(Token)match(input,WORD,FOLLOW_WORD_in_neg775); 
+                    match(input,25,FOLLOW_25_in_neg777); 
+                    pushFollow(FOLLOW_arguments_in_neg779);
                     arguments21=arguments();
 
                     state._fsp--;
 
-                    match(input,24,FOLLOW_24_in_neg769); 
+                    match(input,26,FOLLOW_26_in_neg781); 
                     Term aux = new Const((WORD20!=null?WORD20.getText():null));
                                                                    for(Iterator<Var> i = arguments21.iterator(); i.hasNext();) 
                                                                       aux=new App(aux,i.next());
@@ -704,13 +724,13 @@ public class TermParser extends Parser {
                 case 8 :
                     // Term.g:104:8: '(' eq ')'
                     {
-                    match(input,23,FOLLOW_23_in_neg797); 
-                    pushFollow(FOLLOW_eq_in_neg799);
+                    match(input,25,FOLLOW_25_in_neg809); 
+                    pushFollow(FOLLOW_eq_in_neg811);
                     eq22=eq();
 
                     state._fsp--;
 
-                    match(input,24,FOLLOW_24_in_neg801); 
+                    match(input,26,FOLLOW_26_in_neg813); 
                     value =eq22;
 
                     }
@@ -743,13 +763,13 @@ public class TermParser extends Parser {
             // Term.g:106:46: ( arguments ':=' explist )
             // Term.g:108:6: arguments ':=' explist
             {
-            pushFollow(FOLLOW_arguments_in_instantiate849);
+            pushFollow(FOLLOW_arguments_in_instantiate861);
             arguments23=arguments();
 
             state._fsp--;
 
-            match(input,25,FOLLOW_25_in_instantiate851); 
-            pushFollow(FOLLOW_explist_in_instantiate853);
+            match(input,27,FOLLOW_27_in_instantiate863); 
+            pushFollow(FOLLOW_explist_in_instantiate865);
             explist24=explist();
 
             state._fsp--;
@@ -788,12 +808,12 @@ public class TermParser extends Parser {
             // Term.g:114:40: ( eq explisttail )
             // Term.g:116:6: eq explisttail
             {
-            pushFollow(FOLLOW_eq_in_explist891);
+            pushFollow(FOLLOW_eq_in_explist903);
             eq26=eq();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_explisttail_in_explist894);
+            pushFollow(FOLLOW_explisttail_in_explist906);
             explisttail25=explisttail();
 
             state._fsp--;
@@ -832,7 +852,7 @@ public class TermParser extends Parser {
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==26) ) {
+            if ( (LA6_0==28) ) {
                 alt6=1;
             }
             else if ( (LA6_0==EOF) ) {
@@ -848,13 +868,13 @@ public class TermParser extends Parser {
                 case 1 :
                     // Term.g:123:6: ',' eq tail6= explisttail
                     {
-                    match(input,26,FOLLOW_26_in_explisttail939); 
-                    pushFollow(FOLLOW_eq_in_explisttail941);
+                    match(input,28,FOLLOW_28_in_explisttail951); 
+                    pushFollow(FOLLOW_eq_in_explisttail953);
                     eq27=eq();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_explisttail_in_explisttail945);
+                    pushFollow(FOLLOW_explisttail_in_explisttail957);
                     tail6=explisttail();
 
                     state._fsp--;
@@ -907,10 +927,10 @@ public class TermParser extends Parser {
             if ( (LA7_0==LETTER) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==26) ) {
+                if ( (LA7_1==28) ) {
                     alt7=1;
                 }
-                else if ( ((LA7_1>=24 && LA7_1<=25)) ) {
+                else if ( ((LA7_1>=26 && LA7_1<=27)) ) {
                     alt7=3;
                 }
                 else {
@@ -923,10 +943,10 @@ public class TermParser extends Parser {
             else if ( (LA7_0==CAPITALLETTER) ) {
                 int LA7_2 = input.LA(2);
 
-                if ( (LA7_2==26) ) {
+                if ( (LA7_2==28) ) {
                     alt7=2;
                 }
-                else if ( ((LA7_2>=24 && LA7_2<=25)) ) {
+                else if ( ((LA7_2>=26 && LA7_2<=27)) ) {
                     alt7=4;
                 }
                 else {
@@ -946,9 +966,9 @@ public class TermParser extends Parser {
                 case 1 :
                     // Term.g:135:43: LETTER ',' arg= arguments
                     {
-                    LETTER28=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1044); 
-                    match(input,26,FOLLOW_26_in_arguments1046); 
-                    pushFollow(FOLLOW_arguments_in_arguments1050);
+                    LETTER28=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1056); 
+                    match(input,28,FOLLOW_28_in_arguments1058); 
+                    pushFollow(FOLLOW_arguments_in_arguments1062);
                     arg=arguments();
 
                     state._fsp--;
@@ -964,9 +984,9 @@ public class TermParser extends Parser {
                 case 2 :
                     // Term.g:141:44: CAPITALLETTER ',' arg= arguments
                     {
-                    CAPITALLETTER29=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1098); 
-                    match(input,26,FOLLOW_26_in_arguments1100); 
-                    pushFollow(FOLLOW_arguments_in_arguments1104);
+                    CAPITALLETTER29=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1110); 
+                    match(input,28,FOLLOW_28_in_arguments1112); 
+                    pushFollow(FOLLOW_arguments_in_arguments1116);
                     arg=arguments();
 
                     state._fsp--;
@@ -982,7 +1002,7 @@ public class TermParser extends Parser {
                 case 3 :
                     // Term.g:147:44: LETTER
                     {
-                    LETTER30=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1152); 
+                    LETTER30=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1164); 
                     ArrayList<Var> list=new ArrayList<Var>();
                                                                                 Var v=new Var((new Integer((LETTER30!=null?LETTER30.getText():null).charAt(0))).intValue());
                                                                                 list.add(0,v);
@@ -994,7 +1014,7 @@ public class TermParser extends Parser {
                 case 4 :
                     // Term.g:153:44: CAPITALLETTER
                     {
-                    CAPITALLETTER31=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1209); 
+                    CAPITALLETTER31=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1221); 
                     ArrayList<Var> list=new ArrayList<Var>();
                                                                            Var v=new Var((new Integer((CAPITALLETTER31!=null?CAPITALLETTER31.getText():null).charAt(0))).intValue());
                                                                                  list.add(0,v);
@@ -1030,10 +1050,10 @@ public class TermParser extends Parser {
             // Term.g:159:28: ( 'lambda' LETTER '.' eq )
             // Term.g:159:30: 'lambda' LETTER '.' eq
             {
-            match(input,27,FOLLOW_27_in_lambda1224); 
-            LETTER32=(Token)match(input,LETTER,FOLLOW_LETTER_in_lambda1226); 
-            match(input,28,FOLLOW_28_in_lambda1228); 
-            pushFollow(FOLLOW_eq_in_lambda1230);
+            match(input,29,FOLLOW_29_in_lambda1236); 
+            LETTER32=(Token)match(input,LETTER,FOLLOW_LETTER_in_lambda1238); 
+            match(input,30,FOLLOW_30_in_lambda1240); 
+            pushFollow(FOLLOW_eq_in_lambda1242);
             eq33=eq();
 
             state._fsp--;
@@ -1066,15 +1086,15 @@ public class TermParser extends Parser {
     static final String DFA5_minS =
         "\1\4\1\uffff\1\14\7\uffff";
     static final String DFA5_maxS =
-        "\1\27\1\uffff\1\32\7\uffff";
+        "\1\31\1\uffff\1\34\7\uffff";
     static final String DFA5_acceptS =
         "\1\uffff\1\1\1\uffff\1\3\1\4\1\5\1\7\1\10\1\6\1\2";
     static final String DFA5_specialS =
         "\12\uffff}>";
     static final String[] DFA5_transitionS = {
-            "\1\2\1\3\1\6\12\uffff\1\1\1\4\1\5\3\uffff\1\7",
+            "\1\2\1\3\1\6\14\uffff\1\1\1\4\1\5\3\uffff\1\7",
             "",
-            "\5\11\3\uffff\1\10\1\11\2\uffff\1\11\1\uffff\1\11",
+            "\7\11\3\uffff\1\10\1\11\2\uffff\1\11\1\uffff\1\11",
             "",
             "",
             "",
@@ -1122,65 +1142,65 @@ public class TermParser extends Parser {
     public static final BitSet FOLLOW_eq_in_start_rule21 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_term_in_eq44 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_eqtail_in_eq46 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_eqtail76 = new BitSet(new long[]{0x00000000008E0070L});
+    public static final BitSet FOLLOW_12_in_eqtail76 = new BitSet(new long[]{0x0000000002380070L});
     public static final BitSet FOLLOW_term_in_eqtail78 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_eqtail_in_eqtail82 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_disyconj_in_term163 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_disyconjtail_in_term165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_disyconjtail187 = new BitSet(new long[]{0x00000000008E0070L});
+    public static final BitSet FOLLOW_13_in_disyconjtail187 = new BitSet(new long[]{0x0000000002380070L});
     public static final BitSet FOLLOW_disyconj_in_disyconjtail189 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_disyconjtail_in_disyconjtail193 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_conc_in_disyconj262 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_conctail_in_disyconj264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_conctail284 = new BitSet(new long[]{0x00000000008E0070L});
+    public static final BitSet FOLLOW_14_in_conctail284 = new BitSet(new long[]{0x0000000002380070L});
     public static final BitSet FOLLOW_conc_in_conctail286 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_conctail_in_conctail290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_neg_in_conc367 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_neg_in_conc367 = new BitSet(new long[]{0x0000000000078000L});
     public static final BitSet FOLLOW_negtail_in_conc369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_negtail400 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_neg_in_negtail402 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_negtail_in_negtail406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_negtail433 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_neg_in_negtail435 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_negtail_in_negtail439 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_neg526 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_neg_in_neg530 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_neg572 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LETTER_in_neg609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_neg653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_neg697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_neg740 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_neg742 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_eq_in_neg744 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_neg746 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_LETTER_in_neg748 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_neg750 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_neg763 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_neg765 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_arguments_in_neg767 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_neg769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_neg797 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_eq_in_neg799 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_neg801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arguments_in_instantiate849 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_instantiate851 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_explist_in_instantiate853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_eq_in_explist891 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_explisttail_in_explist894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_explisttail939 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_eq_in_explisttail941 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_explisttail_in_explisttail945 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LETTER_in_arguments1044 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_arguments1046 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_arguments_in_arguments1050 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1098 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_arguments1100 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_arguments_in_arguments1104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LETTER_in_arguments1152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1209 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_lambda1224 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_LETTER_in_lambda1226 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_lambda1228 = new BitSet(new long[]{0x00000000008E0070L});
-    public static final BitSet FOLLOW_eq_in_lambda1230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_negtail400 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_neg_in_negtail408 = new BitSet(new long[]{0x0000000000078000L});
+    public static final BitSet FOLLOW_negtail_in_negtail412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_negtail439 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_neg_in_negtail447 = new BitSet(new long[]{0x0000000000078000L});
+    public static final BitSet FOLLOW_negtail_in_negtail451 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_neg538 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_neg_in_neg542 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_neg584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LETTER_in_neg621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_neg665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_neg709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_neg752 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_neg754 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_eq_in_neg756 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_neg758 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LETTER_in_neg760 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_neg762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_neg775 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_neg777 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_arguments_in_neg779 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_neg781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_neg809 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_eq_in_neg811 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_neg813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arguments_in_instantiate861 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_instantiate863 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_explist_in_instantiate865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_eq_in_explist903 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_explisttail_in_explist906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_explisttail951 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_eq_in_explisttail953 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_explisttail_in_explisttail957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LETTER_in_arguments1056 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_arguments1058 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_arguments_in_arguments1062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1110 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_arguments1112 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_arguments_in_arguments1116 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LETTER_in_arguments1164 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_lambda1236 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LETTER_in_lambda1238 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_lambda1240 = new BitSet(new long[]{0x0000000002380070L});
+    public static final BitSet FOLLOW_eq_in_lambda1242 = new BitSet(new long[]{0x0000000000000002L});
 
 }

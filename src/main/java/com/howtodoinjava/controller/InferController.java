@@ -9,7 +9,6 @@ import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Usuario;
 import com.howtodoinjava.forms.InfersForm;
 import com.howtodoinjava.lambdacalculo.App;
-import com.howtodoinjava.lambdacalculo.Const;
 import com.howtodoinjava.lambdacalculo.MakeTerm;
 import com.howtodoinjava.lambdacalculo.Var;
 import com.howtodoinjava.lambdacalculo.Term;
@@ -25,7 +24,6 @@ import javax.validation.Valid;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -344,12 +342,13 @@ public class InferController {
             }else{
                 pasoPost = "Regla~de~inferencia~no~validad";
             }
+//            
+             infersForm.setHistorial(infersForm.getHistorial()+"$$ "+infersForm.getPasoAnt()+" $$ \n");
             
-            ArrayList<String> lista = infersForm.getHistorial();
-            lista.add(infersForm.getPasoAnt());
-            lista.add("<br>");
-            lista.add("< " +infersForm.getnStatement() + " - " + infersForm.getInstanciacion() + " - " + infersForm.getLeibniz() + " >");
-            infersForm.setHistorial(lista);
+//            ArrayList<String> lista = infersForm.getHistorial();
+//            lista.add(infersForm.getPasoAnt());
+//            lista.add("< " +infersForm.getnStatement() + " - " + infersForm.getInstanciacion() + " - " + infersForm.getLeibniz() + " >");
+//            infersForm.setHistorial(lista);
 //            // Agrego el termino 
 //            infersForm.setHistorial(pasoPost);
 ////            infersForm.setHistorial();
@@ -357,7 +356,7 @@ public class InferController {
             
             map.addAttribute("usuario", usuarioManager.getUsuario(username));
             map.addAttribute("infer",new InfersForm());
-            map.addAttribute("mensaje",lista);
+            map.addAttribute("mensaje",infersForm.getHistorial());
             map.addAttribute("pasoAnt",infersForm.getPasoAnt());
 //            map.addAttribute("pasoAnt","");
             map.addAttribute("nStatement",infersForm.getnStatement());

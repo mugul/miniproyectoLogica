@@ -21,17 +21,16 @@ public class InfersForm {
      private String instanciacion;
      @NotEmpty(message="no debe dejar este campo vacío")
      private String leibniz;
-     private ArrayList<String> historial;
+     private String historial;
 
     public  InfersForm() {
-        this.historial = new ArrayList<String>();
     }
 
-    public ArrayList<String> getHistorial() {
+    public String getHistorial() {
         return this.historial;
     }
 
-    public void setHistorial(ArrayList<String> historial) {
+    public void setHistorial(String historial) {
         this.historial = historial;
     }
 
@@ -43,7 +42,6 @@ public class InfersForm {
         this.nStatement = nStatement;
         this.instanciacion = instanciacion;
         this.leibniz = leibniz;
-        this.historial = new ArrayList<String>();
     }
 
     public void setPasoAnt(String pasoAnt) {
