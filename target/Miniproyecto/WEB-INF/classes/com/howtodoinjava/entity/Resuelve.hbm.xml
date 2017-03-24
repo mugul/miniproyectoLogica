@@ -10,10 +10,10 @@
                 <param name="sequence">resuelve_id_seq</param>
             </generator> 
         </id>
-        <many-to-one name="usuario" class="com.howtodoinjava.entity.Usuario" fetch="select">
+        <many-to-one name="usuario" class="com.howtodoinjava.entity.Usuario" lazy="false" fetch="select">
             <column name="loginusuario" not-null="true" />
         </many-to-one>
-        <many-to-one name="teorema" class="com.howtodoinjava.entity.Teorema" fetch="select">
+        <many-to-one name="teorema" class="com.howtodoinjava.entity.Teorema" lazy="false" fetch="select">
             <column name="teoremaid" not-null="true" />
         </many-to-one>
         <property name="nombreteorema" type="string">

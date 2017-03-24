@@ -30,22 +30,20 @@ public class Resuelve  implements java.io.Serializable {
     public Resuelve() {
     }
 
-	
-    public Resuelve(int id, Usuario usuario, Teorema teorema, String numeroteorema, boolean resuelto) {
-        this.id = id;
+    public Resuelve(Usuario usuario, Teorema teorema, String nombreteorema, String numeroteorema) {
         this.usuario = usuario;
         this.teorema = teorema;
+        this.nombreteorema = nombreteorema;
+        this.numeroteorema = numeroteorema;
+        this.resuelto = false;
+    }
+    
+    public Resuelve(Usuario usuario, Teorema teorema, String nombreteorema, String numeroteorema, boolean resuelto) {
+        this.usuario = usuario;
+        this.teorema = teorema;
+        this.nombreteorema = nombreteorema;
         this.numeroteorema = numeroteorema;
         this.resuelto = resuelto;
-    }
-    public Resuelve(int id, Usuario usuario, Teorema teorema,  String nombreteorema, String numeroteorema, boolean resuelto, Set solucions) {
-       this.id = id;
-       this.usuario = usuario;
-       this.teorema = teorema;
-       this.nombreteorema = nombreteorema;
-       this.numeroteorema = numeroteorema;
-       this.resuelto = resuelto;
-       this.solucions = solucions;
     }
    
     public int getId() {

@@ -12,7 +12,7 @@
                 <column name="resuelveid" />
             </key-property>
         </composite-id>
-        <many-to-one name="resuelve" class="com.howtodoinjava.entity.Resuelve" update="false" insert="false" fetch="select">
+        <many-to-one name="resuelve" class="com.howtodoinjava.entity.Resuelve" lazy="false" update="false" insert="false" fetch="select">
             <column name="resuelveid" not-null="true" />
         </many-to-one>
     </class>

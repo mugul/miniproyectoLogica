@@ -15,7 +15,6 @@ import javax.persistence.SequenceGenerator;
  */
 public class Dispone  implements java.io.Serializable {
 
-
     @Id
     @Column(name="id")
     @GeneratedValue( strategy= GenerationType.SEQUENCE, generator="dispone_id_seq")
@@ -27,6 +26,15 @@ public class Dispone  implements java.io.Serializable {
      private boolean resuelto;
 
     public Dispone() {
+    }
+
+
+    public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto) {
+        this.id = id;
+        this.usuario = usuario;
+        this.metateorema = metateorema;
+        this.numerometateorema = numerometateorema;
+        this.resuelto = resuelto;
     }
 
     public Dispone(Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto) {
@@ -50,14 +58,7 @@ public class Dispone  implements java.io.Serializable {
         this.metateorema = metateorema;
         this.resuelto = resuelto;
     }
-    public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto) {
-       this.id = id;
-       this.usuario = usuario;
-       this.metateorema = metateorema;
-       this.numerometateorema = numerometateorema;
-       this.resuelto = resuelto;
-    }
-   
+    
     public int getId() {
         return this.id;
     }

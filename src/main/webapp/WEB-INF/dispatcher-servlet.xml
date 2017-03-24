@@ -110,6 +110,12 @@
     <bean id="resuelveDAO" class="com.howtodoinjava.dao.ResuelveDaoImpl"></bean>
     <bean id="resuelveManager" class="com.howtodoinjava.service.ResuelveManagerImpl">
     </bean>
+    <bean id="disponeDAO" class="com.howtodoinjava.dao.DisponeDaoImpl"></bean>
+    <bean id="disponeManager" class="com.howtodoinjava.service.DisponeManagerImpl">
+    </bean>
+    <bean id="metateoremaDAO" class="com.howtodoinjava.dao.MetateoremaDaoImpl"></bean>
+    <bean id="metateoremaManager" class="com.howtodoinjava.service.MetateoremaManagerImpl">
+    </bean>
  
     <tx:annotation-driven />
     <bean id="transactionManager"

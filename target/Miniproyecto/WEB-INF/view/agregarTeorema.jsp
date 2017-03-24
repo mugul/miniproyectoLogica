@@ -27,8 +27,9 @@
                 <c:when test="${modificar.intValue()==0}">
                     <sf:form method="POST" modelAttribute="agregarTeorema">
                         Teorema:<sf:input path="teorema" value="${teorema}"/><sf:errors path="teorema" cssClass="error" /><br/>
-                        Categoria:<br><sf:textarea path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>
+                        Numero de Categoria:<br><sf:textarea path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>
                         Numero de Teorema:<br><sf:textarea path="numeroTeorema" value="${numeroTeorema}"/><sf:errors path="numeroTeorema" cssClass="error" /><br/>
+                        Nombre de Teorema (Opcional):<br><sf:textarea path="nombreTeorema" value="${nombreTeorema}"/><sf:errors path="nombreTeorema" cssClass="error" /><br/>
                         <input type="submit" value="Guardar">
                     </sf:form>${mensaje}
                 </c:when>

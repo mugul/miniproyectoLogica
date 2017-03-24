@@ -30,15 +30,6 @@ public class Metateorema  implements java.io.Serializable {
 
     public Metateorema() {
     }
-    
-    public Metateorema(Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue) {
-        this.categoria = categoria;
-        this.enunciadoizq = enunciadoizq;
-        this.enunciadoder = enunciadoder;
-        this.metateoserializadoizq = metateoserializadoizq;
-        this.metateoserializadoder = metateoserializadoder;
-        this.ocultartrue = ocultartrue;
-    }
 
     public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue) {
         this.id = id;
@@ -49,6 +40,16 @@ public class Metateorema  implements java.io.Serializable {
         this.metateoserializadoder = metateoserializadoder;
         this.ocultartrue = ocultartrue;
     }
+    
+    public Metateorema(Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue) {
+        this.categoria = categoria;
+        this.enunciadoizq = enunciadoizq;
+        this.enunciadoder = enunciadoder;
+        this.metateoserializadoizq = metateoserializadoizq;
+        this.metateoserializadoder = metateoserializadoder;
+        this.ocultartrue = ocultartrue;
+    }
+
 
     public String getMetateoserializadoizq() {
         return metateoserializadoizq;

@@ -35,7 +35,7 @@ public class CategoriaDaoImpl implements CategoriaDAO {
     
     @Override
     public Categoria getCategoria(int id){
-        return (Categoria)this.sessionFactory.getCurrentSession().load(Categoria.class, id);
+        return (Categoria)this.sessionFactory.getCurrentSession().get(Categoria.class, id);
     }
     
     @Override

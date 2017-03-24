@@ -6,14 +6,12 @@
     <class name="com.howtodoinjava.entity.Dispone" table="dispone" schema="public">
         <id name="id" type="int">
             <column name="id" />
-            <generator class="sequence">
-                <param name="sequence">dispone_id_seq</param>
-            </generator> 
+            <generator class="assigned"/>
         </id>
         <many-to-one name="usuario" class="com.howtodoinjava.entity.Usuario" fetch="select">
             <column name="loginusuario" not-null="true" />
         </many-to-one>
-        <many-to-one name="metateorema" class="com.howtodoinjava.entity.Metateorema" fetch="select">
+        <many-to-one name="metateorema" class="com.howtodoinjava.entity.Metateorema" lazy="false" fetch="select">
             <column name="metateoremaid" not-null="true" />
         </many-to-one>
         <property name="numerometateorema" type="string">
