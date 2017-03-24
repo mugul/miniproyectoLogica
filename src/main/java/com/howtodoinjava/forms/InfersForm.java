@@ -4,6 +4,7 @@
  */
 package com.howtodoinjava.forms;
 
+import java.util.ArrayList;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -14,45 +15,43 @@ public class InfersForm {
     
     @NotEmpty(message="no debe dejar este campo vacío")
      private String pasoAnt;     
-     @NotEmpty(message="no debe dejar este campo vacío")
-     private String nStament;
+//     @NotEmpty(message="no debe dejar este campo vacío")
+     private int nStatement;
      @NotEmpty(message="no debe dejar este campo vacío")
      private String instanciacion;
      @NotEmpty(message="no debe dejar este campo vacío")
      private String leibniz;
+     private ArrayList<String> historial;
 
     public  InfersForm() {
+        this.historial = new ArrayList<String>();
     }
 
-    public InfersForm(String pasoAnt, String nStament, String instanciacion, String leibniz) {
+    public ArrayList<String> getHistorial() {
+        return this.historial;
+    }
+
+    public void setHistorial(ArrayList<String> historial) {
+        this.historial = historial;
+    }
+
+//    public void addHistorial(ArrayList)
+    
+    
+    public InfersForm(String pasoAnt, int nStatement, String instanciacion, String leibniz) {
         this.pasoAnt = pasoAnt;
-        this.nStament = nStament;
+        this.nStatement = nStatement;
         this.instanciacion = instanciacion;
         this.leibniz = leibniz;
+        this.historial = new ArrayList<String>();
     }
 
     public void setPasoAnt(String pasoAnt) {
         this.pasoAnt = pasoAnt;
     }
 
-    public String getPasoAnt() {
-        return pasoAnt;
-    }
-
-    public String getnStament() {
-        return nStament;
-    }
-
-    public String getLeibniz() {
-        return leibniz;
-    }
-
-    public String getInstanciacion() {
-        return instanciacion;
-    }
-
-    public void setnStament(String nStament) {
-        this.nStament = nStament;
+    public void setnStatement(int nStatement) {
+        this.nStatement = nStatement;
     }
 
     public void setInstanciacion(String instanciacion) {
@@ -63,7 +62,32 @@ public class InfersForm {
         this.leibniz = leibniz;
     }
 
-    
+    public String getPasoAnt() {
+        return pasoAnt;
+    }
+
+    public int getnStatement() {
+        return nStatement;
+    }
+
+    public String getInstanciacion() {
+        return instanciacion;
+    }
+
+    public String getLeibniz() {
+        return leibniz;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + (this.pasoAnt != null ? this.pasoAnt.hashCode() : 0);
+        hash = 19 * hash + this.nStatement;
+        hash = 19 * hash + (this.instanciacion != null ? this.instanciacion.hashCode() : 0);
+        hash = 19 * hash + (this.leibniz != null ? this.leibniz.hashCode() : 0);
+        return hash;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -76,7 +100,7 @@ public class InfersForm {
         if ((this.pasoAnt == null) ? (other.pasoAnt != null) : !this.pasoAnt.equals(other.pasoAnt)) {
             return false;
         }
-        if ((this.nStament == null) ? (other.nStament != null) : !this.nStament.equals(other.nStament)) {
+        if (this.nStatement != other.nStatement) {
             return false;
         }
         if ((this.instanciacion == null) ? (other.instanciacion != null) : !this.instanciacion.equals(other.instanciacion)) {
@@ -87,14 +111,6 @@ public class InfersForm {
         }
         return true;
     }
-   
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + (this.pasoAnt != null ? this.pasoAnt.hashCode() : 0);
-        hash = 41 * hash + (this.nStament != null ? this.nStament.hashCode() : 0);
-        hash = 41 * hash + (this.instanciacion != null ? this.instanciacion.hashCode() : 0);
-        hash = 41 * hash + (this.leibniz != null ? this.leibniz.hashCode() : 0);
-        return hash;
-    }
+
+
 }

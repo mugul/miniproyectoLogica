@@ -4,27 +4,28 @@
  */
 package com.howtodoinjava.controller;
 
+import com.howtodoinjava.entity.Teorema;
 import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Usuario;
 import com.howtodoinjava.forms.InfersForm;
-import com.howtodoinjava.forms.InsertarEvaluar;
 import com.howtodoinjava.lambdacalculo.App;
-import com.howtodoinjava.lambdacalculo.Corrida;
+import com.howtodoinjava.lambdacalculo.Const;
+import com.howtodoinjava.lambdacalculo.MakeTerm;
 import com.howtodoinjava.lambdacalculo.Var;
 import com.howtodoinjava.lambdacalculo.Term;
-import com.howtodoinjava.lambdacalculo.Tripla;
 import com.howtodoinjava.parse.IsNotInDBException;
 import com.howtodoinjava.parse.TermLexer;
 import com.howtodoinjava.parse.TermParser;
+import com.howtodoinjava.service.TeoremaManager;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,6 +47,8 @@ public class InferController {
     @Autowired
     private TerminoManager terminoManager;
     @Autowired
+    private TeoremaManager teoremaManager;
+    @Autowired
     private HttpSession session;
     
     @RequestMapping(value="/{username}", method=RequestMethod.GET)
@@ -58,7 +61,7 @@ public class InferController {
         map.addAttribute("infer",new InfersForm());
         map.addAttribute("mensaje","");
         map.addAttribute("pasoAnt","");
-        map.addAttribute("nStament","");
+        map.addAttribute("nStatement","");
         map.addAttribute("instanciacion","");
         map.addAttribute("leibniz","");    
         map.addAttribute("formula","");
@@ -88,7 +91,7 @@ public class InferController {
                 map.addAttribute("mensaje","");
                 map.addAttribute("infer", infersForm);
                 map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
+                map.addAttribute("nStatement",infersForm.getnStatement());
                 map.addAttribute("instanciacion",infersForm.getInstanciacion());
                 map.addAttribute("leibniz",infersForm.getLeibniz()); 
                 map.addAttribute("formula","");
@@ -107,7 +110,7 @@ public class InferController {
         
             String pasoPost;
             String pasoAnt = infersForm.getPasoAnt();
-            String nStament =infersForm.getnStament();
+            int nStatement =new Integer(infersForm.getnStatement());
             String instanciacion =infersForm.getInstanciacion();
             String leibniz = infersForm.getLeibniz();
             TerminoId terminoid=new TerminoId();
@@ -133,7 +136,7 @@ public class InferController {
                 map.addAttribute("infer",new InfersForm());
                 map.addAttribute("mensaje", hdr +((IsNotInDBException)e).message);
                 map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
+                map.addAttribute("nStatement",infersForm.getnStatement());
                 map.addAttribute("instanciacion",infersForm.getInstanciacion());
                 map.addAttribute("leibniz",infersForm.getLeibniz());
                 map.addAttribute("formula","");
@@ -157,7 +160,7 @@ public class InferController {
                 map.addAttribute("infer",new InfersForm());
                 map.addAttribute("mensaje", hdr+" "+msg);
                 map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
+                map.addAttribute("nStatement",infersForm.getnStatement());
                 map.addAttribute("instanciacion",infersForm.getInstanciacion());
                 map.addAttribute("leibniz",infersForm.getLeibniz());
                 map.addAttribute("formula","");
@@ -174,68 +177,91 @@ public class InferController {
                 return "infer";
             }
             
-            //Hay que construir un Term aqui con el String termino.combinador
-            //para luego traducir, hace falta construir un parse   
-            ANTLRStringStream in = new ANTLRStringStream(nStament);
-            TermLexer lexer = new TermLexer(in);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            TermParser parser = new TermParser(tokens);
-            Term term;
-            try //si la sintanxis no es correcta ocurre una Exception
-            {
-
-                term=parser.start_rule(terminoid,terminoManager);
-                term.setAlias(0);
-                
-            }
-            catch(IsNotInDBException e)
-            {
-                String hdr = parser.getErrorHeader(e);
-		String msg = parser.getErrorMessage(e, TermParser.tokenNames);
-                map.addAttribute("usuario", usuarioManager.getUsuario(username));
-                map.addAttribute("infer",new InfersForm());
-                map.addAttribute("mensaje", hdr +((IsNotInDBException)e).message);
-                map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
-                map.addAttribute("instanciacion",infersForm.getInstanciacion());
-                map.addAttribute("leibniz",infersForm.getLeibniz());
-                map.addAttribute("formula","");
-                map.addAttribute("admin","admin");
-                map.addAttribute("guardarMenu","");
-                map.addAttribute("listarTerminosMenu","");
-                map.addAttribute("verTerminosPublicosMenu","");
-                map.addAttribute("misPublicacionesMenu","");
-                map.addAttribute("computarMenu","class=\"active\"");
-                map.addAttribute("perfilMenu","");
-                map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
-                map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
-                return "infer";
-            }
-            catch(RecognitionException e)
-            {
-                String hdr = parser.getErrorHeader(e);
-		String msg = parser.getErrorMessage(e, TermParser.tokenNames);
-                map.addAttribute("usuario", usuarioManager.getUsuario(username));
-                map.addAttribute("infer",new InfersForm());
-                map.addAttribute("mensaje", hdr+" "+msg);
-                map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
-                map.addAttribute("instanciacion",infersForm.getInstanciacion());
-                map.addAttribute("leibniz",infersForm.getLeibniz());
-                map.addAttribute("formula","");
-                map.addAttribute("guardarMenu","");
-                map.addAttribute("admin","admin");
-                map.addAttribute("listarTerminosMenu","");
-                map.addAttribute("verTerminosPublicosMenu","");
-                map.addAttribute("misPublicacionesMenu","");
-                map.addAttribute("computarMenu","class=\"active\"");
-                map.addAttribute("perfilMenu","");
-                map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
-                map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
-                return "infer";
-            }
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            
+            Teorema teorema = teoremaManager.getTeorema(nStatement);
+            MakeTerm mk = new MakeTerm();
+            System.out.println(teorema.getTeoserializadoder());
+//            System.out.println(teorema.getEnunciadoder());
+            Term term = mk.makeTerm(teorema.getTeoserializadoder());
+            System.out.println(term.toStringInf());
+//            Term terDer = mk.makeTerm(teorema.getEnunciadoder());
+        
+//            System.out.println(terIzq.toStringInf());
+//            System.out.println(terDer.toStringInf());
+//            Term term = new App(new App((new Const("\\equiv")) , terDer),terIzq);
+                 
+//            System.out.println(term.toStringInf());
+                 
+                    
+                    
+//            //Hay que construir un Term aqui con el String termino.combinador
+//            //para luego traducir, hace falta construir un parse   
+//            ANTLRStringStream in = new ANTLRStringStream(nStatement);
+//            TermLexer lexer = new TermLexer(in);
+//            CommonTokenStream tokens = new CommonTokenStream(lexer);
+//            TermParser parser = new TermParser(tokens);
+//            Term term;
+//            try //si la sintanxis no es correcta ocurre una Exception
+//            {
+//
+//                term=parser.start_rule(terminoid,terminoManager);
+//                term.setAlias(0);
+//                
+//            }
+//            catch(IsNotInDBException e)
+//            {
+//                String hdr = parser.getErrorHeader(e);
+//		String msg = parser.getErrorMessage(e, TermParser.tokenNames);
+//                map.addAttribute("usuario", usuarioManager.getUsuario(username));
+//                map.addAttribute("infer",new InfersForm());
+//                map.addAttribute("mensaje", hdr +((IsNotInDBException)e).message);
+//                map.addAttribute("pasoAnt",infersForm.getPasoAnt());
+//                map.addAttribute("nStatement",infersForm.getnStatement());
+//                map.addAttribute("instanciacion",infersForm.getInstanciacion());
+//                map.addAttribute("leibniz",infersForm.getLeibniz());
+//                map.addAttribute("formula","");
+//                map.addAttribute("admin","admin");
+//                map.addAttribute("guardarMenu","");
+//                map.addAttribute("listarTerminosMenu","");
+//                map.addAttribute("verTerminosPublicosMenu","");
+//                map.addAttribute("misPublicacionesMenu","");
+//                map.addAttribute("computarMenu","class=\"active\"");
+//                map.addAttribute("perfilMenu","");
+//                map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
+//                map.addAttribute("overflow","hidden");
+//                map.addAttribute("anchuraDiv","1100px");
+//                return "infer";
+//            }
+//            catch(RecognitionException e)
+//            {
+//                String hdr = parser.getErrorHeader(e);
+//		String msg = parser.getErrorMessage(e, TermParser.tokenNames);
+//                map.addAttribute("usuario", usuarioManager.getUsuario(username));
+//                map.addAttribute("infer",new InfersForm());
+//                map.addAttribute("mensaje", hdr+" "+msg);
+//                map.addAttribute("pasoAnt",infersForm.getPasoAnt());
+//                map.addAttribute("nStatement",infersForm.getnStatement());
+//                map.addAttribute("instanciacion",infersForm.getInstanciacion());
+//                map.addAttribute("leibniz",infersForm.getLeibniz());
+//                map.addAttribute("formula","");
+//                map.addAttribute("guardarMenu","");
+//                map.addAttribute("admin","admin");
+//                map.addAttribute("listarTerminosMenu","");
+//                map.addAttribute("verTerminosPublicosMenu","");
+//                map.addAttribute("misPublicacionesMenu","");
+//                map.addAttribute("computarMenu","class=\"active\"");
+//                map.addAttribute("perfilMenu","");
+//                map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
+//                map.addAttribute("overflow","hidden");
+//                map.addAttribute("anchuraDiv","1100px");
+//                return "infer";
+//            }
             
             ANTLRStringStream in2 = new ANTLRStringStream(instanciacion);
             TermLexer lexer2 = new TermLexer(in2);
@@ -254,7 +280,7 @@ public class InferController {
                 map.addAttribute("infer",new InfersForm());
                 map.addAttribute("mensaje", hdr+" "+msg);
                 map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
+                map.addAttribute("nStatement",infersForm.getnStatement());
                 map.addAttribute("instanciacion",infersForm.getInstanciacion());
                 map.addAttribute("leibniz",infersForm.getLeibniz());
                 map.addAttribute("formula","");
@@ -288,7 +314,7 @@ public class InferController {
                 map.addAttribute("infer",new InfersForm());
                 map.addAttribute("mensaje", hdr+" "+msg);
                 map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-                map.addAttribute("nStament",infersForm.getnStament());
+                map.addAttribute("nStatement",infersForm.getnStatement());
                 map.addAttribute("instanciacion",infersForm.getInstanciacion());
                 map.addAttribute("leibniz",infersForm.getLeibniz());
                 map.addAttribute("formula","");
@@ -319,11 +345,22 @@ public class InferController {
                 pasoPost = "Regla~de~inferencia~no~validad";
             }
             
+            ArrayList<String> lista = infersForm.getHistorial();
+            lista.add(infersForm.getPasoAnt());
+            lista.add("<br>");
+            lista.add("< " +infersForm.getnStatement() + " - " + infersForm.getInstanciacion() + " - " + infersForm.getLeibniz() + " >");
+            infersForm.setHistorial(lista);
+//            // Agrego el termino 
+//            infersForm.setHistorial(pasoPost);
+////            infersForm.setHistorial();
+//            infersForm.setHistorial("<br>"+infersForm.getHistorial()+"<br>");
+            
             map.addAttribute("usuario", usuarioManager.getUsuario(username));
             map.addAttribute("infer",new InfersForm());
-            map.addAttribute("mensaje","");
+            map.addAttribute("mensaje",lista);
             map.addAttribute("pasoAnt",infersForm.getPasoAnt());
-            map.addAttribute("nStament",infersForm.getnStament());
+//            map.addAttribute("pasoAnt","");
+            map.addAttribute("nStatement",infersForm.getnStatement());
             map.addAttribute("instanciacion",infersForm.getInstanciacion());
             map.addAttribute("leibniz",infersForm.getLeibniz());   
             map.addAttribute("formula",pasoPost);
@@ -338,6 +375,27 @@ public class InferController {
             map.addAttribute("overflow","hidden");
             map.addAttribute("anchuraDiv","1100px");
             return "infer";
+//            
+//            
+//            map.addAttribute("usuario", usuarioManager.getUsuario(username));
+//            map.addAttribute("infer",new InfersForm());
+//            map.addAttribute("mensaje", teoremaTerm.toStringInf());
+//            map.addAttribute("pasoAnt",infersForm.getPasoAnt());
+//            map.addAttribute("nStatement",infersForm.getnStatement());
+//            map.addAttribute("instanciacion",infersForm.getInstanciacion());
+//            map.addAttribute("leibniz",infersForm.getLeibniz());
+//            map.addAttribute("formula","");
+//            map.addAttribute("admin","admin");
+//            map.addAttribute("guardarMenu","");
+//            map.addAttribute("listarTerminosMenu","");
+//            map.addAttribute("verTerminosPublicosMenu","");
+//            map.addAttribute("misPublicacionesMenu","");
+//            map.addAttribute("computarMenu","class=\"active\"");
+//            map.addAttribute("perfilMenu","");
+//            map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
+//            map.addAttribute("overflow","hidden");
+//            map.addAttribute("anchuraDiv","1100px");
+//            return "infer";    
     }
     
     public void setUsuarioManager(UsuarioManager usuarioManager) 

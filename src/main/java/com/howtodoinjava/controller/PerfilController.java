@@ -218,8 +218,9 @@ public class PerfilController {
 
 
                 // public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, String teoserializadoizq, String teoserializadoder, boolean ocultartrue)
-                Teorema teorema = new Teorema(categoria,izq.toString(),der.toString(),izq.toString(),der.toString(),true);
-                teoremaManager.addTeorema(teorema);
+//                Teorema teorema = new Teorema(categoria,izq.toString(),der.toString(),izq.toString(),der.toString(),true);
+                Teorema teorema = new Teorema(categoria,izq.toString(),der.toString(),teoTerm.toStringInf(),agregarTeorema.getTeorema(),true);
+                teoremaManager.addTeorema(teorema); 
 
                 Resuelve resuelve = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
                 resuelveManager.addResuelve(resuelve);

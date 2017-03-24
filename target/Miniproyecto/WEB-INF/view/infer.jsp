@@ -37,15 +37,21 @@
         <tiles:insertDefinition name="header" />
         <h1>Inserte su inferencia</h1>
     <center>
-    <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-
+        <c:forEach items="${mensaje}" var="employee">
+            <tr>
+                <td><c:out value="${employee}"/></td>
+            </tr>
+        </c:forEach>
+        <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+        ${mensaje}<br>
         Paso anterior: <sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-        <br>Numero de statement: <sf:input path="nStament" id="n_statement" value="${nStament}"/><sf:errors path="nStament" cssClass="error" /></br>
+        $$ ${formula} $$
+        <br>Numero de statement: <sf:input path="nStatement" id="n_statement" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" /></br>
         <br>Instaciacion:<sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
         <br>Leibniz:<sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
 
         <input type="submit" value="Inferir"> <input type="button" value="limpiar" onclick="limpiar()">
-    </sf:form> ${mensaje}
+    </sf:form>
     </center>
            <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
             
@@ -53,8 +59,7 @@
             t=document.getElementById('termino_string');
             t.innerText="${termino}";
         </script>
-        
-        $$ ${formula} $$
+
      
         <tiles:insertDefinition name="footer" />
     </body>
