@@ -15,7 +15,7 @@
             <li ${computarMenu}><a href="ingresar" style="padding-right:0px">computar</a></li>-->
             <li ${perfilMenu}><a href="./">Perfil</a></li>
             <li ${agregarTeoremaMenu}><a href="guardarteo">Agregar Teorema</a></li>
-            <li ${inferMenu}><a href="infer">Inferir</a></li>
+            <li ${computarMenu}><a href="../../infer/${usuario.login}">Inferir</a></li>
             <li><a href="close">cerrar sesi&oacute;n</a></li>
           </ul>
         </div>

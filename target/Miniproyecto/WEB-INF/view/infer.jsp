@@ -26,12 +26,12 @@
                 }
             }
         </script>
-        <base href="/Aledania/perfil/${usuario.login}/"/>
+        <base href="/Miniproyecto/perfil/${usuario.login}/"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" >
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
         <tiles:insertDefinition name="style" />
-        <title>Aledania</title>
+        <title>Miniproyecto</title>
     </head>
     <body>
         <tiles:insertDefinition name="header" />
@@ -47,7 +47,7 @@
         <input type="submit" value="Inferir"> <input type="button" value="limpiar" onclick="limpiar()">
     </sf:form> ${mensaje}
     </center>
-           <%-- <a href="/Aledania/perfil/${usuario.getLogin()}">Perfil</a>--%>
+           <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
             
         <script>
             t=document.getElementById('termino_string');
