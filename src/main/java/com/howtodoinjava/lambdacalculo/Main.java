@@ -20,41 +20,20 @@ public class Main {
 
 
         MakeTerm mk = new MakeTerm();
-        Term t = mk.makeTerm("p\\/q");
+        Term t = mk.makeTerm("!(p\\/q) ==> !(!p\\/!p)");
         Term t1 = mk.makeTerm("true");
-        Term t3 = mk.makeTerm("p == q");
+        Term t3 = mk.makeTerm("!p");
         
         Tokenizar tok = new Tokenizar();
         tok.tokenizacion("Hola(p,q)");
         
-        Brackear brack = new Brackear();
-        Term t2 = brack.appBrack(tok.vars, t);
+        System.out.println("t inst " + (t instanceof App));
+        System.out.println("t.p inst "+ (((App) t).p instanceof App));
+        System.out.println("t.q inst "+(((App) t).q instanceof App));
+        System.out.println(t.toStringInf());
+        //System.out.println( "p-- "+ ((App) t).p.toStringInf());
+        //System.out.println( "p-- "+ ((App)((App) t).p).p.toStringInf());
+        //System.out.println( "q-- "+ ((App) t).q.toStringInf());
         
-        //Lista de Vars
-        lisVar = brack.listVars(tok.vars);
-        //System.out.println(lisVar.toString());
-        
-        //Lista de Term
-        lisTerm.add(t);
-        lisTerm.add(t1);
-        //System.out.println(lisTerm.toString());
-         
-        //Imprimo termino antes de la sustParll
-        //System.out.println(t3.toString());               
-
-        //Aplicamos sustParll
-        System.out.println(t3.toString());
-        lisObj = mk.makeInsta("p,q := true,p\\/q");
-        System.out.println(lisObj.toString());
-        Term t4 = t3.sustParall((ArrayList<Var>) lisObj.get(0), (ArrayList<Term>) lisObj.get(1));
-        System.out.println(t4.toString());
-        
-         //System.out.println(lisVar.get(0).toStringInf());
-         
-         //Term tx = new App(t, t1);
-         //System.out.println(t3.toStringInf());
-         System.out.println();
-         //System.out.println(t3.toString());
-         //System.out.println(t3.toString());
     }
 }

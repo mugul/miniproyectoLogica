@@ -104,6 +104,7 @@ public abstract class Term implements Cloneable, Serializable{
     
     public abstract ToString toStringAbrv(ToString toString);
     
+    
     public String toStringFinal()
     {
         String term;
@@ -123,7 +124,7 @@ public abstract class Term implements Cloneable, Serializable{
     public String toStringFinalInf()
     {
         String term;
-        String aux= this.toString();
+        String aux= this.toStringInf();
         if(aux.startsWith("("))            
             term = aux.substring(1, aux.length()-1);            
         else{
