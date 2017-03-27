@@ -27,7 +27,7 @@
             <c:when test="${modificar.intValue()==0}">
               <sf:form method="POST" modelAttribute="agregarTeorema">
                 Teorema:<sf:input path="teorema" value="${teorema}"/><sf:errors path="teorema" cssClass="error" /><br/>
-                Categoria:<br><sf:textarea path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>
+                Categoria:<br><sf:input path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="categorias" data-toggle="dropdown">Categoría
                     <span class="caret"></span>
@@ -38,6 +38,7 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
                   </ul>
                 </div>
+                Numero de Teorema:<br><sf:input path="numeroTeorema" value="${numeroTeorema}"/><sf:errors path="numeroTeorema" cssClass="error" /><br/>
                 Nombre de Teorema (Opcional):<br><sf:input path="nombreTeorema" value="${nombreTeorema}"/><sf:errors path="nombreTeorema" cssClass="error" /><br/>
                 <input type="submit" value="Guardar">
               </sf:form>${mensaje}
