@@ -81,11 +81,11 @@ public class Teorema  implements java.io.Serializable {
     }
 
     public void setTeoserializadoizq(byte[] teoserializadoizq) {
-        this.teoserializadoizq = ((byte[])SerializationUtils.serialize(this.getTeoserializadoizq()));
+        this.teoserializadoizq = teoserializadoizq;
     }
 
     public void setTeoserializadoder(byte[] teoserializadoder) {
-        this.teoserializadoder = ((byte[])SerializationUtils.serialize(this.getTeoserializadoder()));
+        this.teoserializadoder = teoserializadoder;
     }
 
     public void setResuelves(Set resuelves) {

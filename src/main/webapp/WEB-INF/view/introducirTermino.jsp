@@ -21,7 +21,7 @@
     </head>
     <body>
     <tiles:insertDefinition name="header" />
-        <h1>Introduzca el predicado que desee guardar</h1>
+        <h1>Introduzca el Termino que desee guardar</h1>
         <center>
             <c:choose>
                 <c:when test="${modificar.intValue()==0}">
