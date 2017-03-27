@@ -19,14 +19,17 @@
         <property name="enunciadoder" type="string">
             <column name="enunciadoder" not-null="true" />
         </property>
-        <property name="teoserializadoizq" type="string">
+        <property name="teoserializadoizq" type="binary">
             <column name="teoserializadoizq" not-null="true" />
         </property>
-        <property name="teoserializadoder" type="string">
+        <property name="teoserializadoder" type="binary">
             <column name="teoserializadoder" not-null="true" />
         </property>
         <property name="ocultartrue" type="boolean">
             <column name="ocultartrue" not-null="true" />
+        </property>
+        <property name="esquema" type="boolean">
+            <column name="esquema" not-null="true" />
         </property>
         <set name="resuelves" inverse="true">
             <key>

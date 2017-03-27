@@ -9,6 +9,7 @@ import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Usuario;
 import com.howtodoinjava.forms.InfersForm;
 import com.howtodoinjava.lambdacalculo.App;
+import com.howtodoinjava.lambdacalculo.Const;
 import com.howtodoinjava.lambdacalculo.MakeTerm;
 import com.howtodoinjava.lambdacalculo.Var;
 import com.howtodoinjava.lambdacalculo.Term;
@@ -18,7 +19,12 @@ import com.howtodoinjava.parse.TermParser;
 import com.howtodoinjava.service.TeoremaManager;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.antlr.runtime.ANTLRStringStream;
@@ -174,29 +180,32 @@ public class InferController {
                 map.addAttribute("anchuraDiv","1100px");
                 return "infer";
             }
-            
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+       
             
             Teorema teorema = teoremaManager.getTeorema(nStatement);
             MakeTerm mk = new MakeTerm();
-            System.out.println(teorema.getTeoserializadoder());
-//            System.out.println(teorema.getEnunciadoder());
-            Term term = mk.makeTerm(teorema.getTeoserializadoder());
-            System.out.println(term.toStringInf());
-//            Term terDer = mk.makeTerm(teorema.getEnunciadoder());
-        
-//            System.out.println(terIzq.toStringInf());
-//            System.out.println(terDer.toStringInf());
-//            Term term = new App(new App((new Const("\\equiv")) , terDer),terIzq);
+            
+            Term term = null;
+            ObjectInputStream in;
+            try {
+                in = new ObjectInputStream(new ByteArrayInputStream(teorema.getTeoserializadoizq()));
+                Term terIzq = (Term) in.readObject();
+                in.close();
+
+                in = new ObjectInputStream(new ByteArrayInputStream(teorema.getTeoserializadoder()));
+                Term terDer = (Term) in.readObject();
+                in.close();
+                
+                System.out.println(terIzq.toStringInf());
+                System.out.println(terDer.toStringInf());
+                term = new App(new App((new Const("\\equiv")) , terDer),terIzq);
+            } catch (IOException ex) {
+                Logger.getLogger(InferController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(InferController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                        
                  
-//            System.out.println(term.toStringInf());
-                 
-                    
                     
 //            //Hay que construir un Term aqui con el String termino.combinador
 //            //para luego traducir, hace falta construir un parse   

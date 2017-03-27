@@ -17,10 +17,10 @@
         <property name="enunciadoder" type="string">
             <column name="enunciadoder" not-null="true" />
         </property>
-        <property name="metateoserializadoizq" type="string">
+        <property name="metateoserializadoizq" type="binary">
             <column name="metateoserializadoizq" not-null="true" />
         </property>
-        <property name="metateoserializadoder" type="string">
+        <property name="metateoserializadoder" type="binary">
             <column name="metateoserializadoder" not-null="true" />
         </property>
         <property name="ocultartrue" type="boolean">

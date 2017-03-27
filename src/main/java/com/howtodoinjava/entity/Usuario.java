@@ -16,7 +16,7 @@ public class Usuario  implements java.io.Serializable {
      private String apellido;
      private String correo;
      private String password;
-     private boolean esadmin;
+     private boolean admin;
      private Set predicados = new HashSet(0);
      private Set terminos = new HashSet(0);
      private Set dispones = new HashSet(0);
@@ -26,21 +26,21 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(String login, String nombre, String apellido, String correo, String password, boolean esadmin) {
+    public Usuario(String login, String nombre, String apellido, String correo, String password, boolean admin) {
         this.login = login;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.password = password;
-        this.esadmin = esadmin;
+        this.admin = admin;
     }
-    public Usuario(String login, String nombre, String apellido, String correo, String password, boolean esadmin, Set predicados, Set terminos, Set dispones, Set resuelves) {
+    public Usuario(String login, String nombre, String apellido, String correo, String password, boolean admin, Set predicados, Set terminos, Set dispones, Set resuelves) {
        this.login = login;
        this.nombre = nombre;
        this.apellido = apellido;
        this.correo = correo;
        this.password = password;
-       this.esadmin = esadmin;
+       this.admin = admin;
        this.predicados = predicados;
        this.terminos = terminos;
        this.dispones = dispones;
@@ -82,12 +82,12 @@ public class Usuario  implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public boolean isEsadmin() {
-        return this.esadmin;
+    public boolean isAdmin() {
+        return this.admin;
     }
     
-    public void setEsadmin(boolean esadmin) {
-        this.esadmin = esadmin;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
     public Set getPredicados() {
         return this.predicados;
