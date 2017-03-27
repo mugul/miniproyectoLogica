@@ -4,6 +4,7 @@
  */
 package com.howtodoinjava.service;
 
+import com.howtodoinjava.entity.Resuelve;
 import com.howtodoinjava.entity.Teorema;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface TeoremaManager {
     
     public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder);
     
-    
+    public List<Teorema> getTeoremaByResuelveList(List<Resuelve> resList);
 }
 
 

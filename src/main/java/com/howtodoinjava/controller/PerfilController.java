@@ -219,19 +219,19 @@ public class PerfilController {
 
 
 //              public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
-                Teorema teorema = new Teorema(categoria,izq.traducBD().toStringFinal(),der.traducBD().toStringFinal(),SerializationUtils.serialize(izq),SerializationUtils.serialize(der),!esEq,false);
+                Teorema teorema = new Teorema(categoria,izq.traducBD().toStringFinal(),der.traducBD().toStringFinal(),izq,der,!esEq,false);
                 teoremaManager.addTeorema(teorema); 
                 
                 Resuelve resuelve = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
-                resuelveManager.addResuelve(resuelve);
+//                resuelveManager.addResuelve(resuelve);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
                 Metateorema metateorema = new Metateorema(teorema.getId(),categoria,teoTerm.traducBD().toStringFinal(),"true",SerializationUtils.serialize(teoTerm),SerializationUtils.serialize("true"),false);
-                metateoremaManager.addMetateorema(metateorema);
+//                metateoremaManager.addMetateorema(metateorema);
                 
                 // public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto)
                 Dispone dispone = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
-                disponeManager.addDispone(dispone);
+//                disponeManager.addDispone(dispone);
                 
                 map.addAttribute("usuario", usuarioManager.getUsuario(username));
                 map.addAttribute("mensaje", "Su teorema ha sido guardado con exito");

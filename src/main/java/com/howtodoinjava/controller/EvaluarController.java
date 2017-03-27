@@ -89,9 +89,11 @@ public class EvaluarController {
         ////// ESTE CODIGO ES SOLO DE PRUEBAS
         ////// ESTE CODIGO ES SOLO DE PRUEBA
         
-            AgregarTeorema agregarTeorema = new AgregarTeorema("p == p == (q == q) == (r == r)", "1", "3.23", "El 3.23");
+        
+            AgregarTeorema agregarTeorema = new AgregarTeorema("(p == p)", "45", "3.23", "El 3.23");
         
             Usuario user = usuarioManager.getUsuario(username);
+            usuarioManager.getAllTeoremas(user);
 
             TerminoId terminoid2 = new TerminoId();
             terminoid2.setLogin(username);
@@ -144,15 +146,20 @@ public class EvaluarController {
                 Categoria categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoria()));
                 if (categoria == null) {
                     categoria = new Categoria("Equivalencia");
-                    categoriaManager.addCategoria(categoria);
+//                    categoriaManager.addCategoria(categoria);
                 }
 
-
+                System.out.println("AHHHHHH");
+                System.out.println(izq);
+                System.out.println(izq.toStringInf());
+                System.out.println(izq.traducBD().toStringAbrvFinal());
+                System.out.println(SerializationUtils.serialize(izq));
 //              public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
-                Teorema teorema = new Teorema(categoria, izq.traducBD().toStringFinal(), der.traducBD().toStringFinal(), SerializationUtils.serialize(izq), SerializationUtils.serialize(der), !esEq, false);
+                Teorema teorema = new Teorema(categoria, izq.traducBD().toStringFinal(), der.traducBD().toStringFinal(), izq, der, !esEq, false);
 //                teoremaManager.addTeorema(teorema);
 
-                Resuelve resuelve = new Resuelve(user, teorema, agregarTeorema.getNombreTeorema(), agregarTeorema.getNumeroTeorema(), false);
+//                Resuelve resuelve = new Resuelve(user, teorema, agregarTeorema.getNombreTeorema(), agregarTeorema.getNumeroTeorema(), false);
+                Resuelve resuelve = new Resuelve(user, teorema, "", "Teo de prueba", false);
 //                resuelveManager.addResuelve(resuelve);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
@@ -166,9 +173,9 @@ public class EvaluarController {
                 Teorema teo = teoremaManager.getTeorema(4);
                 
                 
-                map.addAttribute("usuario", teo.getTeoserializadoizq());
-                map.addAttribute("id", teo.getTeoserializadoder());
-                map.addAttribute("predicado", teo.getId());
+                map.addAttribute("id", izq.toStringInf());
+                map.addAttribute("usuario", teo.getTeoIzqTerm().toStringInf());
+                map.addAttribute("predicado", teo.getTeoDerTerm().toStringInf());
                 map.addAttribute("alias", teo.getId());
                 map.addAttribute("predserializado", categoriaManager.getAllCategorias().toString());
                 return "PagParaVerPredicado";

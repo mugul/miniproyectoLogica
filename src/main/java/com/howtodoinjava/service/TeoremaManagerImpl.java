@@ -5,11 +5,11 @@
 package com.howtodoinjava.service;
 
 import com.howtodoinjava.dao.TeoremaDAO;
+import com.howtodoinjava.entity.Resuelve;
 import com.howtodoinjava.entity.Teorema;
-import com.howtodoinjava.entity.Termino;
 import com.howtodoinjava.lambdacalculo.Term;
+import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.type.SerializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,16 +28,15 @@ public class TeoremaManagerImpl implements TeoremaManager {
     @Override
     @Transactional
     public void addTeorema(Teorema teorema){
-//        if (teorema != null) {
-//            teorema.setTeoserializadoizq((byte[])SerializationUtils.serialize(teorema.getTeoserializadoizq()));
-//            teorema.setTeoserializadoder((byte[])SerializationUtils.serialize(teorema.getTeoserializadoder()));
-//        }
+        
         teoremaDAO.addTeorema(teorema);
     }
     
     @Override
     @Transactional
     public void deleteTeorema(int id){
+        
+        // Si solo hay 1 usuario usandolo, entonces aplica teoremaDAO.deleteTeorema(id)
         teoremaDAO.deleteTeorema(id);
     }
     
@@ -46,12 +45,8 @@ public class TeoremaManagerImpl implements TeoremaManager {
     public Teorema getTeorema(int id){
         Teorema teo = teoremaDAO.getTeorema(id);
         if (teo != null) {
-//            System.out.println(teo);
-            teo.setTeoserializadoizq((byte[])SerializationUtils.deserialize(teo.getTeoserializadoizq()));
-//            teo.setTeoserializadoizq(serIzq);
-            teo.setTeoserializadoder((byte[])SerializationUtils.deserialize(teo.getTeoserializadoder()));
-//            teo.setTeoserializadoder(serDer);
-//            System.out.println(serDer);
+            teo.setTeoIzqTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+            teo.setTeoDerTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoder()));
         }
         return teo;
     }
@@ -64,8 +59,8 @@ public class TeoremaManagerImpl implements TeoremaManager {
             for(Teorema teo: teoList)
             {
                 //ter.setTermObject((Term)ToString.fromString(ter.getSerializado()));
-                teo.setTeoserializadoizq((byte[])SerializationUtils.deserialize(teo.getTeoserializadoizq()));
-                teo.setTeoserializadoder((byte[])SerializationUtils.deserialize(teo.getTeoserializadoder()));
+                teo.setTeoIzqTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+                teo.setTeoDerTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoder()));
             }
         }
         catch(Exception e){e.printStackTrace();}
@@ -77,10 +72,22 @@ public class TeoremaManagerImpl implements TeoremaManager {
     public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder){
         Teorema teo = teoremaDAO.getTeoremaByEnunciados(enunciadoizq,enunciadoder);
         if (teo != null) {
-            teo.setTeoserializadoizq((byte[])SerializationUtils.deserialize(teo.getTeoserializadoizq()));
-            teo.setTeoserializadoder((byte[])SerializationUtils.deserialize(teo.getTeoserializadoder()));
+            teo.setTeoIzqTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+            teo.setTeoDerTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoder()));
         }
         return teo;
     }
+        
     
+    
+    @Override
+    @Transactional
+    public List<Teorema> getTeoremaByResuelveList(List<Resuelve> resList){
+        List<Teorema> teoList = new ArrayList<Teorema>();
+        for(Resuelve res : resList) {
+            teoList.add(res.getTeorema());
+            System.out.println(res.getTeorema().getId());
+        }
+        return teoList;
+    }
 }
