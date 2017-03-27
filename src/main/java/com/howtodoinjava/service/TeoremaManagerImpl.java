@@ -46,12 +46,12 @@ public class TeoremaManagerImpl implements TeoremaManager {
     public Teorema getTeorema(int id){
         Teorema teo = teoremaDAO.getTeorema(id);
         if (teo != null) {
-            System.out.println(teo);
-            byte[] serIzq = (byte[])SerializationUtils.deserialize(teo.getTeoserializadoizq());
-            teo.setTeoserializadoizq(serIzq);
-            byte[] serDer = (byte[])SerializationUtils.deserialize(teo.getTeoserializadoder());
-            teo.setTeoserializadoder(serDer);
-            System.out.println(serDer);
+//            System.out.println(teo);
+            teo.setTeoserializadoizq((byte[])SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+//            teo.setTeoserializadoizq(serIzq);
+            teo.setTeoserializadoder((byte[])SerializationUtils.deserialize(teo.getTeoserializadoder()));
+//            teo.setTeoserializadoder(serDer);
+//            System.out.println(serDer);
         }
         return teo;
     }

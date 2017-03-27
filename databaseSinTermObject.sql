@@ -228,10 +228,11 @@ CREATE TABLE teorema (
     id integer NOT NULL,
     enunciadoizq text NOT NULL,
     enunciadoder text NOT NULL,
-    teoserializadoizq text NOT NULL,
-    teoserializadoder text NOT NULL,
+    teoserializadoizq bytea NOT NULL,
+    teoserializadoder bytea NOT NULL,
     categoriaid integer NOT NULL,
-    ocultartrue boolean NOT NULL
+    ocultartrue boolean NOT NULL,
+    esquema boolean NOT NULL
 );
 
 
@@ -245,8 +246,8 @@ CREATE TABLE metateorema (
     id integer NOT NULL,
     enunciadoizq text NOT NULL,
     enunciadoder text NOT NULL,
-    metateoserializadoizq text NOT NULL,
-    metateoserializadoder text NOT NULL,
+    metateoserializadoizq bytea NOT NULL,
+    metateoserializadoder bytea NOT NULL,
     categoriaid integer NOT NULL,
     ocultartrue boolean NOT NULL
 );
@@ -320,7 +321,7 @@ CREATE TABLE usuario (
     apellido text NOT NULL,
     correo text NOT NULL,
     password text NOT NULL,
-    esadmin boolean DEFAULT false NOT NULL
+    admin boolean DEFAULT false NOT NULL
 );
 
 
@@ -397,28 +398,6 @@ SELECT pg_catalog.setval('hibernate_sequence', 1, false);
 
 
 --
--- Data for Name: teorema; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
--- COPY teorema (id, enunciadoizq, enunciadoder, teoserializadoizq, teoserializadoder, categoriaid, ocultartrue) FROM stdin;
--- 1   serial izq uno  serial der uno  nombre uno  numero uno  1   f
--- 2   serial izq dos  serial der dos  nombre dos  numero dos  2   f
--- 3   serial izq tre  serial der tre  nombre tre  numero tre  3   f
--- \.
-
-
--- --
--- -- Data for Name: metateorema; Type: TABLE DATA; Schema: public; Owner: postgres
--- --
-
--- COPY metateorema (id, enunciadoizq, enunciadoder, metateoserializadoizq, metateoserializadoder, categoriaid, ocultartrue) FROM stdin;
--- 1   serial izq uno  serial der uno  nombre uno  numero uno  1   f
--- 2   serial izq dos  serial der dos  nombre dos  numero dos  2   f
--- 3   serial izq tre  serial der tre  nombre tre  numero tre  3   f
--- \.
-
-
---
 -- Data for Name: predicado; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -436,28 +415,6 @@ COPY predicado (id, predicado, alias, predserializado, loginusuario, numargument
 COPY publicacion (alias, login) FROM stdin;
 Fibonacci	federico
 \.
-
-
---
--- Data for Name: resuelve; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
--- COPY resuelve (id, nombreteorema, numeroteorema, resuelto, loginusuario, teoremaid) FROM stdin;
--- 1	nombre uno	numero uno	f	admin	1
--- 2	nombre dos	numero dos	t	admin	2
--- 3	nombre tres	numero tres	t	migsar	3
--- \.
-
-
---
--- Data for Name: dispone; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
--- COPY dispone (id, numerometateorema, resuelto, loginusuario, metateoremaid) FROM stdin;
--- 1   nombre uno  numero uno  f   admin   1
--- 2   nombre dos  numero dos  t   admin   2
--- 3   nombre tres numero tres t   migsar  3
--- \.
 
 
 --
@@ -535,7 +492,7 @@ Essubconjunto  x_{1} x_{2}	\\xaced000573720023636f6d2e686f77746f646f696e6a617661
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY usuario (login, nombre, apellido, correo, password, esadmin) FROM stdin;
+COPY usuario (login, nombre, apellido, correo, password, admin) FROM stdin;
 					f
 ascander	Ascander	Suarez	dede@efef.com	2718281	f
 etahhan	Elias	Tahhan	etahhan@gmail.com	2718281	f
