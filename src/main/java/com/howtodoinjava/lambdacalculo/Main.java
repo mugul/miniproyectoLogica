@@ -36,6 +36,9 @@ import org.springframework.util.SerializationUtils;
  * @author federico
  */
 public class Main {
+    
+    
+    
 
     public static void main(String args[]) {
         ArrayList<Object> lisObj = new ArrayList<Object>();
