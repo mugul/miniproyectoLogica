@@ -356,20 +356,14 @@ public class App extends Term{
         else
             der=q.alias.split("@")[0].replace("_","\\_");
         
-        
         return "("+izq+" "+der+")";
-        //return "("+p.toString()+q.toString()+")";
     }
     
     
-    //---------------------------------+++++++++++++++++++++++++
     public String toStringInf() {
         
-        String izq; // SIEMPRE EL p
-        String der; //Siempre el q
-        der = "1S";
-        izq = "13S";
-        //Termino Izq
+        String izq; 
+        String der; 
         if( (q.alias == null) && (p.alias == null)) { 
             
            if((p instanceof App) && (q instanceof App)){
@@ -398,16 +392,16 @@ public class App extends Term{
             }   
            
         }else if( (q.alias == null) &&  (p.alias != null)) {
-            
+            return q.toStringInf()+" "+p.alias;
             
         }else if( (q.alias != null) && (p.alias == null)) {
-            
+            return q.alias +" "+p.toStringInf();
             
         }else {
             return p.alias+" "+q.alias;
         }
         
-        return izq+" "+der;
+        
     }
     
     

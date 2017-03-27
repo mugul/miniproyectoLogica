@@ -34,6 +34,7 @@ import com.howtodoinjava.lambdacalculo.Const;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
 import com.howtodoinjava.lambdacalculo.Term;
+import com.howtodoinjava.lambdacalculo.Tokenizar;
 import com.howtodoinjava.parse.IsNotInDBException;
 import com.howtodoinjava.parse.TermLexer;
 import com.howtodoinjava.parse.TermParser;
@@ -407,15 +408,17 @@ public class PerfilController {
             
             TerminoId terminoid = new TerminoId();
             String alias=usuarioGuardar.getAlias();
-            if(username.equals("admin"))
-                alias=alias.substring(0, alias.length()-1);
-            terminoid.setAlias(alias);
+            Tokenizar tokenizar = new Tokenizar();
+            tokenizar.tokenizacion(alias);
+            //if(username.equals("admin"))
+            //    alias=alias.substring(0, alias.length()-1);
+            terminoid.setAlias(tokenizar.getName());
             terminoid.setLogin(username);
             Termino termino = new Termino();
             Usuario user=usuarioManager.getUsuario(username);
             termino.setUsuario(user);
             termino.setId(terminoid);
-            TerminoId terminoid2=new TerminoId();
+            TerminoId terminoid2 = new TerminoId();
             terminoid2.setLogin(username);
             String programa=usuarioGuardar.getTermino();
             
@@ -428,16 +431,27 @@ public class PerfilController {
             Term term;
             try //si la sintanxis no es correcta ocurre una Exception
             {
-
             
                 //aqui hay que hacer un query para verificar que el combinador 
                 //es no esta ya en la BD, poner esta verificacion en el dig de sec
 
                 Termino terminoEnBD=terminoManager.getTermino(terminoid); //arreglar solo consigue los tuyos mas no los de admin y publico
+                
                 if(terminoEnBD == null)
                 {
                     //System.out.println(terminoManager.getTermino(terminoid));
                     term=parser.start_rule(terminoid2,terminoManager);
+                    
+                    System.out.println(term.traducBD());
+                    System.out.println("");
+                    System.out.println("-----------------------------");
+                    System.out.println("-----------------------------");
+                    System.out.println("-----------------------------");
+                    System.out.println(term.toString());
+                    System.out.println("-----------------------------");
+                    System.out.println("-----------------------------");
+                    System.out.println("-----------------------------");
+                    
                     term.setAlias(terminoid.getAlias());
                     //aqui se traduce y luego se llama a toString para tener el
                     //combinador en String

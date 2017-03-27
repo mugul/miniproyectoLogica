@@ -14,6 +14,14 @@ public class Tokenizar {
     public Tokenizar() {
         vars = new ArrayList<String>();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getVars() {
+        return vars;
+    }
     
     public void tokenizacion(String string){
     
