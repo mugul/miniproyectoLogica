@@ -23,15 +23,15 @@ public class Metateorema  implements java.io.Serializable {
      private Categoria categoria;
      private String enunciadoizq;
      private String enunciadoder;
-     private String metateoserializadoizq;
-     private String metateoserializadoder;
+     private byte[] metateoserializadoizq;
+     private byte[] metateoserializadoder;
      private boolean ocultartrue;
      private Set dispones = new HashSet(0);
 
     public Metateorema() {
     }
 
-    public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue) {
+    public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, byte[] metateoserializadoizq, byte[] metateoserializadoder, boolean ocultartrue) {
         this.id = id;
         this.categoria = categoria;
         this.enunciadoizq = enunciadoizq;
@@ -41,7 +41,7 @@ public class Metateorema  implements java.io.Serializable {
         this.ocultartrue = ocultartrue;
     }
     
-    public Metateorema(Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue) {
+    public Metateorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] metateoserializadoizq, byte[] metateoserializadoder, boolean ocultartrue) {
         this.categoria = categoria;
         this.enunciadoizq = enunciadoizq;
         this.enunciadoder = enunciadoder;
@@ -51,19 +51,19 @@ public class Metateorema  implements java.io.Serializable {
     }
 
 
-    public String getMetateoserializadoizq() {
+    public byte[] getMetateoserializadoizq() {
         return metateoserializadoizq;
     }
 
-    public String getMetateoserializadoder() {
+    public byte[] getMetateoserializadoder() {
         return metateoserializadoder;
     }
 
-    public void setMetateoserializadoizq(String metateoserializadoizq) {
+    public void setMetateoserializadoizq(byte[] metateoserializadoizq) {
         this.metateoserializadoizq = metateoserializadoizq;
     }
 
-    public void setMetateoserializadoder(String metateoserializadoder) {
+    public void setMetateoserializadoder(byte[] metateoserializadoder) {
         this.metateoserializadoder = metateoserializadoder;
     }
 

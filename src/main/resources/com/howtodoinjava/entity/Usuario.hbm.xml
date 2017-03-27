@@ -20,8 +20,8 @@
         <property name="password" type="string">
             <column name="password" not-null="true" />
         </property>
-        <property name="esadmin" type="boolean">
-            <column name="esadmin" not-null="true" />
+        <property name="admin" type="boolean">
+            <column name="admin" not-null="true" />
         </property>
         <set name="predicados" inverse="true">
             <key>

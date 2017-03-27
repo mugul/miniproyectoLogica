@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.SerializationUtils;
 
 import com.howtodoinjava.entity.Usuario;
 import com.howtodoinjava.entity.Termino;
@@ -106,7 +107,7 @@ public class PerfilController {
         map.addAttribute("agregarTeorema",new AgregarTeorema());
         map.addAttribute("modificar",new Integer(0));
         map.addAttribute("teorema","");
-        map.addAttribute("categoria","");
+        map.addAttribute("categoria",categoriaManager.getAllCategorias());
         map.addAttribute("numeroTeorema","");
         map.addAttribute("mensaje", "");
         map.addAttribute("admin","admin");
@@ -142,7 +143,7 @@ public class PerfilController {
                 map.addAttribute("agregarTeorema",agregarTeorema);
                 map.addAttribute("modificar",new Integer(0));
                 map.addAttribute("teorema",agregarTeorema.getTeorema());
-                map.addAttribute("categoria",agregarTeorema.getCategoria());
+                map.addAttribute("categoria",categoriaManager.getAllCategorias());
                 map.addAttribute("numeroTeorema",agregarTeorema.getNumeroTeorema());
                 map.addAttribute("mensaje", "");
                 map.addAttribute("admin","admin");
@@ -217,16 +218,15 @@ public class PerfilController {
                 }
 
 
-                // public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, String teoserializadoizq, String teoserializadoder, boolean ocultartrue)
-//                Teorema teorema = new Teorema(categoria,izq.toString(),der.toString(),izq.toString(),der.toString(),true);
-                Teorema teorema = new Teorema(categoria,izq.toString(),der.toString(),teoTerm.toStringInf(),agregarTeorema.getTeorema(),true);
+//              public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
+                Teorema teorema = new Teorema(categoria,izq.traducBD().toStringFinal(),der.traducBD().toStringFinal(),SerializationUtils.serialize(izq),SerializationUtils.serialize(der),!esEq,false);
                 teoremaManager.addTeorema(teorema); 
-
+                
                 Resuelve resuelve = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
                 resuelveManager.addResuelve(resuelve);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
-                Metateorema metateorema = new Metateorema(teorema.getId(),categoria,teoTerm.toString(),"true",teoTerm.toString(),"true",true);
+                Metateorema metateorema = new Metateorema(teorema.getId(),categoria,teoTerm.traducBD().toStringFinal(),"true",SerializationUtils.serialize(teoTerm),SerializationUtils.serialize("true"),false);
                 metateoremaManager.addMetateorema(metateorema);
                 
                 // public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto)
@@ -237,6 +237,7 @@ public class PerfilController {
                 map.addAttribute("mensaje", "Su teorema ha sido guardado con exito");
                 map.addAttribute("admin","admin");
                 map.addAttribute("guardarMenu","");
+                map.addAttribute("categoria",categoriaManager.getAllCategorias());
                 map.addAttribute("agregarTeoremaMenu","");
                 map.addAttribute("listarTerminosMenu","");
                 map.addAttribute("verTerminosPublicosMenu","");
@@ -253,6 +254,7 @@ public class PerfilController {
                 map.addAttribute("usuarioGuardar",new UsuarioGuardar());
                 map.addAttribute("usuario",user);
                 map.addAttribute("modificar",new Integer(0));
+                map.addAttribute("categoria",categoriaManager.getAllCategorias());
                 map.addAttribute("mensaje", "No se puede ingresar su teorema porque "+e.alias);
                 map.addAttribute("admin","admin");
                 map.addAttribute("guardarMenu","");
@@ -293,7 +295,7 @@ public class PerfilController {
                 map.addAttribute("agregarTeorema",agregarTeorema);
                 map.addAttribute("modificar",new Integer(0));
                 map.addAttribute("teorema",agregarTeorema.getTeorema());
-                map.addAttribute("categoria",agregarTeorema.getCategoria());
+                map.addAttribute("categoria",categoriaManager.getAllCategorias());
                 map.addAttribute("numeroTeorema",agregarTeorema.getNumeroTeorema());
                 
                 map.addAttribute("mensaje", hdr +((IsNotInDBException)e).message);
@@ -322,7 +324,7 @@ public class PerfilController {
                 map.addAttribute("agregarTeorema",agregarTeorema);
                 map.addAttribute("modificar",new Integer(0));
                 map.addAttribute("teorema",agregarTeorema.getTeorema());
-                map.addAttribute("categoria",agregarTeorema.getCategoria());
+                map.addAttribute("categoria",categoriaManager.getAllCategorias());
                 map.addAttribute("numeroTeorema",agregarTeorema.getNumeroTeorema());
 
                 map.addAttribute("admin","admin");
