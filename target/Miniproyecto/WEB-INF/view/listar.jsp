@@ -63,10 +63,10 @@
       }
     </script>
 
-    <center>
-      <table class="table table-striped" border="1">
-        <tr><th>Alias</th><th>Término</th></tr>
-        <c:forEach var="termino" items="${terminos}">
+    <table class="table table-hover" border="1">
+      <thead><tr><th style="width: 300px;">Alias</th><th>Término</th></tr></thead>
+      <tbody>  
+        <c:forEach var="termino" items="${terminos}"> 
           <tr>
             <td>
               <c:choose>
@@ -74,7 +74,7 @@
                   <a href="#!" onclick="insertAtCursor('termino_string', '${termino.getId().getAlias()}')">${termino.getId().getAlias()}</a>
                 </c:when>
                 <c:otherwise>
-                    ${termino.getId().getAlias()}
+                  ${termino.getId().getAlias()}
                 </c:otherwise>
               </c:choose>
             </td>
@@ -89,15 +89,15 @@
                 <c:choose>
                   <c:when test="${publicaciones.intValue()==0}">
                 <%--<td>
-                      <a href="../${usuario.getLogin()}/modificar?alias=${termino.getId().getAlias()}" >Modificar</a></td>--%>
-                        <td><a href="../${usuario.getLogin()}/modificaralias?aliasv=${termino.getId().getAlias()}" >Modificar Alias</a></td>
-                        <td><a onclick="return confirm('Seguro que desea eliminar el predicado')" href="../${usuario.getLogin()}/eliminar?alias=${termino.getId().getAlias()}">Eliminar</a></td>
+                    <a href="../${usuario.getLogin()}/modificar?alias=${termino.getId().getAlias()}" >Modificar</a></td>--%>
+                    <td><a href="../${usuario.getLogin()}/modificaralias?aliasv=${termino.getId().getAlias()}" >Modificar Alias</a></td>
+                    <td><a onclick="return confirm('Seguro que desea eliminar el predicado')" href="../${usuario.getLogin()}/eliminar?alias=${termino.getId().getAlias()}">Eliminar</a></td>
                   </c:when>
                   <c:otherwise>
                     <td><a onclick="return confirm('Seguro que desea eliminar el predicado')" href="../${usuario.getLogin()}/eliminarpubl?alias=${termino.getId().getAlias()}">Eliminar</a></td>
                   </c:otherwise>
                 </c:choose>
-<%--            <c:choose>
+  <%--            <c:choose>
                   <c:when test="${!usuario.getLogin().equals(admin) && publicaciones.intValue()==0}">
                       <td><a href="../${usuario.getLogin()}/publicar?alias=${termino.getId().getAlias()}">Publicar</a></td>
                   </c:when>
@@ -106,7 +106,8 @@
             </c:choose>
           </tr>
         </c:forEach>
-      </table>
+      </tbody>
+    </table>
 <%--    <c:choose>
     <c:when test="${comb.intValue()==1}">
         <a href="${accion}?comb=n">Observar en notaci&oacute;n de lambda t&eacute;rminos</a>
@@ -120,12 +121,11 @@
                 <a href="./">Perfil</a>
             </c:when>
         </c:choose>--%>
-        ${mensaje}
-   </center>
-   <c:choose>
-    <c:when test="${perfil.intValue()==1}">
-            <tiles:insertDefinition name="footer" />
-    </c:when>
-   </c:choose>
+    ${mensaje}
+    <c:choose>
+      <c:when test="${perfil.intValue()==1}">
+        <tiles:insertDefinition name="footer" />
+      </c:when>
+    </c:choose>
   </body>
 </html>
