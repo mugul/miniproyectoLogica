@@ -20,6 +20,7 @@ public class AgregarTeorema {
      private String categoria;
      @NotEmpty(message="no debe dejar este campo vacío")
      private String numeroTeorema;
+     private int categoriaSeleccionada;
 
      // opcional
      private String nombreTeorema;
@@ -42,6 +43,14 @@ public class AgregarTeorema {
     public String getCategoria() {
         return categoria;
     }
+
+  public void setCategoriaSeleccionada(int categoriaSeleccionada) {
+    this.categoriaSeleccionada = categoriaSeleccionada;
+  }
+
+  public int getCategoriaSeleccionada() {
+    return categoriaSeleccionada;
+  }
 
     public String getNumeroTeorema() {
         return numeroTeorema;
