@@ -4,8 +4,11 @@
  */
 package com.howtodoinjava.lambdacalculo;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -13,9 +16,35 @@ import java.util.Queue;
  */
 public class Comprobacion {
     
-    public boolean bfs(){
-        return true;
+    public Comprobacion() {
+    }    
+         
+         
+    public String bfs(Term t){
+        Stack<Term> pila = new Stack<Term>();
+        pila.push(t);
+        HashSet<Term> visitados = new HashSet<Term>();
+        while (!pila.isEmpty()) {
+              Term actual = pila.pop();
+              if (!visitados.contains(actual)) {
+                    visitados.add(actual);
+                    ArrayList<Term> arrayList = new ArrayList<Term>();
+                    if ( actual instanceof App){
+                        arrayList.add(((App)actual).p);
+                        arrayList.add(((App)actual).q );
+                    }else if(actual instanceof Var){
+                        return actual.toStringInf();
+                    }
+                    for (Term n : arrayList) {
+                        pila.push(n);
+                  }
+              }
+        } 
+        return "";
+                
     }
+
+    
     
     
  
