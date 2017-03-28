@@ -26,8 +26,8 @@
             <c:choose>
                 <c:when test="${modificar.intValue()==0}">
                     <sf:form method="POST" modelAttribute="usuarioGuardar">
-                        Alias:<sf:input path="alias" id="termino_alias" value="${alias}"/><sf:errors path="alias" cssClass="error" /><br/>
-                        Predicado:<br><sf:textarea path="termino" id="termino_string" style="height: 80px; width: 526px;" /><sf:errors path="termino" cssClass="error" /><br/>
+                        Alias:  <sf:input path="alias" id="termino_alias" value="${alias}"/>      <sf:errors path="alias" cssClass="error" /><br/>
+                        Predicado:  <sf:textarea path="termino" id="termino_string" style="height: 80px; width: 526px;" />    <sf:errors path="termino" cssClass="error" /><br/>
                         <input type="submit" value="Guardar">
                     </sf:form>${mensaje}
                 </c:when>

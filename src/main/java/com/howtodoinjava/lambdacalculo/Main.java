@@ -36,6 +36,9 @@ import org.springframework.util.SerializationUtils;
  * @author federico
  */
 public class Main {
+    
+    
+    
 
     public static void main(String args[]) {
         ArrayList<Object> lisObj = new ArrayList<Object>();
@@ -44,19 +47,32 @@ public class Main {
 
 
         MakeTerm mk = new MakeTerm();
-        Term t = mk.makeTerm("p == p");
+        Term t = mk.makeTerm("p == r");
         Term t1 = mk.makeTerm("q == q");
 //        Term t3 = mk.makeTerm("!p");
 
 //        Tokenizar tok = new Tokenizar();
 //        tok.tokenizacion("Hola(p,q)");
 
-        Term termFin = new App(new App((new Const("\\equiv")), t1), t);
+       // Term termFin = new App(new App((new Const("\\equiv")), t1), t);
 
 
-
-        System.out.println(termFin.toStringInf());
-//        System.out.println("t.p inst "+ (((App) t).p instanceof App));
+         Term v = mk.makeTerm("p");
+         Term v1 = mk.makeTerm("r");
+         t = new Bracket( (Var) v1, t);
+         t = new Bracket((Var) v, t );
+         System.out.println(t.toString());
+         Term a = t.reducir();
+         System.out.println("");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println(a.toString());
+        
+        
+        
+        
+/**        System.out.println("t.p inst "+ (((App) t).p instanceof App));
 //        System.out.println("t.q inst "+(((App) t).q instanceof App));
 //        System.out.println(t.toStringInf());
         //System.out.println( "p-- "+ ((App) t).p.toStringInf());
@@ -173,5 +189,6 @@ public class Main {
             String msg = parser.getErrorMessage(e, TermParser.tokenNames);
             System.out.println("Hubo el error:" + msg);
         }
+    }**/
+       
     }
-}
