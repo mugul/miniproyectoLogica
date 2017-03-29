@@ -157,5 +157,10 @@ public class Phi extends Term{
         return this;
     }
 
+    @Override
+    public Term checkApp() {
+        return this;
+    }
+
     
 }

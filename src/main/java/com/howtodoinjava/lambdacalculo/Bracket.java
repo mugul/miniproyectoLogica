@@ -222,6 +222,12 @@ public class Bracket extends Term{
             
         }
 
+    @Override
+    public Term checkApp() {
+        
+        return this;
+    }
+
     
     }
 
