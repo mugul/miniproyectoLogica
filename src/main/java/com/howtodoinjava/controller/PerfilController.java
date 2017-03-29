@@ -135,6 +135,7 @@ public class PerfilController {
             {
                 return "redirect:/index";
             }
+                System.out.println("Hola viteh0000");
             //Aqui hay que validar sintaxis se puede hacer como un aspecto con 
             // un @Valid
             //aqui se acomoda la estructura de la entidad Termino ya que en la
@@ -146,7 +147,7 @@ public class PerfilController {
                 map.addAttribute("agregarTeorema",agregarTeorema);
                 map.addAttribute("modificar",new Integer(0));
                 map.addAttribute("teorema",agregarTeorema.getTeorema());
-                map.addAttribute("categoria",categoriaManager.getAllCategorias());
+                map.addAttribute("categoria",agregarTeorema.getCategoria());
                 map.addAttribute("numeroTeorema",agregarTeorema.getNumeroTeorema());
                 map.addAttribute("mensaje", "");
                 map.addAttribute("admin","admin");
@@ -162,6 +163,7 @@ public class PerfilController {
                 return "agregarTeorema";
             }
             
+                System.out.println("Hola viteh0");
             Usuario user = usuarioManager.getUsuario(username);
             
             TerminoId terminoid2=new TerminoId();
@@ -211,6 +213,7 @@ public class PerfilController {
                     }
                 }
 
+                System.out.println("Hola viteh1");
                 
                 // ESTO DEBE MOSTRAR LAS CATEGORIAS
                 // Se busca si existe la cat, si no existe se crea
@@ -224,17 +227,17 @@ public class PerfilController {
 //              public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
                 Teorema teorema = new Teorema(categoria,izq.traducBD().toStringFinal(),der.traducBD().toStringFinal(),izq,der,!esEq,false);
                 teoremaManager.addTeorema(teorema); 
-                
+                System.out.println("Hola viteh");
                 Resuelve resuelve = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
-//                resuelveManager.addResuelve(resuelve);
+                resuelveManager.addResuelve(resuelve);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
                 Metateorema metateorema = new Metateorema(teorema.getId(),categoria,teoTerm.traducBD().toStringFinal(),"true",SerializationUtils.serialize(teoTerm),SerializationUtils.serialize("true"),false);
-//                metateoremaManager.addMetateorema(metateorema);
+                metateoremaManager.addMetateorema(metateorema);
                 
                 // public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto)
                 Dispone dispone = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
-//                disponeManager.addDispone(dispone);
+                disponeManager.addDispone(dispone);
                 
                 map.addAttribute("usuario", usuarioManager.getUsuario(username));
                 map.addAttribute("mensaje", "Su teorema ha sido guardado con exito");
