@@ -214,7 +214,8 @@ ALTER SEQUENCE dispone_id_seq OWNED BY dispone.id;
 
 CREATE TABLE solucion (
     sol text NOT NULL,
-    resuelveid integer NOT NULL
+    resuelveid integer NOT NULL,
+    arregloserializado bytea NOT NULL
 );
 
 
@@ -435,7 +436,7 @@ SELECT pg_catalog.setval('dispone_id_seq', 1, false);
 -- Data for Name: solucion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY solucion (sol, resuelveid) FROM stdin;
+COPY solucion (sol, resuelveid,arregloserializado) FROM stdin;
 \.
 
 
