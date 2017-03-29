@@ -412,9 +412,8 @@ public class PerfilController {
             Tokenizar tk = new Tokenizar();
             tk.tokenizacion(usuarioGuardar.getAlias());
             String alias=usuarioGuardar.getAlias();
-            if(username.equals("admin"))
-                alias=alias.substring(0, alias.length()-1);
-            terminoid.setAlias(usuarioGuardar.getAlias());//alias);
+            
+            terminoid.setAlias(tk.getName());//alias);
             terminoid.setLogin(username);
             Termino termino = new Termino();
             Usuario user=usuarioManager.getUsuario(username);
@@ -443,6 +442,10 @@ public class PerfilController {
                 {
                     //System.out.println(terminoManager.getTermino(terminoid));
                     term=parser.start_rule(terminoid2,terminoManager);
+                    System.out.println("+++++++++++++++++++++++++++++");
+                    System.out.println("+++++++++++++++++++++++++++++");
+                    System.out.println("+++++++++++++++++++++++++++++");
+                    System.out.println(term.toStringInf());
                     term.setAlias(terminoid.getAlias());
                     //aqui se traduce y luego se llama a toString para tener el
                     //combinador en String
@@ -451,22 +454,24 @@ public class PerfilController {
                     Termino termino2=terminoManager.getCombinador(username, termino.getCombinador());
                     if(termino2 != null) 
                         throw new AlphaEquivalenceException(termino2.getId().getAlias());
-//                    termino.setSerializado(ToString.toString(term));
+                    //  termino.setSerializado(ToString.toString(term));
                     //verificar si el String combinador existe pero con otro alias
                     
                     Comprobacion comprobar = new Comprobacion();
                     Brackear bk = new Brackear();
                     Term res = bk.appBrack(tk.getVars(), term);
-                    String check  = comprobar.bfs(res);
+                    String check  = comprobar.bfs(res.traducBD());
                     String resultado;
                     if (check.equals("")) {
-                        resultado  = " Su t&eacute;rmino ha sido guardado con exito";
+                        resultado  = " 1 Su t&eacute;rmino ha sido guardado con exito";
                     }else{
-                        resultado = " Su termino usa variabres como: "+check +" que no estan especificada";
+                        resultado = " 2 Su t&eacute;rmino usa variables como: "+check +" que no estan especificada";
                     }
                     
                     termino.getId().setLogin(username);
                     terminoManager.addTermino(termino);
+                    map.addAttribute("usuarioGuardar", usuarioGuardar);
+                    map.addAttribute("modificar",new Integer(0));
                     map.addAttribute("mensaje", resultado);
                     map.addAttribute("usuario", usuarioManager.getUsuario(username));
                     map.addAttribute("guardarMenu","");
@@ -484,7 +489,7 @@ public class PerfilController {
                     map.addAttribute("usuarioGuardar",new UsuarioGuardar());
                     map.addAttribute("usuario",user);
                     map.addAttribute("modificar",new Integer(0));
-                    map.addAttribute("mensaje", "ya existe un t&eacute;rmino con el alias que usted ha colocado");
+                    map.addAttribute("mensaje", "Ya existe un t&eacute;rmino en la Base de Datos con este alias: ");
                     map.addAttribute("termino",programa);
                     map.addAttribute("admin","admin");
                     map.addAttribute("alias",alias);

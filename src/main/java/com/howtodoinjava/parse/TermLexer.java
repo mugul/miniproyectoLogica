@@ -1,5 +1,5 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-24 15:32:02
-package com.howtodoinjava.parse;
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-28 19:10:48
+package com.howtodoinjava.parse; 
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -27,10 +27,16 @@ public class TermLexer extends Lexer {
     public static final int WORD=6;
     public static final int T__19=19;
     public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
     public static final int T__16=16;
+    public static final int T__33=33;
     public static final int T__15=15;
+    public static final int T__34=34;
     public static final int T__18=18;
+    public static final int T__35=35;
     public static final int T__17=17;
+    public static final int T__36=36;
     public static final int T__12=12;
     public static final int T__14=14;
     public static final int T__13=13;
@@ -75,10 +81,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:4:7: ( '==>' )
-            // Term.g:4:9: '==>'
+            // Term.g:4:7: ( '\\\\equiv' )
+            // Term.g:4:9: '\\\\equiv'
             {
-            match("==>"); 
+            match("\\equiv"); 
 
 
             }
@@ -96,10 +102,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:5:7: ( '<==' )
-            // Term.g:5:9: '<=='
+            // Term.g:5:7: ( '==>' )
+            // Term.g:5:9: '==>'
             {
-            match("<=="); 
+            match("==>"); 
 
 
             }
@@ -117,10 +123,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:6:7: ( '\\\\/' )
-            // Term.g:6:9: '\\\\/'
+            // Term.g:6:7: ( '\\\\Rightarrow' )
+            // Term.g:6:9: '\\\\Rightarrow'
             {
-            match("\\/"); 
+            match("\\Rightarrow"); 
 
 
             }
@@ -138,10 +144,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:7:7: ( '\\\\vee' )
-            // Term.g:7:9: '\\\\vee'
+            // Term.g:7:7: ( '<==' )
+            // Term.g:7:9: '<=='
             {
-            match("\\vee"); 
+            match("<=="); 
 
 
             }
@@ -159,10 +165,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:8:7: ( '/\\\\' )
-            // Term.g:8:9: '/\\\\'
+            // Term.g:8:7: ( '\\\\Leftarrow' )
+            // Term.g:8:9: '\\\\Leftarrow'
             {
-            match("/\\"); 
+            match("\\Leftarrow"); 
 
 
             }
@@ -180,10 +186,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:9:7: ( '\\\\wedge' )
-            // Term.g:9:9: '\\\\wedge'
+            // Term.g:9:7: ( '\\\\/' )
+            // Term.g:9:9: '\\\\/'
             {
-            match("\\wedge"); 
+            match("\\/"); 
 
 
             }
@@ -201,10 +207,11 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:10:7: ( '!' )
-            // Term.g:10:9: '!'
+            // Term.g:10:7: ( '\\\\vee' )
+            // Term.g:10:9: '\\\\vee'
             {
-            match('!'); 
+            match("\\vee"); 
+
 
             }
 
@@ -221,10 +228,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:11:7: ( 'true' )
-            // Term.g:11:9: 'true'
+            // Term.g:11:7: ( '/\\\\' )
+            // Term.g:11:9: '/\\\\'
             {
-            match("true"); 
+            match("/\\"); 
 
 
             }
@@ -242,10 +249,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:12:7: ( 'false' )
-            // Term.g:12:9: 'false'
+            // Term.g:12:7: ( '\\\\wedge' )
+            // Term.g:12:9: '\\\\wedge'
             {
-            match("false"); 
+            match("\\wedge"); 
 
 
             }
@@ -263,10 +270,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:13:7: ( '_{' )
-            // Term.g:13:9: '_{'
+            // Term.g:13:7: ( '!==' )
+            // Term.g:13:9: '!=='
             {
-            match("_{"); 
+            match("!=="); 
 
 
             }
@@ -284,10 +291,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:14:7: ( '}^{' )
-            // Term.g:14:9: '}^{'
+            // Term.g:14:7: ( '\\\\nequiv' )
+            // Term.g:14:9: '\\\\nequiv'
             {
-            match("}^{"); 
+            match("\\nequiv"); 
 
 
             }
@@ -305,10 +312,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:15:7: ( '}' )
-            // Term.g:15:9: '}'
+            // Term.g:15:7: ( '!' )
+            // Term.g:15:9: '!'
             {
-            match('}'); 
+            match('!'); 
 
             }
 
@@ -325,10 +332,11 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:16:7: ( '(' )
-            // Term.g:16:9: '('
+            // Term.g:16:7: ( '\\\\neg' )
+            // Term.g:16:9: '\\\\neg'
             {
-            match('('); 
+            match("\\neg"); 
+
 
             }
 
@@ -345,10 +353,11 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:17:7: ( ')' )
-            // Term.g:17:9: ')'
+            // Term.g:17:7: ( 'true' )
+            // Term.g:17:9: 'true'
             {
-            match(')'); 
+            match("true"); 
+
 
             }
 
@@ -365,10 +374,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:18:7: ( ':=' )
-            // Term.g:18:9: ':='
+            // Term.g:18:7: ( 'false' )
+            // Term.g:18:9: 'false'
             {
-            match(":="); 
+            match("false"); 
 
 
             }
@@ -386,10 +395,11 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:19:7: ( ',' )
-            // Term.g:19:9: ','
+            // Term.g:19:7: ( '_{' )
+            // Term.g:19:9: '_{'
             {
-            match(','); 
+            match("_{"); 
+
 
             }
 
@@ -406,10 +416,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:20:7: ( 'lambda' )
-            // Term.g:20:9: 'lambda'
+            // Term.g:20:7: ( '}^{' )
+            // Term.g:20:9: '}^{'
             {
-            match("lambda"); 
+            match("}^{"); 
 
 
             }
@@ -427,10 +437,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:21:7: ( '.' )
-            // Term.g:21:9: '.'
+            // Term.g:21:7: ( '}' )
+            // Term.g:21:9: '}'
             {
-            match('.'); 
+            match('}'); 
 
             }
 
@@ -442,12 +452,134 @@ public class TermLexer extends Lexer {
     }
     // $ANTLR end "T__30"
 
+    // $ANTLR start "T__31"
+    public final void mT__31() throws RecognitionException {
+        try {
+            int _type = T__31;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Term.g:22:7: ( '(' )
+            // Term.g:22:9: '('
+            {
+            match('('); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__31"
+
+    // $ANTLR start "T__32"
+    public final void mT__32() throws RecognitionException {
+        try {
+            int _type = T__32;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Term.g:23:7: ( ')' )
+            // Term.g:23:9: ')'
+            {
+            match(')'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__32"
+
+    // $ANTLR start "T__33"
+    public final void mT__33() throws RecognitionException {
+        try {
+            int _type = T__33;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Term.g:24:7: ( ':=' )
+            // Term.g:24:9: ':='
+            {
+            match(":="); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__33"
+
+    // $ANTLR start "T__34"
+    public final void mT__34() throws RecognitionException {
+        try {
+            int _type = T__34;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Term.g:25:7: ( ',' )
+            // Term.g:25:9: ','
+            {
+            match(','); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__34"
+
+    // $ANTLR start "T__35"
+    public final void mT__35() throws RecognitionException {
+        try {
+            int _type = T__35;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Term.g:26:7: ( 'lambda' )
+            // Term.g:26:9: 'lambda'
+            {
+            match("lambda"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__35"
+
+    // $ANTLR start "T__36"
+    public final void mT__36() throws RecognitionException {
+        try {
+            int _type = T__36;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Term.g:27:7: ( '.' )
+            // Term.g:27:9: '.'
+            {
+            match('.'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__36"
+
     // $ANTLR start "X"
     public final void mX() throws RecognitionException {
         try {
             int _type = X;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:130:2: ( 'X' NUMBER | 'x' NUMBER )
+            // Term.g:148:2: ( 'X' NUMBER | 'x' NUMBER )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -465,7 +597,7 @@ public class TermLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // Term.g:131:4: 'X' NUMBER
+                    // Term.g:149:4: 'X' NUMBER
                     {
                     match('X'); 
                     mNUMBER(); 
@@ -473,7 +605,7 @@ public class TermLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Term.g:133:5: 'x' NUMBER
+                    // Term.g:151:5: 'x' NUMBER
                     {
                     match('x'); 
                     mNUMBER(); 
@@ -495,8 +627,8 @@ public class TermLexer extends Lexer {
         try {
             int _type = INITIALDIGIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:163:13: ( '1' .. '9' )
-            // Term.g:163:15: '1' .. '9'
+            // Term.g:181:13: ( '1' .. '9' )
+            // Term.g:181:15: '1' .. '9'
             {
             matchRange('1','9'); 
 
@@ -515,7 +647,7 @@ public class TermLexer extends Lexer {
         try {
             int _type = DIGIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:165:6: ( '0' | INITIALDIGIT )
+            // Term.g:183:6: ( '0' | INITIALDIGIT )
             // Term.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9') ) {
@@ -543,7 +675,7 @@ public class TermLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:167:7: ( '0' | INITIALDIGIT ( DIGIT )* )
+            // Term.g:185:7: ( '0' | INITIALDIGIT ( DIGIT )* )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -561,17 +693,17 @@ public class TermLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // Term.g:167:9: '0'
+                    // Term.g:185:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // Term.g:167:15: INITIALDIGIT ( DIGIT )*
+                    // Term.g:185:15: INITIALDIGIT ( DIGIT )*
                     {
                     mINITIALDIGIT(); 
-                    // Term.g:167:28: ( DIGIT )*
+                    // Term.g:185:28: ( DIGIT )*
                     loop2:
                     do {
                         int alt2=2;
@@ -584,7 +716,7 @@ public class TermLexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // Term.g:167:29: DIGIT
+                    	    // Term.g:185:29: DIGIT
                     	    {
                     	    mDIGIT(); 
 
@@ -614,8 +746,8 @@ public class TermLexer extends Lexer {
         try {
             int _type = CAPITALLETTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:169:14: ( 'A' .. 'Z' )
-            // Term.g:169:16: 'A' .. 'Z'
+            // Term.g:187:14: ( 'A' .. 'Z' )
+            // Term.g:187:16: 'A' .. 'Z'
             {
             matchRange('A','Z'); 
 
@@ -634,8 +766,8 @@ public class TermLexer extends Lexer {
         try {
             int _type = LETTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:171:7: ( 'a' .. 'z' )
-            // Term.g:171:9: 'a' .. 'z'
+            // Term.g:189:7: ( 'a' .. 'z' )
+            // Term.g:189:9: 'a' .. 'z'
             {
             matchRange('a','z'); 
 
@@ -654,7 +786,7 @@ public class TermLexer extends Lexer {
         try {
             int _type = WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:173:5: ( CAPITALLETTER ( LETTER )+ | CAPITALLETTER )
+            // Term.g:191:5: ( CAPITALLETTER ( LETTER )+ | CAPITALLETTER )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -675,10 +807,10 @@ public class TermLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // Term.g:173:9: CAPITALLETTER ( LETTER )+
+                    // Term.g:191:9: CAPITALLETTER ( LETTER )+
                     {
                     mCAPITALLETTER(); 
-                    // Term.g:173:23: ( LETTER )+
+                    // Term.g:191:23: ( LETTER )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -692,7 +824,7 @@ public class TermLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // Term.g:173:24: LETTER
+                    	    // Term.g:191:24: LETTER
                     	    {
                     	    mLETTER(); 
 
@@ -712,7 +844,7 @@ public class TermLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Term.g:175:9: CAPITALLETTER
+                    // Term.g:193:9: CAPITALLETTER
                     {
                     mCAPITALLETTER(); 
 
@@ -733,10 +865,10 @@ public class TermLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Term.g:177:11: ( ( ' ' | '\\r' )+ )
-            // Term.g:177:13: ( ' ' | '\\r' )+
+            // Term.g:195:11: ( ( ' ' | '\\r' )+ )
+            // Term.g:195:13: ( ' ' | '\\r' )+
             {
-            // Term.g:177:13: ( ' ' | '\\r' )+
+            // Term.g:195:13: ( ' ' | '\\r' )+
             int cnt6=0;
             loop6:
             do {
@@ -787,8 +919,8 @@ public class TermLexer extends Lexer {
     // $ANTLR end "WHITESPACE"
 
     public void mTokens() throws RecognitionException {
-        // Term.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | X | INITIALDIGIT | DIGIT | NUMBER | CAPITALLETTER | LETTER | WORD | WHITESPACE )
-        int alt7=27;
+        // Term.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | X | INITIALDIGIT | DIGIT | NUMBER | CAPITALLETTER | LETTER | WORD | WHITESPACE )
+        int alt7=33;
         alt7 = dfa7.predict(input);
         switch (alt7) {
             case 1 :
@@ -925,56 +1057,98 @@ public class TermLexer extends Lexer {
                 }
                 break;
             case 20 :
-                // Term.g:1:124: X
+                // Term.g:1:124: T__31
+                {
+                mT__31(); 
+
+                }
+                break;
+            case 21 :
+                // Term.g:1:130: T__32
+                {
+                mT__32(); 
+
+                }
+                break;
+            case 22 :
+                // Term.g:1:136: T__33
+                {
+                mT__33(); 
+
+                }
+                break;
+            case 23 :
+                // Term.g:1:142: T__34
+                {
+                mT__34(); 
+
+                }
+                break;
+            case 24 :
+                // Term.g:1:148: T__35
+                {
+                mT__35(); 
+
+                }
+                break;
+            case 25 :
+                // Term.g:1:154: T__36
+                {
+                mT__36(); 
+
+                }
+                break;
+            case 26 :
+                // Term.g:1:160: X
                 {
                 mX(); 
 
                 }
                 break;
-            case 21 :
-                // Term.g:1:126: INITIALDIGIT
+            case 27 :
+                // Term.g:1:162: INITIALDIGIT
                 {
                 mINITIALDIGIT(); 
 
                 }
                 break;
-            case 22 :
-                // Term.g:1:139: DIGIT
+            case 28 :
+                // Term.g:1:175: DIGIT
                 {
                 mDIGIT(); 
 
                 }
                 break;
-            case 23 :
-                // Term.g:1:145: NUMBER
+            case 29 :
+                // Term.g:1:181: NUMBER
                 {
                 mNUMBER(); 
 
                 }
                 break;
-            case 24 :
-                // Term.g:1:152: CAPITALLETTER
+            case 30 :
+                // Term.g:1:188: CAPITALLETTER
                 {
                 mCAPITALLETTER(); 
 
                 }
                 break;
-            case 25 :
-                // Term.g:1:166: LETTER
+            case 31 :
+                // Term.g:1:202: LETTER
                 {
                 mLETTER(); 
 
                 }
                 break;
-            case 26 :
-                // Term.g:1:173: WORD
+            case 32 :
+                // Term.g:1:209: WORD
                 {
                 mWORD(); 
 
                 }
                 break;
-            case 27 :
-                // Term.g:1:178: WHITESPACE
+            case 33 :
+                // Term.g:1:214: WHITESPACE
                 {
                 mWHITESPACE(); 
 
@@ -988,55 +1162,61 @@ public class TermLexer extends Lexer {
 
     protected DFA7 dfa7 = new DFA7(this);
     static final String DFA7_eotS =
-        "\6\uffff\2\25\1\uffff\1\36\4\uffff\1\25\1\uffff\1\40\1\25\1\43\1"+
-        "\uffff\1\40\2\uffff\1\47\20\uffff";
+        "\5\uffff\1\40\2\25\1\uffff\1\44\4\uffff\1\25\1\uffff\1\46\1\25\1"+
+        "\51\1\uffff\1\46\2\uffff\1\55\31\uffff";
     static final String DFA7_eofS =
-        "\50\uffff";
+        "\61\uffff";
     static final String DFA7_minS =
-        "\1\15\1\75\1\uffff\1\57\2\uffff\1\162\1\141\1\uffff\1\136\4\uffff"+
-        "\1\141\1\uffff\3\60\1\uffff\1\141\2\uffff\1\76\20\uffff";
+        "\1\15\1\75\1\57\2\uffff\1\75\1\162\1\141\1\uffff\1\136\4\uffff\1"+
+        "\141\1\uffff\3\60\1\uffff\1\141\2\uffff\1\76\6\uffff\1\145\17\uffff"+
+        "\1\147\2\uffff";
     static final String DFA7_maxS =
-        "\1\175\1\75\1\uffff\1\167\2\uffff\1\162\1\141\1\uffff\1\136\4\uffff"+
-        "\1\141\1\uffff\1\172\2\71\1\uffff\1\172\2\uffff\1\76\20\uffff";
+        "\1\175\1\75\1\167\2\uffff\1\75\1\162\1\141\1\uffff\1\136\4\uffff"+
+        "\1\141\1\uffff\1\172\2\71\1\uffff\1\172\2\uffff\1\76\6\uffff\1\145"+
+        "\17\uffff\1\161\2\uffff";
     static final String DFA7_acceptS =
-        "\2\uffff\1\3\1\uffff\1\6\1\10\2\uffff\1\13\1\uffff\1\16\1\17\1\20"+
-        "\1\21\1\uffff\1\23\3\uffff\1\26\1\uffff\1\31\1\33\1\uffff\1\4\1"+
-        "\5\1\7\1\11\1\12\1\14\1\15\1\22\1\30\1\32\1\24\1\25\1\27\1\26\1"+
-        "\2\1\1";
+        "\3\uffff\1\5\1\11\3\uffff\1\21\1\uffff\1\24\1\25\1\26\1\27\1\uffff"+
+        "\1\31\3\uffff\1\34\1\uffff\1\37\1\41\1\uffff\1\2\1\4\1\6\1\7\1\10"+
+        "\1\12\1\uffff\1\13\1\15\1\17\1\20\1\22\1\23\1\30\1\36\1\32\1\40"+
+        "\1\33\1\35\1\34\1\3\1\1\1\uffff\1\14\1\16";
     static final String DFA7_specialS =
-        "\50\uffff}>";
+        "\61\uffff}>";
     static final String[] DFA7_transitionS = {
             "\1\26\22\uffff\1\26\1\5\6\uffff\1\12\1\13\2\uffff\1\15\1\uffff"+
-            "\1\17\1\4\1\23\11\22\1\14\1\uffff\1\2\1\1\3\uffff\27\24\1\20"+
-            "\2\24\1\uffff\1\3\2\uffff\1\10\1\uffff\5\25\1\7\5\25\1\16\7"+
+            "\1\17\1\4\1\23\11\22\1\14\1\uffff\1\3\1\1\3\uffff\27\24\1\20"+
+            "\2\24\1\uffff\1\2\2\uffff\1\10\1\uffff\5\25\1\7\5\25\1\16\7"+
             "\25\1\6\3\25\1\21\2\25\2\uffff\1\11",
             "\1\27",
-            "",
-            "\1\30\106\uffff\1\31\1\32",
-            "",
-            "",
-            "\1\33",
-            "\1\34",
-            "",
-            "\1\35",
-            "",
-            "",
+            "\1\33\34\uffff\1\32\5\uffff\1\31\22\uffff\1\30\10\uffff\1\36"+
+            "\7\uffff\1\34\1\35",
             "",
             "",
             "\1\37",
+            "\1\41",
+            "\1\42",
             "",
-            "\12\42\47\uffff\32\41",
-            "\12\42",
-            "\12\44",
-            "",
-            "\32\41",
-            "",
-            "",
-            "\1\46",
+            "\1\43",
             "",
             "",
             "",
             "",
+            "\1\45",
+            "",
+            "\12\47\47\uffff\32\50",
+            "\12\47",
+            "\12\52",
+            "",
+            "\32\50",
+            "",
+            "",
+            "\1\54",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\56",
             "",
             "",
             "",
@@ -1047,6 +1227,12 @@ public class TermLexer extends Lexer {
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\60\11\uffff\1\57",
             "",
             ""
     };
@@ -1081,7 +1267,7 @@ public class TermLexer extends Lexer {
             this.transition = DFA7_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | X | INITIALDIGIT | DIGIT | NUMBER | CAPITALLETTER | LETTER | WORD | WHITESPACE );";
+            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | X | INITIALDIGIT | DIGIT | NUMBER | CAPITALLETTER | LETTER | WORD | WHITESPACE );";
         }
     }
  
