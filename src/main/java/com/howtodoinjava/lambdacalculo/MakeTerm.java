@@ -75,5 +75,13 @@ public class MakeTerm {
         return null;
     }
     
+    public Term makeApp(String izq, String der){      
+        MakeTerm mk = new MakeTerm();
+        Term v = mk.makeTerm(izq);
+        Term v1 = mk.makeTerm(der);
+        Term tty =  new App(new App(new Const("\\equiv"),v1), v);
+        return tty;
+    }
+    
  
 }

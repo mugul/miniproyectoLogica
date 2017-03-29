@@ -109,7 +109,6 @@ public abstract class Term implements Cloneable, Serializable{
     {
         String term;
         String aux= this.toString();
-        System.out.println(aux.length()-1);
         if(aux.startsWith("(")){
             term=aux.substring(1, aux.length()-1);
         } else{

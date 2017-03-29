@@ -9,21 +9,26 @@ import java.util.List;
 
 /**
  *
- * @author federico
+ * @author shamuel
  */
-public class Const extends Term
-{
-    final String con;
+public class Sust extends Term{
     
-    public Const(String cons)
-    {
-        con=cons;
+    final List<Var> vars;
+    final List<Term> terms;
+
+    public Sust(List<Var> vars, List<Term> terms) {
+        this.vars = vars;
+        this.terms = terms;
     }
 
-    public String getCon() {
-        return con;
+    public List<Var> getVars() {
+        return vars;
     }
- 
+
+    public List<Term> getTerms() {
+        return terms;
+    }
+
     public boolean occur(Var x)
     {
         return false;
@@ -111,30 +116,34 @@ public class Const extends Term
     
     public String toString()
     {
-        return con;
+        String varss = "";
+        String termss = "";
+        for (Var v : vars)
+            varss += v.toString()+",";
+        
+        for (Term t : terms)
+            termss += t.toString()+",";
+        
+        varss = varss.substring(0, varss.length()-1);
+        termss = termss.substring(0, termss.length()-1);
+        
+        return "["+varss+":="+termss+"]";
     }
     
     @Override
     public String toStringInf() {
-        String res;
-        if (con.startsWith("\\eq")) {
-           res =" == ";
-        }else if (con.startsWith("\\Rightarrow")){
-            res =  " ==> ";
-        }else if (con.startsWith("\\Leftarrow")){
-            res = " <== ";
-        }else if (con.startsWith("\\vee")){
-            res = " \\/ ";
-        }else if (con.startsWith("\\wedge")){
-            res = " /\\ ";
-        }else if (con.startsWith("\\nequiv")){
-            res = " !== ";
-        }else if (con.startsWith("\\neg")){
-            res = "!";
-        }else{
-            res = con;
-        }
-        return res;
+        String varss = "";
+        String termss = "";
+        for (Var v : vars)
+            varss += v.toStringInf()+",";
+        
+        for (Term t : terms)
+            termss += t.toStringInf()+",";
+        
+         varss = varss.substring(0, varss.length()-1);
+         termss = termss.substring(0, termss.length()-1);
+        
+        return "["+varss+":="+termss+"]";
     }
 
     
@@ -151,6 +160,12 @@ public class Const extends Term
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -158,8 +173,11 @@ public class Const extends Term
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Const other = (Const) obj;
-        if ((this.con == null) ? (other.con != null) : !this.con.equals(other.con)) {
+        final Sust other = (Sust) obj;
+        if (this.vars != other.vars && (this.vars == null || !this.vars.equals(other.vars))) {
+            return false;
+        }
+        if (this.terms != other.terms && (this.terms == null || !this.terms.equals(other.terms))) {
             return false;
         }
         return true;
@@ -174,8 +192,5 @@ public class Const extends Term
     public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
         return this;
     }
-
     
-   
-   
 }

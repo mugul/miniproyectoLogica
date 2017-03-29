@@ -1,16 +1,9 @@
-grammar Term;
+grammar Eq;
 
-
-@header{package com.howtodoinjava.parse; 
-
-import com.howtodoinjava.entity.Termino;
-import com.howtodoinjava.entity.TerminoId;
-import com.howtodoinjava.lambdacalculo.*;
-import com.howtodoinjava.service.TerminoManager;
-import java.util.Iterator;}
+@header{import java.util.Iterator;}
 
 // Parser Rules
-start_rule[TerminoId terminoid, TerminoManager terminoManager]   returns [Term value]: eq           { $value=$eq.value;};
+start_rule  returns [Term value]: eq           { $value=$eq.value;};
 
 eq returns [Term value]: term eqtail          { Term aux=$term.value;
                                                 for(Iterator<Term> i = $eqtail.value.iterator(); i.hasNext();) 
@@ -107,11 +100,7 @@ neg returns [Term value]:
 
      | CAPITALLETTER '_{' eq '}^{' LETTER '}' {Var letter = new Var((new Integer((int)$LETTER.text.charAt(0))).intValue());
                                                Var capl = new Var((new Integer((int)$CAPITALLETTER.text.charAt(0))).intValue());
-                                               List<Var> vars = new ArrayList<Var>();
-                                               List<Term> terms = new ArrayList<Term>();
-                                               vars.add(0,letter);
-                                               terms.add(0,$eq.value );    
-                                               $value = new App(capl,new Sust(vars, terms));
+                                               $value = new App(new Bracket(letter,capl),$eq.value);
                                               } 
 
      | WORD '(' arguments ')'                 {Term aux = new Const($WORD.text);
@@ -173,10 +162,6 @@ arguments returns [ArrayList<Var> value]: LETTER ',' arg=arguments {ArrayList<Va
                                                        Var v=new Var((new Integer($CAPITALLETTER.text.charAt(0))).intValue());
                                                              list.add(0,v);
                                                              $value = list;
-                                                           };
-
-lambda returns [Term value]: 'lambda' LETTER '.' eq        {Var v=new Var((new Integer($LETTER.text.charAt(0))).intValue());
-                                                            $value = new Bracket(v,$eq.value);
                                                            };
 
 INITIALDIGIT: '1'..'9';
