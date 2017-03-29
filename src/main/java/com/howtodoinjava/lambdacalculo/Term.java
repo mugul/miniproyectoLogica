@@ -95,6 +95,8 @@ public abstract class Term implements Cloneable, Serializable{
 
     public abstract boolean occur(Var x);
     
+    public abstract Term checkApp();
+    
     @Override
     public abstract String toString();
     
