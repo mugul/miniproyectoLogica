@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class UsuarioGuardar{
     
     @NotEmpty(message="   Este campo no puede estar vacío")
-    @Pattern( regexp="^[A-Z][a-z]*\\(([a-z]\\,[A-Z]*)*[a-z]\\)$",message="Error: Debe seguir el formato Nombre(v1,v2,..,vn)")
+    @Pattern( regexp="^[A-Z][a-z]*\\(([a-z]\\,[E]*)*[a-z]\\)$",message="Error: Debe seguir el formato Nombre(v1,v2,..,vn)")
      private String alias;
      @NotEmpty(message="   Este campo no puede estar vacío")
      private String termino;
