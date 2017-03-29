@@ -3,6 +3,7 @@ package com.howtodoinjava.entity;
 
 
 import com.howtodoinjava.lambdacalculo.Term;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -136,6 +137,7 @@ public class Teorema  implements java.io.Serializable {
     public void setEsquema(boolean esquema) {
         this.esquema = esquema;
     }
+    
 
 }
 

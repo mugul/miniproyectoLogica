@@ -172,7 +172,7 @@ public class EvaluarController {
                 
                 Teorema teo = teoremaManager.getTeorema(4);
                 
-                
+                usuarioManager.getAllTeoremas(user);
                 map.addAttribute("id", izq.toStringInf());
                 map.addAttribute("usuario", teo.getTeoIzqTerm().toStringInf());
                 map.addAttribute("predicado", teo.getTeoDerTerm().toStringInf());
