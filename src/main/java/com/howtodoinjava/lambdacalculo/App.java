@@ -61,6 +61,20 @@ public class App extends Term{
         return new App(p.sustParall(Vars, varsTerm), q.sustParall(Vars, varsTerm));
     }
 
+    @Override
+    public Term checkApp() {
+        
+         /*if (v instanceof App) {
+             Term termAux = ((App) v).q;
+             if (termAux instanceof Sust){
+                 List<Var> varss = ((Sust) termAux).vars;
+                 List<Term> termss = ((Sust) termAux).terms;             
+                 v = v.sustParall((ArrayList<Var>) varss , (ArrayList<Term>) termss);
+             }
+         }*/
+        return this;
+    }
+
     
     private class Tripla
     {

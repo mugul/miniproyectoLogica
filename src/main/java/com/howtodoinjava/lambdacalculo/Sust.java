@@ -127,7 +127,7 @@ public class Sust extends Term{
         varss = varss.substring(0, varss.length()-1);
         termss = termss.substring(0, termss.length()-1);
         
-        return "["+varss+":="+termss+"]";
+        return "["+varss+" := "+termss+"]";
     }
     
     @Override
@@ -143,7 +143,7 @@ public class Sust extends Term{
          varss = varss.substring(0, varss.length()-1);
          termss = termss.substring(0, termss.length()-1);
         
-        return "["+varss+":="+termss+"]";
+        return "["+varss+" := "+termss+"]";
     }
 
     
@@ -190,6 +190,15 @@ public class Sust extends Term{
 
     @Override
     public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        return this;
+    }
+
+    @Override
+    public Term checkApp() {
+        /**List<Var> varss = ((Sust) termAux).vars;
+        List<Term> termss = ((Sust) termAux).terms;             
+        return this.sustParall((ArrayList<Var>) varss , (ArrayList<Term>) termss);
+        * */
         return this;
     }
     

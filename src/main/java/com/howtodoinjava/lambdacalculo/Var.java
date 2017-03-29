@@ -241,5 +241,10 @@ public class Var extends Term{
         
         
     }
+
+    @Override
+    public Term checkApp() {
+        return this;
+    }
   
 }

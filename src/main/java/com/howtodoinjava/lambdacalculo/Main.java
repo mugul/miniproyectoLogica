@@ -5,6 +5,7 @@
 package com.howtodoinjava.lambdacalculo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -12,14 +13,15 @@ import java.util.ArrayList;
  */
 public class Main {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         ArrayList<Object> lisObj = new ArrayList<Object>();
         ArrayList<Term> lisTerm = new ArrayList<Term>();
         ArrayList<Var> lisVar = new ArrayList<Var>();
 
 
         MakeTerm mk = new MakeTerm();
-        Term t2 = mk.makeTerm("p == (r\\/q)");
+        Term t2 = mk.makeTerm("E_{p == p}^{q} ");
         Term t1 = mk.makeTerm("(!q == true) ==> (p== q)");
 
 
@@ -33,6 +35,10 @@ public class Main {
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("+++++++++++++++++++++++++++++");
+
+        System.out.println(t2.toStringInf());
+         
+                 
 
 
     }

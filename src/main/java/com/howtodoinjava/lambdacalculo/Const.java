@@ -175,6 +175,11 @@ public class Const extends Term
         return this;
     }
 
+    @Override
+    public Term checkApp() {
+        return this;
+    }
+
     
    
    
