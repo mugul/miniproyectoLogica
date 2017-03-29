@@ -61,18 +61,19 @@ public class App extends Term{
         return new App(p.sustParall(Vars, varsTerm), q.sustParall(Vars, varsTerm));
     }
 
-    @Override
+@Override
     public Term checkApp() {
-        
-         /*if (v instanceof App) {
-             Term termAux = ((App) v).q;
-             if (termAux instanceof Sust){
-                 List<Var> varss = ((Sust) termAux).vars;
-                 List<Term> termss = ((Sust) termAux).terms;             
-                 v = v.sustParall((ArrayList<Var>) varss , (ArrayList<Term>) termss);
-             }
-         }*/
-        return this;
+         
+         Term termP = p.checkApp();
+         if ( q instanceof Sust){
+                 List<Var> varss = ((Sust) q).vars;
+                 List<Term> termss = ((Sust) q).terms;  
+                 //MakeTerm mk = new MakeTerm();
+                 Term termQ = termP.sustParall((ArrayList<Var>) varss , (ArrayList<Term>) termss);
+                 return termQ;
+            }else{
+             return new App(p.checkApp(),q.checkApp());
+         }
     }
 
     
@@ -373,6 +374,30 @@ public class App extends Term{
         return "("+izq+" "+der+")";
     }
     
+    public String toStringInFin()
+    {
+        String izq;
+        String der;
+        
+        if(p.alias == null)
+        {
+            if(p instanceof App)
+                izq=p.toStringFinalInFin();
+            else{
+                izq=p.toStringInFin();
+                
+            }
+        }else
+            izq = p.alias;
+        
+        if(q.alias == null)
+            der=q.toStringInFin();
+        else{
+            der=q.alias;
+            return "("+izq+" "+der+")";
+        }
+        return "("+der+" "+izq+")";
+    }
     
     public String toStringInf() {
         

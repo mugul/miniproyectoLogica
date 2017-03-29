@@ -26,11 +26,33 @@ public class Main {
 
 
         MakeTerm mk = new MakeTerm();
-        Term t2 = mk.makeTerm("E_{p == p}^{q} ");
-        Term t1 = mk.makeTerm("(!q == true) ==> (p== q)");
-
-        System.out.println(t2.toStringInf());
+        Term t2 = mk.makeTerm("p /\\ E_{(p == p)}^{q} ");
+        Term t1 = mk.makeTerm("p  /\\  (p  \\/ (p  ==  p))");
+        
+        System.out.println(t1.toStringInFin());
+        System.out.println("+++++++++++++----------+++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++");
+        System.out.println(t1.toStringInf());
+        System.out.println("++++++++++++---------------++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++");
+        System.out.println(t1.toString());
+        System.out.println("++++++++++++---------------++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++");
+        
+        
+        
+       ArrayList<Object> arr =  mk.makeInsta("E := p\\/q");         
+       t2 = t2.sustParall((ArrayList<Var>)arr.get(0),(ArrayList<Term>) arr.get(1));
+       System.out.println(t2.toString());
+       
+       System.out.println("++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++");
+        Term t6 = t2.checkApp();
+        System.out.println(t6.toStringInf());
+        System.out.println("++++++++++++++++++++++++++++++");
+        System.out.println(t6.toString());
          
-                 
+         
+    }
 
     }

@@ -145,6 +145,16 @@ public class Var extends Term{
         }
     }
     
+    @Override
+    public String toStringInFin() {
+        if(alias == null ) {
+            char ascii = (char) indice; 
+            return ""+ascii;
+        }else {
+            return alias;
+        }
+    }
+    
     public ToString toStringAbrv(ToString toString)
     {
         if(alias == null)

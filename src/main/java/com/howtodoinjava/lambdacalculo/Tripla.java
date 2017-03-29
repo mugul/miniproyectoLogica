@@ -17,6 +17,7 @@ public class Tripla {
     public List<String> alias;
     public List<String> valores;
     
+    
     public Tripla()
     {
         alias = new LinkedList<String>();
