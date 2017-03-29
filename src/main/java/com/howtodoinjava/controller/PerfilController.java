@@ -442,10 +442,7 @@ public class PerfilController {
                 {
                     //System.out.println(terminoManager.getTermino(terminoid));
                     term=parser.start_rule(terminoid2,terminoManager);
-                    System.out.println("+++++++++++++++++++++++++++++");
-                    System.out.println("+++++++++++++++++++++++++++++");
-                    System.out.println("+++++++++++++++++++++++++++++");
-                    System.out.println(term.toStringInf());
+                    
                     term.setAlias(terminoid.getAlias());
                     //aqui se traduce y luego se llama a toString para tener el
                     //combinador en String

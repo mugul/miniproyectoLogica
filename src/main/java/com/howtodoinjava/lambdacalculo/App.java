@@ -367,27 +367,24 @@ public class App extends Term{
         if( (q.alias == null) && (p.alias == null)) { 
             
            if((p instanceof App) && (q instanceof App)){
-                System.out.println(1);
                 return q.toStringInf()+" "+p.toStringInf();
-                    
+                
             }else if(!(p instanceof App) && (q instanceof App)){
-                System.out.println(2);
                  if( ((App) q).p instanceof Const ){
                      return p.toStringInf()+" "+q.toStringInf();
                  }else{
                      return p.toStringInf()+" ("+q.toStringInf()+")" ;
-                 }     
+                 } 
+                 
             }else if( (p instanceof App) && !(q instanceof App)){ 
-                System.out.println(3);
                 String sim = ((App) p).p.toStringInf();
                 if (((App) p).p instanceof Const ) {
                     return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
-               }else{
+                }else{
                     return q.toStringInf()+" "+sim+" ("+ ((App) p).q.toStringInf()+")";
                 }
                 
             }else{
-                System.out.println(4);
                 return p.toStringInf()+" "+q.toStringInf();
             }   
            

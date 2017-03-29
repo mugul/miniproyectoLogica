@@ -116,7 +116,25 @@ public class Const extends Term
     
     @Override
     public String toStringInf() {
-        return con;
+        String res;
+        if (con.startsWith("\\eq")) {
+           res =" == ";
+        }else if (con.startsWith("\\Rightarrow")){
+            res =  " ==> ";
+        }else if (con.startsWith("\\Leftarrow")){
+            res = " <== ";
+        }else if (con.startsWith("\\vee")){
+            res = " \\/ ";
+        }else if (con.startsWith("\\wedge")){
+            res = " /\\ ";
+        }else if (con.startsWith("\\nequiv")){
+            res = " !== ";
+        }else if (con.startsWith("\\neg")){
+            res = "!";
+        }else{
+            res = con;
+        }
+        return res;
     }
 
     
