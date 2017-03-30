@@ -13,10 +13,10 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class UsuarioGuardar{
     
-    @NotEmpty(message="no debe dejar este campo vacío")
-    @Pattern( regexp="^[A-Z][a-z]*\\(([a-z]\\,)*[a-z]\\)$",message="Debe empezar en mayuscula y el resto en minuscula")
+    @NotEmpty(message="   Este campo no puede estar vacío")
+    //@Pattern( regexp="^[A-Z][a-z]*\\(([a-z]\\,[E]*)*[a-z]\\)$",message="Error: Debe seguir el formato Nombre(v1,v2,..,vn)")
      private String alias;
-     @NotEmpty(message="no debe dejar este campo vacío")
+     @NotEmpty(message="   Este campo no puede estar vacío")
      private String termino;
 
     public UsuarioGuardar() {

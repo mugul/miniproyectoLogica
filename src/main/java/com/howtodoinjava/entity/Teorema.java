@@ -2,6 +2,8 @@ package com.howtodoinjava.entity;
 // Generated Mar 20, 2017 12:50:11 PM by Hibernate Tools 3.2.1.GA
 
 
+import com.howtodoinjava.lambdacalculo.Term;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -26,6 +28,8 @@ public class Teorema  implements java.io.Serializable {
      private String enunciadoder;
      private byte[] teoserializadoizq;
      private byte[] teoserializadoder;
+     private Term teoIzqTerm;
+     private Term teoDerTerm;
      private boolean ocultartrue;
      private boolean esquema;
      private Set resuelves = new HashSet(0);
@@ -33,12 +37,14 @@ public class Teorema  implements java.io.Serializable {
     public Teorema() {
     }
 
-    public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
+    public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, Term teoIzqTerm, Term teoDerTerm, boolean ocultartrue, boolean esquema) {
         this.categoria = categoria;
         this.enunciadoizq = enunciadoizq;
         this.enunciadoder = enunciadoder;
-        this.teoserializadoizq = teoserializadoizq;
-        this.teoserializadoder = teoserializadoder;
+        this.teoserializadoizq = SerializationUtils.serialize(teoIzqTerm);
+        this.teoserializadoder = SerializationUtils.serialize(teoDerTerm);
+        this.teoIzqTerm = teoIzqTerm;
+        this.teoDerTerm = teoDerTerm;
         this.ocultartrue = ocultartrue;
         this.esquema = esquema;
     }
@@ -46,6 +52,24 @@ public class Teorema  implements java.io.Serializable {
 
     public int getId() {
         return this.id;
+    }
+
+    public Term getTeoIzqTerm() {
+        return teoIzqTerm;
+    }
+
+    public Term getTeoDerTerm() {
+        return teoDerTerm;
+    }
+
+    public void setTeoIzqTerm(Term teoIzqTerm) {
+        this.teoIzqTerm = teoIzqTerm;
+        this.teoserializadoizq = SerializationUtils.serialize(teoIzqTerm);
+    }
+
+    public void setTeoDerTerm(Term teoDerTerm) {
+        this.teoDerTerm = teoDerTerm;
+        this.teoserializadoder = SerializationUtils.serialize(teoDerTerm);
     }
     
     public void setId(int id) {
@@ -87,6 +111,8 @@ public class Teorema  implements java.io.Serializable {
     public void setTeoserializadoder(byte[] teoserializadoder) {
         this.teoserializadoder = teoserializadoder;
     }
+    
+    
 
     public void setResuelves(Set resuelves) {
         this.resuelves = resuelves;
@@ -111,6 +137,7 @@ public class Teorema  implements java.io.Serializable {
     public void setEsquema(boolean esquema) {
         this.esquema = esquema;
     }
+    
 
 }
 

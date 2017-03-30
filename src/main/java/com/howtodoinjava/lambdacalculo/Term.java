@@ -95,10 +95,14 @@ public abstract class Term implements Cloneable, Serializable{
 
     public abstract boolean occur(Var x);
     
+    public abstract Term checkApp();
+    
     @Override
     public abstract String toString();
     
     public abstract String toStringInf();
+    
+    public abstract String toStringInFin();
     
     public abstract ToString toStringAbrvV1(ToString toString);
     
@@ -109,19 +113,26 @@ public abstract class Term implements Cloneable, Serializable{
     {
         String term;
         String aux= this.toString();
-        System.out.println("aux"+aux.toString());
-        System.out.println(aux.length()-1);
         if(aux.startsWith("(")){
             term=aux.substring(1, aux.length()-1);
-            System.out.println("1 "+term.toString());
         } else{
             term=aux;
-            System.out.println("2 "+term.toString());
         }   
         return term;
     }
     
     public String toStringFinalInf()
+    {
+        String term;
+        String aux= this.toStringInf();
+        if(aux.startsWith("("))            
+            term = aux.substring(1, aux.length()-1);            
+        else{
+            term=aux;
+        }return term;
+    }
+    
+    public String toStringFinalInFin()
     {
         String term;
         String aux= this.toStringInf();
@@ -236,6 +247,7 @@ public abstract class Term implements Cloneable, Serializable{
         
         return tri.term;
     }
+    
     public class Tipo
     {
         public boolean c;

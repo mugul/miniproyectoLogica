@@ -113,7 +113,30 @@ public class Const extends Term
     {
         return con;
     }
-    
+   
+        @Override
+    public String toStringInFin() {
+        String res;
+        if (con.startsWith("\\eq")) {
+           res =" == ";
+        }else if (con.startsWith("\\Rightarrow")){
+            res =  " ==> ";
+        }else if (con.startsWith("\\Leftarrow")){
+            res = " <== ";
+        }else if (con.startsWith("\\vee")){
+            res = " \\/ ";
+        }else if (con.startsWith("\\wedge")){
+            res = " /\\ ";
+        }else if (con.startsWith("\\nequiv")){
+            res = " !== ";
+        }else if (con.startsWith("\\neg")){
+            res = "!";
+        }else{
+            res = con;
+        }
+        return res;
+    }     
+        
     @Override
     public String toStringInf() {
         return con;
@@ -154,6 +177,11 @@ public class Const extends Term
 
     @Override
     public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        return this;
+    }
+
+    @Override
+    public Term checkApp() {
         return this;
     }
 

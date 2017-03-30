@@ -129,6 +129,17 @@ public class Bracket extends Term{
             return "(\\lambda "+x.toString()+"."+t.alias.split("@")[0].replace("_", "\\_") +")";
     }
     
+    public String toStringInFin()
+    {
+        if(t.alias == null) {
+            //FALTA IMPLEMENTAR FINAL
+            return "(\\lambda "+x.toStringInFin()+"."+t.toStringFinalInFin()+")";
+        }
+        else {
+            return "(\\lambda "+x.toStringInFin()+"."+t.alias +")";
+        }//.split("@")[0].replace("_", "\\_") +")";
+    }
+    
     public String toStringInf()
     {
         if(t.alias == null) {
@@ -221,6 +232,12 @@ public class Bracket extends Term{
         
             
         }
+
+    @Override
+    public Term checkApp() {
+        
+        return this;
+    }
 
     
     }

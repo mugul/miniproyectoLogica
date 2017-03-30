@@ -1,5 +1,6 @@
 grammar Term;
 
+
 @header{package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.entity.Termino;
@@ -9,7 +10,7 @@ import com.howtodoinjava.service.TerminoManager;
 import java.util.Iterator;}
 
 // Parser Rules
-start_rule[TerminoId terminoid, TerminoManager terminoManager]  returns [Term value]: eq           { $value=$eq.value;};
+start_rule[TerminoId terminoid, TerminoManager terminoManager]   returns [Term value]: eq           { $value=$eq.value;};
 
 eq returns [Term value]: term eqtail          { Term aux=$term.value;
                                                 for(Iterator<Term> i = $eqtail.value.iterator(); i.hasNext();) 
@@ -18,7 +19,7 @@ eq returns [Term value]: term eqtail          { Term aux=$term.value;
                                               };
 
 eqtail returns [ArrayList<Term> value]:    
-    '==' term tail1=eqtail                    {ArrayList<Term> aux=$tail1.value; aux.add(0,$term.value); $value=aux;}
+    ('=='| '\\equiv') term tail1=eqtail       {ArrayList<Term> aux=$tail1.value; aux.add(0,$term.value); $value=aux;}
 
    |                                          {$value=new ArrayList<Term>();};
 
@@ -31,7 +32,7 @@ term returns [Term value]: disyconj disyconjtail  {
 
 disyconjtail returns [Term value]:  
 
-     '==>' disyconj tail2=disyconjtail        {
+     ('==>'| '\\Rightarrow') disyconj tail2=disyconjtail{
                                                if ($tail2.value == null)
                                                   $value = new App(new Const("\\Rightarrow "),$disyconj.value);
                                                else
@@ -48,14 +49,14 @@ disyconj returns [Term value]: conc conctail  { Term aux=$conc.value;
 
 conctail returns [ArrayList<Term> value]:
 
-     '<==' conc tail3=conctail                {ArrayList<Term> aux=$tail3.value; 
+    ('<=='| '\\Leftarrow') conc tail3=conctail{ArrayList<Term> aux=$tail3.value; 
                                                aux.add(0,$conc.value); $value=aux;
                                               }
 
    |                                          {$value=new ArrayList<Term>();};
 
-conc returns [Term value]: neg negtail             { Term aux=$neg.value; 
-                                                     for(Iterator<ParserPair> i = $negtail.value.iterator(); i.hasNext();)
+conc returns [Term value]: neq disytail             { Term aux=$neq.value; 
+                                                     for(Iterator<ParserPair> i = $disytail.value.iterator(); i.hasNext();)
                                                      {
                                                         ParserPair pair = i.next();
                                                         if (pair.symbol.equals("\\vee "))
@@ -66,21 +67,35 @@ conc returns [Term value]: neg negtail             { Term aux=$neg.value;
                                                      $value=aux;
                                                    };
 
-negtail returns [ArrayList<ParserPair> value]:
+disytail returns [ArrayList<ParserPair> value]:
 
-     ('\\/' | '\\vee') neg tail4=negtail                  {ArrayList<ParserPair> aux=$tail4.value;
-                                               aux.add(0,new ParserPair("\\vee ",$neg.value)); $value=aux;
+     ('\\/'| '\\vee') neq tail4=disytail      {ArrayList<ParserPair> aux=$tail4.value;
+                                               aux.add(0,new ParserPair("\\vee ",$neq.value)); $value=aux;
                                               }
 
-   | ('/\\' | '\\wedge') neg tail5=negtail                  {ArrayList<ParserPair> aux=$tail5.value; 
-                                               aux.add(0,new ParserPair("\\wedge ",$neg.value)); $value=aux;
+   | ('/\\'| '\\wedge') neq tail5=disytail    {ArrayList<ParserPair> aux=$tail5.value; 
+                                               aux.add(0,new ParserPair("\\wedge ",$neq.value)); $value=aux;
                                               }
 
    |                                          {$value=new ArrayList<ParserPair>();};
 
+neq returns [Term value]: neg neqtail         { Term aux=$neg.value;
+                                                for(Iterator<Term> i = $neqtail.value.iterator(); i.hasNext();) 
+                                                   aux=new App(new App(new Const("\\nequiv "),i.next()),aux);
+                                                $value=aux;
+                                              };
+
+neqtail returns [ArrayList<Term> value]:
+
+    ('!=='| '\\nequiv') neg tail6=neqtail {ArrayList<Term> aux=$tail6.value; 
+                                               aux.add(0,$neg.value); $value=aux;
+                                              }
+
+   |                                          {$value=new ArrayList<Term>();};
+
 neg returns [Term value]: 
 
-      '!' n=neg                               {$value=new App(new Const("\\neg "),$n.value);}
+      ('!' | '\\neg') n=neg                   {$value=new App(new Const("\\neg "),$n.value);}
 
      | CAPITALLETTER                          {$value = new Var((new Integer((int)$CAPITALLETTER.text.charAt(0))).intValue());}
 
@@ -92,7 +107,11 @@ neg returns [Term value]:
 
      | CAPITALLETTER '_{' eq '}^{' LETTER '}' {Var letter = new Var((new Integer((int)$LETTER.text.charAt(0))).intValue());
                                                Var capl = new Var((new Integer((int)$CAPITALLETTER.text.charAt(0))).intValue());
-                                               $value = new App(new Bracket(letter,capl),$eq.value);
+                                               List<Var> vars = new ArrayList<Var>();
+                                               List<Term> terms = new ArrayList<Term>();
+                                               vars.add(0,letter);
+                                               terms.add(0,$eq.value );    
+                                               $value = new App(capl,new Sust(vars, terms));
                                               } 
 
      | WORD '(' arguments ')'                 {Term aux = new Const($WORD.text);
@@ -120,7 +139,7 @@ explist returns [ArrayList<Term> value]:
 
 explisttail returns [ArrayList<Term> value]: 
 
-     ',' eq tail6=explisttail                 {ArrayList<Term> aux = $tail6.value;
+     ',' eq tail7=explisttail                 {ArrayList<Term> aux = $tail7.value;
                                                aux.add(0,$eq.value);
                                                $value =aux;
                                               }

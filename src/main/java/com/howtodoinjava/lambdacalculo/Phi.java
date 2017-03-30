@@ -112,6 +112,11 @@ public class Phi extends Term{
         return "\\Phi_{"+ind.toString()+"}";
     }
     
+    public String toStringInFin() {
+        return "\\Phi_{"+ind.toString()+"}";
+    }
+    
+    
     public String toStringInf() {
         return "\\Phi_{"+ind.toString()+"}";
     }
@@ -154,6 +159,11 @@ public class Phi extends Term{
     }
 
     public Term sustParall(ArrayList<Var> Vars, ArrayList<Term> varsTerm) {
+        return this;
+    }
+
+    @Override
+    public Term checkApp() {
         return this;
     }
 

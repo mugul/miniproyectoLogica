@@ -44,7 +44,6 @@
       Numero de statement:<br><sf:input path="nStatement" id="n_statement" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" /></br>
       Instaciacion:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
       Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
-
       <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
     </sf:form>
          <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>

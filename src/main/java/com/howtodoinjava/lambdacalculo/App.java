@@ -61,6 +61,21 @@ public class App extends Term{
         return new App(p.sustParall(Vars, varsTerm), q.sustParall(Vars, varsTerm));
     }
 
+@Override
+    public Term checkApp() {
+         
+         Term termP = p.checkApp();
+         if ( q instanceof Sust){
+                 List<Var> varss = ((Sust) q).vars;
+                 List<Term> termss = ((Sust) q).terms;  
+                 //MakeTerm mk = new MakeTerm();
+                 Term termQ = termP.sustParall((ArrayList<Var>) varss , (ArrayList<Term>) termss);
+                 return termQ;
+            }else{
+             return new App(p.checkApp(),q.checkApp());
+         }
+    }
+
     
     private class Tripla
     {
@@ -356,58 +371,73 @@ public class App extends Term{
         else
             der=q.alias.split("@")[0].replace("_","\\_");
         
-        
         return "("+izq+" "+der+")";
-        //return "("+p.toString()+q.toString()+")";
     }
     
+    public String toStringInFin()
+    {
+        String izq;
+        String der;
+        
+        if(p.alias == null)
+        {
+            if(p instanceof App)
+                izq=p.toStringFinalInFin();
+            else{
+                izq=p.toStringInFin();
+                
+            }
+        }else
+            izq = p.alias;
+        
+        if(q.alias == null)
+            der=q.toStringInFin();
+        else{
+            der=q.alias;
+            return "("+izq+" "+der+")";
+        }
+        return "("+der+" "+izq+")";
+    }
     
-    //---------------------------------+++++++++++++++++++++++++
     public String toStringInf() {
         
-        String izq; // SIEMPRE EL p
-        String der; //Siempre el q
-        der = "1S";
-        izq = "13S";
-        //Termino Izq
+        String izq; 
+        String der; 
         if( (q.alias == null) && (p.alias == null)) { 
             
            if((p instanceof App) && (q instanceof App)){
-                System.out.println(1);
                 return q.toStringInf()+" "+p.toStringInf();
-                    
+                
             }else if(!(p instanceof App) && (q instanceof App)){
-                System.out.println(2);
                  if( ((App) q).p instanceof Const ){
                      return p.toStringInf()+" "+q.toStringInf();
                  }else{
                      return p.toStringInf()+" ("+q.toStringInf()+")" ;
-                 }     
+                 } 
+                 
             }else if( (p instanceof App) && !(q instanceof App)){ 
-                System.out.println(3);
                 String sim = ((App) p).p.toStringInf();
                 if (((App) p).p instanceof Const ) {
                     return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
-               }else{
+                }else{
                     return q.toStringInf()+" "+sim+" ("+ ((App) p).q.toStringInf()+")";
                 }
                 
             }else{
-                System.out.println(4);
                 return p.toStringInf()+" "+q.toStringInf();
             }   
            
         }else if( (q.alias == null) &&  (p.alias != null)) {
-            
+            return q.toStringInf()+" "+p.alias;
             
         }else if( (q.alias != null) && (p.alias == null)) {
-            
+            return q.alias +" "+p.toStringInf();
             
         }else {
             return p.alias+" "+q.alias;
         }
         
-        return izq+" "+der;
+        
     }
     
     

@@ -34,6 +34,7 @@
               <option value="${cat.getId()}" >${cat.getNombre()}</option>
             </c:forEach>  
           </select><br>
+          <!--Número de Categoria:<br><sf:input path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>-->
           Número de Teorema:<br><sf:input path="numeroTeorema" value="${numeroTeorema}"/><sf:errors path="numeroTeorema" cssClass="error" /><br/>
           Nombre de Teorema (Opcional):<br><sf:input path="nombreTeorema" value="${nombreTeorema}"/><sf:errors path="nombreTeorema" cssClass="error" /><br/>
           <input class="btn" type="submit" value="Guardar">
