@@ -28,13 +28,22 @@
       <c:when test="${modificar.intValue()==0}">
         <sf:form method="POST" modelAttribute="agregarTeorema">
           Teorema:<br><sf:input path="teorema" value="${teorema}"/><sf:errors path="teorema" cssClass="error" /><br/>
+<<<<<<< HEAD
           Categoría:<br>
+=======
+<!--          Categoría:<br>
+>>>>>>> 323efd652d339e06346a48714ace17e177113b98
           <select class="form-control" id="selecCateg">
             <c:forEach items="${categoria}" var="cat">
               <option value="${cat.getId()}" >${cat.getNombre()}</option>
             </c:forEach>  
+<<<<<<< HEAD
           </select><br>
           <!--Número de Categoria:<br><sf:input path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>-->
+=======
+          </select><br>-->
+          Número de Categoria<br><sf:input path="categoria" value="${categoria}"/><sf:errors path="categoria" cssClass="error" /><br/>
+>>>>>>> 323efd652d339e06346a48714ace17e177113b98
           Número de Teorema:<br><sf:input path="numeroTeorema" value="${numeroTeorema}"/><sf:errors path="numeroTeorema" cssClass="error" /><br/>
           Nombre de Teorema (Opcional):<br><sf:input path="nombreTeorema" value="${nombreTeorema}"/><sf:errors path="nombreTeorema" cssClass="error" /><br/>
           <input class="btn" type="submit" value="Guardar">

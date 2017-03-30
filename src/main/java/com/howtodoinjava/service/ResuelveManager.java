@@ -23,11 +23,10 @@ public interface ResuelveManager {
     public List<Resuelve> getAllResuelve();
     
     public List<Resuelve> getAllResuelveByUser(String userLogin);
-    
-//
-//    public List<Resuelve> getResueltosByUser(String userLogin);
-//
+
     public List<Resuelve> getResuelveByTeorema(int teoremaID);
+    
+    public Resuelve getResuelveByUserAndTeorema(String userLogin,int teoremaID);
     
     
 }

@@ -56,4 +56,8 @@ public class ResuelveManagerImpl implements ResuelveManager {
     public List<Resuelve> getResuelveByTeorema(int teoremaID){
         return resuelveDAO.getResuelveByTeorema(teoremaID);
     }
+
+    public Resuelve getResuelveByUserAndTeorema(String userLogin,int teoremaID){
+        return resuelveDAO.getResuelveByUserAndTeorema(userLogin, teoremaID);
+    }
 }
