@@ -49,12 +49,13 @@
     </sf:form>
          <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
 
-      <script>
-          t=document.getElementById('termino_string');
-          t.innerText="${termino}";
-      </script>
-
-
-      <tiles:insertDefinition name="footer" />
+    <script>
+      t=document.getElementById('termino_string');
+      t.innerText="${termino}";
+    </script>
+    
+    
+      
+    <tiles:insertDefinition name="footer" />
   </body>
 </html>
