@@ -12,14 +12,11 @@ import com.howtodoinjava.entity.Teorema;
 import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Usuario;
 import com.howtodoinjava.forms.AgregarTeorema;
-import com.howtodoinjava.forms.InfersForm;
 import com.howtodoinjava.forms.InsertarEvaluar;
-import com.howtodoinjava.forms.UsuarioGuardar;
 import com.howtodoinjava.lambdacalculo.App;
 import com.howtodoinjava.lambdacalculo.Const;
 import com.howtodoinjava.lambdacalculo.Corrida;
 import com.howtodoinjava.lambdacalculo.Term;
-import com.howtodoinjava.lambdacalculo.Term.Redex;
 import com.howtodoinjava.lambdacalculo.Tripla;
 import com.howtodoinjava.parse.IsNotInDBException;
 import com.howtodoinjava.parse.TermLexer;
@@ -27,12 +24,11 @@ import com.howtodoinjava.parse.TermParser;
 import com.howtodoinjava.service.CategoriaManager;
 import com.howtodoinjava.service.DisponeManager;
 import com.howtodoinjava.service.MetateoremaManager;
-import com.howtodoinjava.service.PredicadoManager;
 import com.howtodoinjava.service.ResuelveManager;
+import com.howtodoinjava.service.SolucionManager;
 import com.howtodoinjava.service.TeoremaManager;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -72,6 +68,8 @@ public class EvaluarController {
     @Autowired
     private CategoriaManager categoriaManager;
     @Autowired
+    private SolucionManager solucionManager;
+    @Autowired
     private HttpSession session;
 
     @RequestMapping(value = "/{username}/pruebaPredicado/{id}", method = RequestMethod.GET)
@@ -89,7 +87,18 @@ public class EvaluarController {
         ////// ESTE CODIGO ES SOLO DE PRUEBAS
         ////// ESTE CODIGO ES SOLO DE PRUEBA
         
+//            solucionManager.getAllSolucionesByResuelve(resuelveId);
         
+            
+            List<Teorema> teoList = teoremaManager.getTeoremasByCategoria(1);
+            for (Teorema x: teoList) {
+                System.out.print("El teorema ");
+                System.out.print(x.getId());
+                System.out.print(" es de la categoria ");
+                System.out.println(x.getCategoria().getId());
+            }
+            
+            
             AgregarTeorema agregarTeorema = new AgregarTeorema("(p == p) == (q == q)", "45", "3.23", "El 3.23");
         
             Usuario user = usuarioManager.getUsuario(username);
@@ -156,19 +165,19 @@ public class EvaluarController {
                 System.out.println(SerializationUtils.serialize(izq));
 //              public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
                 Teorema teorema = new Teorema(categoria, izq.traducBD().toStringFinal(), der.traducBD().toStringFinal(), izq, der, !esEq, false);
-                teoremaManager.addTeorema(teorema);
+//                teoremaManager.addTeorema(teorema);
 
 //                Resuelve resuelve = new Resuelve(user, teorema, agregarTeorema.getNombreTeorema(), agregarTeorema.getNumeroTeorema(), false);
                 Resuelve resuelve = new Resuelve(user, teorema, "", "Teo de prueba", false);
-                resuelveManager.addResuelve(resuelve);
+//                resuelveManager.addResuelve(resuelve);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
                 Metateorema metateorema = new Metateorema(teorema.getId(), categoria, teoTerm.traducBD().toStringFinal(), "true", SerializationUtils.serialize(teoTerm), SerializationUtils.serialize("true"), false);
-                metateoremaManager.addMetateorema(metateorema);
+//                metateoremaManager.addMetateorema(metateorema);
 
                 // public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto)
                 Dispone dispone = new Dispone(resuelve.getId(), user, metateorema, agregarTeorema.getNumeroTeorema(), false);
-                disponeManager.addDispone(dispone);
+//                disponeManager.addDispone(dispone);
                 
                 Teorema teo = teoremaManager.getTeorema(1);
                 
