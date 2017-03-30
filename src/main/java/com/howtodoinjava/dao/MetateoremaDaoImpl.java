@@ -8,13 +8,14 @@ import com.howtodoinjava.entity.Metateorema;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author miguel
  */
 
-
+@Repository
 public class MetateoremaDaoImpl implements MetateoremaDAO {
         
     

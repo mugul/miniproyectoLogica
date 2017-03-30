@@ -213,13 +213,34 @@ ALTER SEQUENCE dispone_id_seq OWNED BY dispone.id;
 --
 
 CREATE TABLE solucion (
-    sol text NOT NULL,
+    id integer NOT NULL,
     resuelveid integer NOT NULL,
     arregloserializado bytea NOT NULL
 );
 
 
 ALTER TABLE solucion OWNER TO postgres;
+
+--
+-- Name: solucion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE solucion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE solucion_id_seq OWNER TO postgres;
+
+--
+-- Name: solucion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE solucion_id_seq OWNED BY solucion.id;
+
 
 --
 -- Name: teorema; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -436,7 +457,7 @@ SELECT pg_catalog.setval('dispone_id_seq', 1, false);
 -- Data for Name: solucion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY solucion (sol, resuelveid,arregloserializado) FROM stdin;
+COPY solucion (id, resuelveid,arregloserializado) FROM stdin;
 \.
 
 
@@ -594,7 +615,7 @@ ALTER TABLE ONLY dispone
 --
 
 ALTER TABLE ONLY solucion
-    ADD CONSTRAINT "solucion_PK" PRIMARY KEY (sol, resuelveid);
+    ADD CONSTRAINT "solucion_PK" PRIMARY KEY (id);
 
 
 --

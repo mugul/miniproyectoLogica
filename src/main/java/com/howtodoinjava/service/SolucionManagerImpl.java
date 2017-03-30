@@ -5,9 +5,7 @@
 package com.howtodoinjava.service;
 
 import com.howtodoinjava.dao.SolucionDAO;
-import com.howtodoinjava.entity.Predicado;
 import com.howtodoinjava.entity.Solucion;
-import com.howtodoinjava.entity.SolucionId;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,14 +30,14 @@ public class SolucionManagerImpl implements SolucionManager {
     
     @Override
     @Transactional
-    public void deleteSolucion(SolucionId id){
+    public void deleteSolucion(int id){
         solucionDAO.deleteSolucion(id);
     }
     
     
     @Override
     @Transactional
-    public Solucion getSolucion(SolucionId id){
+    public Solucion getSolucion(int id){
         return solucionDAO.getSolucion(id);
     }
     

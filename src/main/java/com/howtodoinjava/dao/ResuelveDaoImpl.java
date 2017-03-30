@@ -64,7 +64,20 @@ public class ResuelveDaoImpl implements ResuelveDAO {
     public List<Resuelve> getResuelveByTeorema(int teoremaID){
         return this.sessionFactory.getCurrentSession().createQuery("FROM Resuelve WHERE teorema.id = :teoremaID").setParameter("teoremaID",teoremaID).list();
     }
+    
+    @Override
+    @Transactional
+    public Resuelve getResuelveByUserAndTeorema(String userLogin,int teoremaID){
 
+        String sql = "FROM Resuelve WHERE teorema.id = :teoremaID AND usuario.login = :userLogin";
+        List<Resuelve> list = this.sessionFactory.getCurrentSession().createQuery(sql).setParameter("teoremaID",teoremaID).setParameter("userLogin",userLogin).list();
+    
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list.get(0);
+        }
+    }
 //    public List<Resuelve> getResueltosByUser(String loginusuario);
 //
 }
