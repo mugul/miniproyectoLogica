@@ -4,8 +4,6 @@
  */
 package com.howtodoinjava.dao;
 
-import com.howtodoinjava.entity.Predicado;
-import com.howtodoinjava.entity.Resuelve;
 import com.howtodoinjava.entity.Solucion;
 import com.howtodoinjava.entity.SolucionId;
 import java.util.List;
@@ -18,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author miguel
  */
+
 @Repository
 public class SolucionDaoImpl implements SolucionDAO{
     
