@@ -4,6 +4,7 @@
  */
 package com.howtodoinjava.controller;
 
+import com.howtodoinjava.entity.Solucion;
 import com.howtodoinjava.entity.Teorema;
 import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Usuario;
@@ -11,11 +12,14 @@ import com.howtodoinjava.forms.InfersForm;
 import com.howtodoinjava.lambdacalculo.App;
 import com.howtodoinjava.lambdacalculo.Const;
 import com.howtodoinjava.lambdacalculo.MakeTerm;
+import com.howtodoinjava.lambdacalculo.PasoInferencia;
 import com.howtodoinjava.lambdacalculo.Var;
 import com.howtodoinjava.lambdacalculo.Term;
 import com.howtodoinjava.parse.IsNotInDBException;
 import com.howtodoinjava.parse.TermLexer;
 import com.howtodoinjava.parse.TermParser;
+import com.howtodoinjava.service.ResuelveManager;
+import com.howtodoinjava.service.SolucionManager;
 import com.howtodoinjava.service.TeoremaManager;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
@@ -23,6 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -51,7 +56,11 @@ public class InferController {
     @Autowired
     private TerminoManager terminoManager;
     @Autowired
+    private SolucionManager solucionManager;
+    @Autowired
     private TeoremaManager teoremaManager;
+    @Autowired
+    private ResuelveManager resuelveManager;
     @Autowired
     private HttpSession session;
     
@@ -341,8 +350,10 @@ public class InferController {
             Term izq,der;
             izq = ((App)term).q;
             der = ((App)((App)term).p).q;
+            PasoInferencia paso = new PasoInferencia(pasoAntTerm, izq, der, leibnizTerm, instanciacion);
             izq = new App(leibnizTerm,izq).reducir();
             der = new App(leibnizTerm,der).reducir();
+            
             
             if (izq.equals(pasoAntTerm)) {
                 pasoPost = der.toStringInf();
@@ -351,8 +362,33 @@ public class InferController {
             }else{
                 pasoPost = "Regla~de~inferencia~no~validad";
             }
+////            
+//            List<Solucion> solList =  solucionManager.getAllSolucionesByResuelve(resuelveManager.getResuelveByUserAndTeorema(username,infersForm.getnStatement()).getId());
+//            Solucion solucion = solList.get(0);
 //            
-             infersForm.setHistorial(infersForm.getHistorial()+"$$ "+infersForm.getPasoAnt()+" $$ \n");
+//
+////            solucion.setResuelve(resuelveManager.getResuelve(1));
+//              solucion.addArregloInferencias(paso);
+////            paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la segunda instanciacion");
+////            solucion.addArregloInferencias(paso);
+//            System.out.println("Aqui se imprime la solucion");
+//            for (PasoInferencia x: solucion.getArregloInferencias()) {
+//                System.out.println("=============================");
+//                System.out.print("El teorema a resolver: ");
+//                System.out.println(x.getExpresion().toStringInf());
+//                System.out.print("El lado izq del teo es: ");
+//                System.out.println(x.getTeoIzq().toStringInf());
+//                System.out.print("El lado der del teo es: ");
+//                System.out.println(x.getTeoDer().toStringInf());
+//                System.out.print("El leibniz es: ");
+//                System.out.println(x.getLeibniz().toStringInf());
+//                System.out.print("Finalmente, instanciacion es: ");
+//                System.out.println(x.getInstancia().toString());
+//                System.out.println("------------------------------");
+//                infersForm.setHistorial("$$ "+x.getExpresion().toStringInf()+" $$ \n" + " < " + new MakeTerm().makeApp(x.getTeoIzq().toStringInf(), x.getTeoDer().toStringInf()) + "  -  " + x.getLeibniz().toStringInf() + "  -  " + x.getInstancia().toString() + " > $$ \\n" );
+//            }
+//            
+//             infersForm.setHistorial(infersForm.getHistorial()+"$$ "+infersForm.getPasoAnt()+" $$ \n");
             
 //            ArrayList<String> lista = infersForm.getHistorial();
 //            lista.add(infersForm.getPasoAnt());
@@ -362,11 +398,11 @@ public class InferController {
 //            infersForm.setHistorial(pasoPost);
 ////            infersForm.setHistorial();
 //            infersForm.setHistorial("<br>"+infersForm.getHistorial()+"<br>");
-            
+            System.out.println("El valor de pasoPost es: "+pasoPost);
             map.addAttribute("usuario", usuarioManager.getUsuario(username));
             map.addAttribute("infer",new InfersForm());
             map.addAttribute("mensaje",infersForm.getHistorial());
-            map.addAttribute("pasoAnt",infersForm.getPasoAnt());
+            map.addAttribute("pasoAnt",pasoPost);
 //            map.addAttribute("pasoAnt","");
             map.addAttribute("nStatement",infersForm.getnStatement());
             map.addAttribute("instanciacion",infersForm.getInstanciacion());

@@ -5,7 +5,6 @@
 package com.howtodoinjava.dao;
 
 import com.howtodoinjava.entity.Solucion;
-import com.howtodoinjava.entity.SolucionId;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +31,17 @@ public class SolucionDaoImpl implements SolucionDAO{
     
     @Override
     @Transactional
-    public void deleteSolucion(SolucionId id){
+    public void deleteSolucion(int id){
         Solucion solucion = (Solucion) sessionFactory.getCurrentSession().load(
 				Solucion.class, id);
         if (null != solucion) {
         	this.sessionFactory.getCurrentSession().delete(solucion);
         }
-    }
+    } // Si es la unica solucion, debe definirse como "Blank"
     
     @Override
     @Transactional
-    public Solucion getSolucion(SolucionId id){
+    public Solucion getSolucion(int id){
         return (Solucion)this.sessionFactory.getCurrentSession().get(Solucion.class,id);
     }
     
@@ -51,6 +50,5 @@ public class SolucionDaoImpl implements SolucionDAO{
     public List<Solucion> getAllSolucionesByResuelve(int resuelveId){
         return this.sessionFactory.getCurrentSession().createQuery("FROM Solucion WHERE resuelve.id = :resuelveId").setParameter("resuelveId",resuelveId).list();
     }
-    
     
 }

@@ -152,34 +152,34 @@ public class EvaluarController {
 //        this.arregloInferencias = arregloInferencias;
 //    }
     
-            System.out.println("Llego hasta aqui");
-            Solucion solucion = new Solucion();
-            solucion.setResuelve(resuelveManager.getResuelve(1));
-            PasoInferencia paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la instanciacion");
-            solucion.addArregloInferencias(paso);
-            paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la segunda instanciacion");
-            solucion.addArregloInferencias(paso);
-            System.out.println("Aqui se imprime la solucion");
-            for (PasoInferencia x: solucion.getArregloInferencias()) {
-                System.out.println("=============================");
-                System.out.print("El teorema a resolver: ");
-                System.out.println(x.getExpresion().toStringInf());
-                System.out.print("El lado izq del teo es: ");
-                System.out.println(x.getTeoIzq().toStringInf());
-                System.out.print("El lado der del teo es: ");
-                System.out.println(x.getTeoDer().toStringInf());
-                System.out.print("El leibniz es: ");
-                System.out.println(x.getLeibniz().toStringInf());
-                System.out.print("Finalmente, instanciacion es: ");
-                System.out.println(x.getInstancia().toString());
-                System.out.println("------------------------------");
-            }
-            
-            
-            System.out.println(solucion.getArregloInferencias());
-            System.out.println("Y aqui el toString()");
-            System.out.println(solucion.getArregloInferencias().toString());
-            
+//            System.out.println("Llego hasta aqui");
+//            Solucion solucion = new Solucion();
+//            solucion.setResuelve(resuelveManager.getResuelve(1));
+//            PasoInferencia paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la instanciacion");
+//            solucion.addArregloInferencias(paso);
+//            paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la segunda instanciacion");
+//            solucion.addArregloInferencias(paso);
+//            System.out.println("Aqui se imprime la solucion");
+//            for (PasoInferencia x: solucion.getArregloInferencias()) {
+//                System.out.println("=============================");
+//                System.out.print("El teorema a resolver: ");
+//                System.out.println(x.getExpresion().toStringInf());
+//                System.out.print("El lado izq del teo es: ");
+//                System.out.println(x.getTeoIzq().toStringInf());
+//                System.out.print("El lado der del teo es: ");
+//                System.out.println(x.getTeoDer().toStringInf());
+//                System.out.print("El leibniz es: ");
+//                System.out.println(x.getLeibniz().toStringInf());
+//                System.out.print("Finalmente, instanciacion es: ");
+//                System.out.println(x.getInstancia().toString());
+//                System.out.println("------------------------------");
+//            }
+//            
+//            
+//            System.out.println(solucion.getArregloInferencias());
+//            System.out.println("Y aqui el toString()");
+//            System.out.println(solucion.getArregloInferencias().toString());
+//            
             
                 // Este teorema sera utilizado para ver si ya existe en la BD
                 Teorema teorema2 = teoremaManager.getTeoremaByEnunciados(izq.toString(), der.toString());

@@ -4,9 +4,7 @@
  */
 package com.howtodoinjava.service;
 
-import com.howtodoinjava.entity.Predicado;
 import com.howtodoinjava.entity.Solucion;
-import com.howtodoinjava.entity.SolucionId;
 import java.util.List;
 
 /**
@@ -17,9 +15,9 @@ public interface SolucionManager {
         
     public void addSolucion(Solucion solucion);
     
-    public void deleteSolucion(SolucionId id);
+    public void deleteSolucion(int id);
     
-    public Solucion getSolucion(SolucionId id);
+    public Solucion getSolucion(int id);
     
     public List<Solucion> getAllSolucionesByResuelve(int resuelveId);
     
