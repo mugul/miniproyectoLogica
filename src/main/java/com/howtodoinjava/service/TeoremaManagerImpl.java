@@ -110,4 +110,10 @@ public class TeoremaManagerImpl implements TeoremaManager {
             return teo1.getCategoria().getId() - teo2.getCategoria().getId();
         }
     }
+    
+    @Override
+    @Transactional
+    public List<Teorema> getTeoremasByCategoria(int categoriaId) {
+        return teoremaDAO.getTeoremasByCategoria(categoriaId);
+    }
 }
