@@ -1,5 +1,5 @@
 <div class="page-header" style="margin-bottom: 0 !important;">
-  <h1 style="color: #03A9F4; font-size: 60px;">Título <small>desmotraciones de Lógica Simbólica</small></h1>
+  <h1 style="color: #03A9F4; font-size: 60px;">Título <small>demostraciones de Lógica Simbólica</small></h1>
 </div>
 
 <div class="navbar navbar-default ">
