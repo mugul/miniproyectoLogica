@@ -15,6 +15,14 @@ import java.util.List;
 public class Bracket extends Term{
     final Var x;
     public Term t;
+    public String tipo;
+
+    public Bracket(Var x, Term t, String tipo) {
+        this.x = x;
+        this.t = t;
+        this.tipo = tipo;
+    }
+    
     
     public Bracket(Var x1,Term t1)
     {
@@ -137,17 +145,17 @@ public class Bracket extends Term{
         if(t.alias == null) {
             //FALTA IMPLEMENTAR FINAL
             if (t instanceof App) {
-                return "(forall "+ x.toStringInFin()+" | "+((App) t).p.toStringInFin()+" : "+ ((App) t).p.toStringFinalInFin()+")";
+                return "("+tipo+" "+ x.toStringInFin()+" | "+((App) t).p.toStringInFin()+" : "+ ((App) t).p.toStringFinalInFin()+")";
             }else{
                 //FALTA IMPLEMENTAR FINAL
                 //return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
-                return "(\\forall "+x.toStringInFin()+" |: "+t.toStringFinalInFin()+")";
+                return "("+tipo+" "+x.toStringInFin()+" |: "+t.toStringFinalInFin()+")";
             }
         }else {
             if (t instanceof App) {
-                return "(forall "+ x.toStringInFin()+" |: "+ t.alias+")" ;
+                return "("+tipo+" "+ x.toStringInFin()+" |: "+ t.alias+")" ;
             }else{
-                return "(\\forall "+x.toStringInFin()+" |: "+t.toStringFinalInFin()+")";
+                return "("+tipo+" "+x.toStringInFin()+" |: "+t.toStringFinalInFin()+")";
             }
         }//.split("@")[0].replace("_", "\\_") +")";
     }
