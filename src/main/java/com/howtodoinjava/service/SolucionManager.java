@@ -15,6 +15,8 @@ public interface SolucionManager {
         
     public void addSolucion(Solucion solucion);
     
+    public void updateSolucion(Solucion solucion);
+    
     public void deleteSolucion(int id);
     
     public Solucion getSolucion(int id);
