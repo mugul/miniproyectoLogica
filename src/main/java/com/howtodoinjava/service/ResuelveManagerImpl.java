@@ -23,8 +23,13 @@ public class ResuelveManagerImpl implements ResuelveManager {
     
     @Override
     @Transactional
-    public void addResuelve(Resuelve resuelve){
+    public Resuelve addResuelve(Resuelve resuelve){
+        Resuelve res = this.getResuelveByUserAndTeorema(resuelve.getUsuario().getLogin(),resuelve.getTeorema().getId());
+        if (res != null){
+            return res;
+        }
         resuelveDAO.addResuelve(resuelve);
+        return resuelve;
     }
     
     @Override
@@ -57,6 +62,8 @@ public class ResuelveManagerImpl implements ResuelveManager {
         return resuelveDAO.getResuelveByTeorema(teoremaID);
     }
 
+    @Override
+    @Transactional
     public Resuelve getResuelveByUserAndTeorema(String userLogin,int teoremaID){
         return resuelveDAO.getResuelveByUserAndTeorema(userLogin, teoremaID);
     }

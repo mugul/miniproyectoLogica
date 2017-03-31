@@ -23,79 +23,88 @@ import org.springframework.util.SerializationUtils;
  */
 @Service
 public class TeoremaManagerImpl implements TeoremaManager {
-       
+
     @Autowired
     private TeoremaDAO teoremaDAO;
-    
+
     @Override
     @Transactional
-    public void addTeorema(Teorema teorema){
-        
+    public Teorema addTeorema(Teorema teorema) {
+        // Este teorema sera utilizado para ver si ya existe en la BD
+        Teorema teorema2 = this.getTeoremaByEnunciados(teorema.getEnunciadoizq().toString(), teorema.getEnunciadoder().toString());
+        if (teorema2 != null) {
+            return teorema2;
+        } else {
+            // Este teorema sera utilizado para ver si el inverso ya existe en la BD
+            Teorema teorema3 = this.getTeoremaByEnunciados(teorema.getEnunciadoder().toString(), teorema.getEnunciadoizq().toString());
+            if (teorema3 != null) {
+                return teorema3;
+            }
+        }
         teoremaDAO.addTeorema(teorema);
+        return teorema;
     }
-    
+
     @Override
     @Transactional
-    public void deleteTeorema(int id){
-        
+    public void deleteTeorema(int id) {
+
         // Si solo hay 1 usuario usandolo, entonces aplica teoremaDAO.deleteTeorema(id)
         teoremaDAO.deleteTeorema(id);
     }
-    
+
     @Override
     @Transactional
-    public Teorema getTeorema(int id){
+    public Teorema getTeorema(int id) {
         Teorema teo = teoremaDAO.getTeorema(id);
         if (teo != null) {
-            teo.setTeoIzqTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoizq()));
-            teo.setTeoDerTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoder()));
+            teo.setTeoIzqTerm((Term) SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+            teo.setTeoDerTerm((Term) SerializationUtils.deserialize(teo.getTeoserializadoder()));
         }
         return teo;
     }
-    
+
     @Override
     @Transactional
-    public List<Teorema> getAllTeoremas(){
+    public List<Teorema> getAllTeoremas() {
         List<Teorema> teoList = teoremaDAO.getAllTeoremas();
-        try{
-            for(Teorema teo: teoList)
-            {
+        try {
+            for (Teorema teo : teoList) {
                 //ter.setTermObject((Term)ToString.fromString(ter.getSerializado()));
-                teo.setTeoIzqTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoizq()));
-                teo.setTeoDerTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoder()));
+                teo.setTeoIzqTerm((Term) SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+                teo.setTeoDerTerm((Term) SerializationUtils.deserialize(teo.getTeoserializadoder()));
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch(Exception e){e.printStackTrace();}
         return teoList;
     }
-    
+
     @Override
     @Transactional
-    public Teorema getTeoremaByEnunciados(String enunciadoizq,String enunciadoder){
-        Teorema teo = teoremaDAO.getTeoremaByEnunciados(enunciadoizq,enunciadoder);
+    public Teorema getTeoremaByEnunciados(String enunciadoizq, String enunciadoder) {
+        Teorema teo = teoremaDAO.getTeoremaByEnunciados(enunciadoizq, enunciadoder);
         if (teo != null) {
-            teo.setTeoIzqTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoizq()));
-            teo.setTeoDerTerm((Term)SerializationUtils.deserialize(teo.getTeoserializadoder()));
+            teo.setTeoIzqTerm((Term) SerializationUtils.deserialize(teo.getTeoserializadoizq()));
+            teo.setTeoDerTerm((Term) SerializationUtils.deserialize(teo.getTeoserializadoder()));
         }
         return teo;
     }
-        
-    
-    
+
     @Override
     @Transactional
-    public List<Teorema> getTeoremaByResuelveList(List<Resuelve> resList){
+    public List<Teorema> getTeoremaByResuelveList(List<Resuelve> resList) {
         List<Teorema> teoList = new ArrayList<Teorema>();
         System.out.println("AQUI SE AGREGAN A LA LISTA");
-        for(Resuelve res : resList) {
+        for (Resuelve res : resList) {
             teoList.add(res.getTeorema());
             System.out.println(res.getTeorema().getId());
         }
-        
+
         Collections.sort(teoList, new TeoremaComparator());
-        
+
         System.out.println("AQUI SE SUPONE Q ESTAN ORDENADOS POR CATEGORIA");
-        for(Teorema teo : teoList) {
+        for (Teorema teo : teoList) {
             System.out.print("El teorema: ");
             System.out.print(teo.getId());
             System.out.print(" tiene asociada la categoria: ");
@@ -106,11 +115,12 @@ public class TeoremaManagerImpl implements TeoremaManager {
     }
 
     class TeoremaComparator implements Comparator<Teorema> {
+
         public int compare(Teorema teo1, Teorema teo2) {
             return teo1.getCategoria().getId() - teo2.getCategoria().getId();
         }
     }
-    
+
     @Override
     @Transactional
     public List<Teorema> getTeoremasByCategoria(int categoriaId) {

@@ -23,8 +23,14 @@ public class DisponeManagerImpl implements DisponeManager {
     
     @Override
     @Transactional
-    public void addDispone(Dispone dispone){
+    public Dispone addDispone(Dispone dispone){
+        
+        Dispone res = this.getDisponeByUserAndMetateorema(dispone.getUsuario().getLogin(),dispone.getMetateorema().getId());
+        if (res != null){
+            return res;
+        }
         disponeDAO.addDispone(dispone);
+        return dispone;
     }
     
     @Override
@@ -55,5 +61,11 @@ public class DisponeManagerImpl implements DisponeManager {
     @Transactional
     public List<Dispone> getDisponeByMetateorema(int metateoremaID){
         return disponeDAO.getDisponeByMetateorema(metateoremaID);
+    }
+    
+    @Override
+    @Transactional
+    public Dispone getDisponeByUserAndMetateorema(String userLogin,int metateoremaID){
+        return disponeDAO.getDisponeByUserAndMetaeorema(userLogin, metateoremaID);
     }
 }

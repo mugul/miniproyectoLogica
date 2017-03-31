@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface MetateoremaManager {
     
-    public void addMetateorema(Metateorema metateorema);
+    public Metateorema addMetateorema(Metateorema metateorema);
     
     public void deleteMetateorema(int id);
     

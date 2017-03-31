@@ -12,21 +12,21 @@ import java.util.List;
  * @author miguel
  */
 public interface DisponeDAO {
-    
 
     public void addDispone(Dispone dispone);
-    
+
     public void deleteDispone(int id);
-    
+
     public Dispone getDispone(int id);
-    
+
     public List<Dispone> getAllDispone();
-    
+
     public List<Dispone> getAllDisponeByUser(String userLogin);
 //
 //    public List<Dispone> getDisoneByUser(String userLogin);
 //
-    public List<Dispone> getDisponeByMetateorema(int metateoremaID);
-//
-}
 
+    public List<Dispone> getDisponeByMetateorema(int metateoremaID);
+
+    public Dispone getDisponeByUserAndMetaeorema(String userLogin, int metateoremaID);
+}
