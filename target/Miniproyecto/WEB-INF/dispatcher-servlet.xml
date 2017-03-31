@@ -116,6 +116,9 @@
     <bean id="metateoremaDAO" class="com.howtodoinjava.dao.MetateoremaDaoImpl"></bean>
     <bean id="metateoremaManager" class="com.howtodoinjava.service.MetateoremaManagerImpl">
     </bean>
+    <bean id="solucionDAO" class="com.howtodoinjava.dao.SolucionDaoImpl"></bean>
+    <bean id="solucionManager" class="com.howtodoinjava.service.SolucionManagerImpl">
+    </bean>
  
     <tx:annotation-driven />
     <bean id="transactionManager"

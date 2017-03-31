@@ -234,15 +234,15 @@ public class PerfilController {
                 teoremaManager.addTeorema(teorema); 
                 System.out.println("Hola viteh");
                 Resuelve resuelve = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
-                resuelveManager.addResuelve(resuelve);
+//                resuelveManager.addResuelve(resuelve);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
                 Metateorema metateorema = new Metateorema(teorema.getId(),categoria,teoTerm.traducBD().toStringFinal(),"true",SerializationUtils.serialize(teoTerm),SerializationUtils.serialize("true"),false);
-                metateoremaManager.addMetateorema(metateorema);
+//                metateoremaManager.addMetateorema(metateorema);
                 
                 // public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto)
                 Dispone dispone = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
-                disponeManager.addDispone(dispone);
+//                disponeManager.addDispone(dispone);
                 
                 PasoInferencia paso = new PasoInferencia(teoTerm, izq, der, null, "Zzvx");
                 Solucion solucion = new Solucion(resuelve,paso);
@@ -277,6 +277,8 @@ public class PerfilController {
                 map.addAttribute("perfilMenu","class=\"active\"");
                 map.addAttribute("overflow","hidden");
                 map.addAttribute("anchuraDiv","1100px");
+                System.out.println("El valor de la categoria");
+                System.out.println(agregarTeorema.getCategoriaSeleccionada());
                 return "perfil";
                 
             }

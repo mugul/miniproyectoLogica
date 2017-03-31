@@ -40,6 +40,10 @@
   text-shadow: none !important;  
 }
 
+#agregarTeorema {
+  width: 45%;
+  display: inline;
+}
 /*************************************/
 
 input[type="submit"], 

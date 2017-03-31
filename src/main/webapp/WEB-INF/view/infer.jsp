@@ -10,6 +10,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
@@ -49,16 +50,17 @@
         <br>Leibniz:  <sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/> <sf:errors path="leibniz" cssClass="error" /></br>
 
         <input type="submit" value="Inferir"> <input type="button" value="limpiar" onclick="limpiar()">
-    </sf:form>
-    </center>
-           <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
-            
-        <script>
-            t=document.getElementById('termino_string');
-            t.innerText="${termino}";
-        </script>
 
-     
-        <tiles:insertDefinition name="footer" />
-    </body>
+    </sf:form>
+         <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
+
+    <script>
+      t=document.getElementById('termino_string');
+      t.innerText="${termino}";
+    </script>
+    
+    
+      
+    <tiles:insertDefinition name="footer" />
+  </body>
 </html>
