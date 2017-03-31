@@ -137,17 +137,17 @@ public class Bracket extends Term{
         if(t.alias == null) {
             //FALTA IMPLEMENTAR FINAL
             if (t instanceof App) {
-                return "(forall "+ x.toStringInFin()+"|"+((App) t).p.toStringInFin()+":"+ ((App) t).p.toStringFinalInFin()+")";
+                return "(forall "+ x.toStringInFin()+" | "+((App) t).p.toStringInFin()+" : "+ ((App) t).p.toStringFinalInFin()+")";
             }else{
                 //FALTA IMPLEMENTAR FINAL
                 //return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
-                return "(\\forall "+x.toStringInFin()+"|:"+t.toStringFinalInFin()+")";
+                return "(\\forall "+x.toStringInFin()+" |: "+t.toStringFinalInFin()+")";
             }
         }else {
             if (t instanceof App) {
-                return "(forall "+ x.toStringInFin()+"|:"+ t.alias+")" ;
+                return "(forall "+ x.toStringInFin()+" |: "+ t.alias+")" ;
             }else{
-                return "(\\forall "+x.toStringInFin()+"|:"+t.toStringFinalInFin()+")";
+                return "(\\forall "+x.toStringInFin()+" |: "+t.toStringFinalInFin()+")";
             }
         }//.split("@")[0].replace("_", "\\_") +")";
     }

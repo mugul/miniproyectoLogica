@@ -121,7 +121,7 @@ public class I extends Term {
         
     
     public String toStringInFin() {
-        return "|";
+        return ""; //"|";
     }
 
     public String toStringInFin2() {
