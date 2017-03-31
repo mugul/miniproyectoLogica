@@ -355,7 +355,9 @@ public class InferController {
             izq = new App(leibnizTerm,izq).reducir();
             der = new App(leibnizTerm,der).reducir();
             
+
             boolean valida = true;
+
             if (izq.equals(pasoAntTerm)) {
                 pasoPost = der.toStringInf();
             }else if(der.equals(pasoAntTerm)) {
@@ -390,6 +392,7 @@ public class InferController {
                 System.out.println("------------------------------");
                 infersForm.setHistorial(infersForm.getHistorial()+x.getExpresion().toStringInf()+" \n $$" + " $$ < " + new MakeTerm().makeApp(x.getTeoIzq().toStringInf(), x.getTeoDer().toStringInf()).toStringInf() + " - " + x.getLeibniz().toStringInf() + "  -  " + x.getInstancia().toString()+" > \n$$");
             }
+
               solucionManager.updateSolucion(solucion);
 //            
 //            infersForm.setHistorial(infersForm.getHistorial()+" > $$ \n" );
@@ -407,7 +410,9 @@ public class InferController {
             System.out.println("El valor de pasoPost es: "+pasoPost);
             map.addAttribute("usuario", usuarioManager.getUsuario(username));
             map.addAttribute("infer",new InfersForm());
+
             map.addAttribute("mensaje","");
+
             map.addAttribute("pasoAnt",pasoPost);
 //            map.addAttribute("pasoAnt","");
             map.addAttribute("nStatement",infersForm.getnStatement());

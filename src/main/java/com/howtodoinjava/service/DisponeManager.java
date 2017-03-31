@@ -14,7 +14,7 @@ import java.util.List;
 public interface DisponeManager {
     
     
-    public void addDispone(Dispone dispone);
+    public Dispone addDispone(Dispone dispone);
     
     public void deleteDispone(int id);
     
@@ -28,6 +28,7 @@ public interface DisponeManager {
 //    public List<Dispone> getDisponeByUser(String userLogin);
 //
     public List<Dispone> getDisponeByMetateorema(int metateoremaID);
-    
+        
+    public Dispone getDisponeByUserAndMetateorema(String userLogin,int metateoremaID);
     
 }

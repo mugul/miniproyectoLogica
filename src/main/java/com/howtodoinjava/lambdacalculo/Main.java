@@ -24,22 +24,22 @@ public class Main {
         Term t2 = mk.makeTerm("p /\\ E_{(p == p)}^{q} ");
         Term t1 = mk.makeTerm("p  /\\  (p  \\/ (p  ==  p))");
 
-        Term v = mk.makeTerm("p \\/ q == (q ==> true)");
-        Term v1 = mk.makeTerm("r");
+        Term v = mk.makeTerm("(p \\/ q) \\/ p == (q ==> true)");
+        Term v1 = mk.makeCuant("(forallx|:P)");
         Term a = mk.makeApp("p", "r");
         
-        System.out.println(t1.toStringInFin());
+        //System.out.println(t1.toStringInFin());
         System.out.println("+++++++++++++----------+++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");
-        System.out.println(t1.toStringInf());
+        System.out.println(v1.toStringInf());
         System.out.println("++++++++++++---------------++++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");
-        System.out.println(t1.toString());
+        //System.out.println(t1.toStringInf());
         System.out.println("++++++++++++---------------++++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");       
         
         
-       ArrayList<Object> arr =  mk.makeInsta("E := p\\/q");         
+       /*ArrayList<Object> arr =  mk.makeInsta("E := p\\/q");         
        t2 = t2.sustParall((ArrayList<Var>)arr.get(0),(ArrayList<Term>) arr.get(1));
        System.out.println(t2.toString());
        
@@ -49,7 +49,7 @@ public class Main {
         System.out.println(t6.toStringInf());
         System.out.println("++++++++++++++++++++++++++++++");
         System.out.println(t6.toString());
-         
+         */
          
     }
 

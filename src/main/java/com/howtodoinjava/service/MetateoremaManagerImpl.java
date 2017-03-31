@@ -23,8 +23,20 @@ public class MetateoremaManagerImpl implements MetateoremaManager {
     
     @Override
     @Transactional
-    public void addMetateorema(Metateorema metateorema){
+    public Metateorema addMetateorema(Metateorema metateorema){
+        // Este metateorema sera utilizado para ver si ya existe en la BD
+        Metateorema metateorema2 = this.getMetateoremaByEnunciados(metateorema.getEnunciadoizq().toString(), metateorema.getEnunciadoder().toString());
+        if (metateorema2 != null) {
+            return metateorema2;
+        } else {
+            // Este metateorema sera utilizado para ver si el inverso ya existe en la BD
+            Metateorema metateorema3 = this.getMetateoremaByEnunciados(metateorema.getEnunciadoder().toString(), metateorema.getEnunciadoizq().toString());
+            if (metateorema3 != null) {
+                return metateorema3;
+            }
+        }
         metateoremaDAO.addMetateorema(metateorema);
+        return metateorema;
     }
     
     @Override

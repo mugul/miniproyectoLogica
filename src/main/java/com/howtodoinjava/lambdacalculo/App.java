@@ -403,27 +403,38 @@ public class App extends Term{
         
         String izq; 
         String der; 
-        if( (q.alias == null) && (p.alias == null)) { 
-            
+        boolean pp =  p instanceof App;
+        boolean qq = q instanceof App;
+        System.out.println(pp +"+++++++++++++++++"+qq);
+        if(  (p.alias == null) && (q.alias == null) ) {      
            if((p instanceof App) && (q instanceof App)){
-                return q.toStringInf()+" "+p.toStringInf();
-                
-            }else if(!(p instanceof App) && (q instanceof App)){
+               System.out.println("+++++++++++++111111111111111+++++++++++++++++"); 
+               return q.toStringInf()+" "+p.toStringInf();  
+               
+           }else if(!(p instanceof App) && (q instanceof App)){
+                 System.out.println("++++++++++++++222222222222222222++++++++++++++++"); 
                  if( ((App) q).p instanceof Const ){
+                     System.out.println("++++++++++2222aaaaaaaaaaaa++++++++++++++++++++"); 
                      return p.toStringInf()+" "+q.toStringInf();
                  }else{
+                     System.out.println("++++++++++++2222bbbbbb++++++++++++++++++"); 
                      return p.toStringInf()+" ("+q.toStringInf()+")" ;
                  } 
                  
-            }else if( (p instanceof App) && !(q instanceof App)){ 
+           }else if( (p instanceof App) && !(q instanceof App)){ 
+                System.out.println("+++++++++++++++3333333333333+++++++++++++++"); 
                 String sim = ((App) p).p.toStringInf();
-                if (((App) p).p instanceof Const ) {
-                    return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
-                }else{
-                    return q.toStringInf()+" "+sim+" ("+ ((App) p).q.toStringInf()+")";
+                if (((App) p).p instanceof Const ) {                    
+                    if ( ((App) p).q instanceof Var){
+                        return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
+                    }else{
+                        return q.toStringInf()+" "+sim+" ("+((App) p).q.toStringInf()+")";
+                    }
+               }else{
+                    return "("+q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf()+")";
                 }
-                
-            }else{
+           }else{
+                System.out.println("+++++++++++++44444444+++++++++++++++++"); 
                 return p.toStringInf()+" "+q.toStringInf();
             }   
            
@@ -433,13 +444,10 @@ public class App extends Term{
         }else if( (q.alias != null) && (p.alias == null)) {
             return q.alias +" "+p.toStringInf();
             
-        }else {
+        }else{ 
             return p.alias+" "+q.alias;
-        }
-        
-        
-    }
-    
+        }    
+ }           
     
     
     public ToString toStringAbrv(ToString toString)

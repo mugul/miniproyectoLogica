@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface TeoremaManager {
     
-    public void addTeorema(Teorema teorema);
+    public Teorema addTeorema(Teorema teorema);
     
     public void deleteTeorema(int id);
     

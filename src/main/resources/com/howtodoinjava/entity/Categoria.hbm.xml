@@ -13,6 +13,7 @@
         <property name="nombre" type="string">
             <column name="nombre" not-null="true" unique="true" />
         </property>
+        <!--<set name="teoremas" inverse="true" cascade="all">-->
         <set name="teoremas" inverse="true">
             <key>
                 <column name="categoriaid" not-null="true" />
@@ -20,6 +21,7 @@
             <one-to-many class="com.howtodoinjava.entity.Teorema" />
         </set>
         <set name="metateoremas" inverse="true">
+        <!--<set name="metateoremas" inverse="true" cascade="all">-->
             <key>
                 <column name="categoriaid" not-null="true" />
             </key>

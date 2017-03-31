@@ -10,11 +10,11 @@ package com.howtodoinjava.lambdacalculo;
  */
 public class SKI extends SK{
     
-    I i;
+    Ii i;
     
     public SKI(){
         super();
-        i=new I();
+        i=new Ii();
     }
     
     public String toString(){

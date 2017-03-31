@@ -19,6 +19,7 @@ public interface SolucionDAO {
     
     public void deleteSolucion(int id);
     
+
     public Solucion getSolucion(int id);
     
     public List<Solucion> getAllSolucionesByResuelve(int resuelveId);

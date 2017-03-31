@@ -112,7 +112,7 @@ ALTER TABLE hibernate_sequence OWNER TO postgres;
 --
 
 CREATE TABLE predicado (
-    id integer NOT NULL,
+    id text NOT NULL,
     predicado text NOT NULL,
     alias text NOT NULL,
     predserializado text NOT NULL,
@@ -382,6 +382,13 @@ ALTER TABLE ONLY teorema ALTER COLUMN id SET DEFAULT nextval('teorema_id_seq'::r
 --
 
 ALTER TABLE ONLY metateorema ALTER COLUMN id SET DEFAULT nextval('metateorema_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY solucion ALTER COLUMN id SET DEFAULT nextval('solucion_id_seq'::regclass);
 
 
 --
