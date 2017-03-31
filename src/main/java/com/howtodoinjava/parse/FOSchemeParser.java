@@ -1,6 +1,9 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 FOScheme.g 2017-03-31 07:36:10
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 FOScheme.g 2017-03-31 08:39:06
 package com.howtodoinjava.parse; 
 
+import com.howtodoinjava.service.TerminoManager;
+import com.howtodoinjava.entity.Termino;
+import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Predicado;
 import com.howtodoinjava.entity.PredicadoId;
 import com.howtodoinjava.lambdacalculo.*;
@@ -72,16 +75,16 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "start_rule"
-    // FOScheme.g:12:1: start_rule[PredicadoId predicadoid, PredicadoManager predicadoManager] returns [Term value] : eq ;
-    public final Term start_rule(PredicadoId predicadoid, PredicadoManager predicadoManager) throws RecognitionException {
+    // FOScheme.g:15:1: start_rule[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : eq ;
+    public final Term start_rule(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term eq1 = null;
 
 
         try {
-            // FOScheme.g:12:93: ( eq )
-            // FOScheme.g:12:95: eq
+            // FOScheme.g:15:85: ( eq )
+            // FOScheme.g:15:87: eq
             {
             pushFollow(FOLLOW_eq_in_start_rule21);
             eq1=eq();
@@ -105,7 +108,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "eq"
-    // FOScheme.g:14:1: eq returns [Term value] : term eqtail ;
+    // FOScheme.g:17:1: eq returns [Term value] : term eqtail ;
     public final Term eq() throws RecognitionException {
         Term value = null;
 
@@ -115,8 +118,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:14:24: ( term eqtail )
-            // FOScheme.g:14:26: term eqtail
+            // FOScheme.g:17:24: ( term eqtail )
+            // FOScheme.g:17:26: term eqtail
             {
             pushFollow(FOLLOW_term_in_eq44);
             term2=term();
@@ -149,7 +152,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "eqtail"
-    // FOScheme.g:20:1: eqtail returns [ArrayList<Term> value] : ( ( '==' | '\\\\equiv' ) term tail1= eqtail | );
+    // FOScheme.g:23:1: eqtail returns [ArrayList<Term> value] : ( ( '==' | '\\\\equiv' ) term tail1= eqtail | );
     public final ArrayList<Term> eqtail() throws RecognitionException {
         ArrayList<Term> value = null;
 
@@ -159,7 +162,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:20:39: ( ( '==' | '\\\\equiv' ) term tail1= eqtail | )
+            // FOScheme.g:23:39: ( ( '==' | '\\\\equiv' ) term tail1= eqtail | )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -177,7 +180,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // FOScheme.g:21:5: ( '==' | '\\\\equiv' ) term tail1= eqtail
+                    // FOScheme.g:24:5: ( '==' | '\\\\equiv' ) term tail1= eqtail
                     {
                     if ( (input.LA(1)>=11 && input.LA(1)<=12) ) {
                         input.consume();
@@ -203,7 +206,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:23:47: 
+                    // FOScheme.g:26:47: 
                     {
                     value =new ArrayList<Term>();
 
@@ -224,7 +227,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "term"
-    // FOScheme.g:25:1: term returns [Term value] : disyconj disyconjtail ;
+    // FOScheme.g:28:1: term returns [Term value] : disyconj disyconjtail ;
     public final Term term() throws RecognitionException {
         Term value = null;
 
@@ -234,8 +237,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:25:26: ( disyconj disyconjtail )
-            // FOScheme.g:25:28: disyconj disyconjtail
+            // FOScheme.g:28:26: ( disyconj disyconjtail )
+            // FOScheme.g:28:28: disyconj disyconjtail
             {
             pushFollow(FOLLOW_disyconj_in_term155);
             disyconj6=disyconj();
@@ -269,7 +272,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "disyconjtail"
-    // FOScheme.g:32:1: disyconjtail returns [Term value] : ( ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail | );
+    // FOScheme.g:35:1: disyconjtail returns [Term value] : ( ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail | );
     public final Term disyconjtail() throws RecognitionException {
         Term value = null;
 
@@ -279,7 +282,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:32:34: ( ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail | )
+            // FOScheme.g:35:34: ( ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail | )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -297,7 +300,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt2) {
                 case 1 :
-                    // FOScheme.g:34:6: ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail
+                    // FOScheme.g:37:6: ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail
                     {
                     if ( (input.LA(1)>=13 && input.LA(1)<=14) ) {
                         input.consume();
@@ -328,7 +331,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:41:47: 
+                    // FOScheme.g:44:47: 
                     {
                     value =null;
 
@@ -349,7 +352,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "disyconj"
-    // FOScheme.g:43:1: disyconj returns [Term value] : conc conctail ;
+    // FOScheme.g:46:1: disyconj returns [Term value] : conc conctail ;
     public final Term disyconj() throws RecognitionException {
         Term value = null;
 
@@ -359,8 +362,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:43:30: ( conc conctail )
-            // FOScheme.g:43:32: conc conctail
+            // FOScheme.g:46:30: ( conc conctail )
+            // FOScheme.g:46:32: conc conctail
             {
             pushFollow(FOLLOW_conc_in_disyconj251);
             conc8=conc();
@@ -393,7 +396,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "conctail"
-    // FOScheme.g:49:1: conctail returns [ArrayList<Term> value] : ( ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail | );
+    // FOScheme.g:52:1: conctail returns [ArrayList<Term> value] : ( ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail | );
     public final ArrayList<Term> conctail() throws RecognitionException {
         ArrayList<Term> value = null;
 
@@ -403,7 +406,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:49:41: ( ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail | )
+            // FOScheme.g:52:41: ( ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail | )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -421,7 +424,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // FOScheme.g:51:5: ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail
+                    // FOScheme.g:54:5: ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail
                     {
                     if ( (input.LA(1)>=15 && input.LA(1)<=16) ) {
                         input.consume();
@@ -449,7 +452,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:55:47: 
+                    // FOScheme.g:58:47: 
                     {
                     value =new ArrayList<Term>();
 
@@ -470,7 +473,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "conc"
-    // FOScheme.g:57:1: conc returns [Term value] : neq disytail ;
+    // FOScheme.g:60:1: conc returns [Term value] : neq disytail ;
     public final Term conc() throws RecognitionException {
         Term value = null;
 
@@ -480,8 +483,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:57:26: ( neq disytail )
-            // FOScheme.g:57:28: neq disytail
+            // FOScheme.g:60:26: ( neq disytail )
+            // FOScheme.g:60:28: neq disytail
             {
             pushFollow(FOLLOW_neq_in_conc344);
             neq11=neq();
@@ -520,7 +523,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "disytail"
-    // FOScheme.g:69:1: disytail returns [ArrayList<ParserPair> value] : ( ( '\\\\/' | '\\\\vee' ) neq tail4= disytail | ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail | );
+    // FOScheme.g:72:1: disytail returns [ArrayList<ParserPair> value] : ( ( '\\\\/' | '\\\\vee' ) neq tail4= disytail | ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail | );
     public final ArrayList<ParserPair> disytail() throws RecognitionException {
         ArrayList<ParserPair> value = null;
 
@@ -534,7 +537,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:69:47: ( ( '\\\\/' | '\\\\vee' ) neq tail4= disytail | ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail | )
+            // FOScheme.g:72:47: ( ( '\\\\/' | '\\\\vee' ) neq tail4= disytail | ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail | )
             int alt4=3;
             switch ( input.LA(1) ) {
             case 17:
@@ -572,7 +575,7 @@ public class FOSchemeParser extends Parser {
 
             switch (alt4) {
                 case 1 :
-                    // FOScheme.g:71:6: ( '\\\\/' | '\\\\vee' ) neq tail4= disytail
+                    // FOScheme.g:74:6: ( '\\\\/' | '\\\\vee' ) neq tail4= disytail
                     {
                     if ( (input.LA(1)>=17 && input.LA(1)<=18) ) {
                         input.consume();
@@ -600,7 +603,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:75:6: ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail
+                    // FOScheme.g:78:6: ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail
                     {
                     if ( (input.LA(1)>=19 && input.LA(1)<=20) ) {
                         input.consume();
@@ -628,7 +631,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // FOScheme.g:79:47: 
+                    // FOScheme.g:82:47: 
                     {
                     value =new ArrayList<ParserPair>();
 
@@ -649,7 +652,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "neq"
-    // FOScheme.g:81:1: neq returns [Term value] : neg neqtail ;
+    // FOScheme.g:84:1: neq returns [Term value] : neg neqtail ;
     public final Term neq() throws RecognitionException {
         Term value = null;
 
@@ -659,8 +662,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:81:25: ( neg neqtail )
-            // FOScheme.g:81:27: neg neqtail
+            // FOScheme.g:84:25: ( neg neqtail )
+            // FOScheme.g:84:27: neg neqtail
             {
             pushFollow(FOLLOW_neg_in_neq479);
             neg15=neg();
@@ -693,7 +696,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "neqtail"
-    // FOScheme.g:87:1: neqtail returns [ArrayList<Term> value] : ( ( '!==' | '\\\\nequiv' ) neg tail6= neqtail | );
+    // FOScheme.g:90:1: neqtail returns [ArrayList<Term> value] : ( ( '!==' | '\\\\nequiv' ) neg tail6= neqtail | );
     public final ArrayList<Term> neqtail() throws RecognitionException {
         ArrayList<Term> value = null;
 
@@ -703,7 +706,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:87:40: ( ( '!==' | '\\\\nequiv' ) neg tail6= neqtail | )
+            // FOScheme.g:90:40: ( ( '!==' | '\\\\nequiv' ) neg tail6= neqtail | )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -721,7 +724,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // FOScheme.g:89:5: ( '!==' | '\\\\nequiv' ) neg tail6= neqtail
+                    // FOScheme.g:92:5: ( '!==' | '\\\\nequiv' ) neg tail6= neqtail
                     {
                     if ( (input.LA(1)>=21 && input.LA(1)<=22) ) {
                         input.consume();
@@ -749,7 +752,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:93:47: 
+                    // FOScheme.g:96:47: 
                     {
                     value =new ArrayList<Term>();
 
@@ -770,7 +773,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "neg"
-    // FOScheme.g:95:1: neg returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER sust | 'true' sust | 'false' sust | '(' 'forall' LETTER '|' ':' b1= eq ')' sust | '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust | '(' 'exists' LETTER '|' ':' b2= eq ')' sust | '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust | WORD '(' arguments ')' sust | '(' eq ')' sust );
+    // FOScheme.g:98:1: neg returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER sust | 'true' sust | 'false' sust | '(' 'forall' LETTER '|' ':' b1= eq ')' sust | '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust | '(' 'exists' LETTER '|' ':' b2= eq ')' sust | '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust | WORD '(' arguments ')' sust | '(' eq ')' sust );
     public final Term neg() throws RecognitionException {
         Term value = null;
 
@@ -814,12 +817,12 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:95:25: ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER sust | 'true' sust | 'false' sust | '(' 'forall' LETTER '|' ':' b1= eq ')' sust | '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust | '(' 'exists' LETTER '|' ':' b2= eq ')' sust | '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust | WORD '(' arguments ')' sust | '(' eq ')' sust )
+            // FOScheme.g:98:25: ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER sust | 'true' sust | 'false' sust | '(' 'forall' LETTER '|' ':' b1= eq ')' sust | '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust | '(' 'exists' LETTER '|' ':' b2= eq ')' sust | '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust | WORD '(' arguments ')' sust | '(' eq ')' sust )
             int alt6=10;
             alt6 = dfa6.predict(input);
             switch (alt6) {
                 case 1 :
-                    // FOScheme.g:97:7: ( '!' | '\\\\neg' ) n= neg
+                    // FOScheme.g:100:7: ( '!' | '\\\\neg' ) n= neg
                     {
                     if ( (input.LA(1)>=23 && input.LA(1)<=24) ) {
                         input.consume();
@@ -840,7 +843,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:99:8: CAPITALLETTER sust
+                    // FOScheme.g:102:8: CAPITALLETTER sust
                     {
                     CAPITALLETTER18=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg628); 
                     pushFollow(FOLLOW_sust_in_neg630);
@@ -857,7 +860,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // FOScheme.g:105:8: 'true' sust
+                    // FOScheme.g:108:8: 'true' sust
                     {
                     match(input,25,FOLLOW_25_in_neg658); 
                     pushFollow(FOLLOW_sust_in_neg660);
@@ -874,7 +877,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // FOScheme.g:111:8: 'false' sust
+                    // FOScheme.g:114:8: 'false' sust
                     {
                     match(input,26,FOLLOW_26_in_neg695); 
                     pushFollow(FOLLOW_sust_in_neg697);
@@ -891,7 +894,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // FOScheme.g:117:8: '(' 'forall' LETTER '|' ':' b1= eq ')' sust
+                    // FOScheme.g:120:8: '(' 'forall' LETTER '|' ':' b1= eq ')' sust
                     {
                     match(input,27,FOLLOW_27_in_neg731); 
                     match(input,28,FOLLOW_28_in_neg733); 
@@ -919,7 +922,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // FOScheme.g:124:8: '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust
+                    // FOScheme.g:127:8: '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust
                     {
                     match(input,27,FOLLOW_27_in_neg760); 
                     match(input,28,FOLLOW_28_in_neg762); 
@@ -952,7 +955,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // FOScheme.g:131:8: '(' 'exists' LETTER '|' ':' b2= eq ')' sust
+                    // FOScheme.g:134:8: '(' 'exists' LETTER '|' ':' b2= eq ')' sust
                     {
                     match(input,27,FOLLOW_27_in_neg792); 
                     match(input,32,FOLLOW_32_in_neg794); 
@@ -980,7 +983,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // FOScheme.g:138:8: '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust
+                    // FOScheme.g:141:8: '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust
                     {
                     match(input,27,FOLLOW_27_in_neg820); 
                     match(input,32,FOLLOW_32_in_neg822); 
@@ -1013,7 +1016,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // FOScheme.g:145:8: WORD '(' arguments ')' sust
+                    // FOScheme.g:148:8: WORD '(' arguments ')' sust
                     {
                     WORD30=(Token)match(input,WORD,FOLLOW_WORD_in_neg852); 
                     match(input,27,FOLLOW_27_in_neg854); 
@@ -1039,7 +1042,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 10 :
-                    // FOScheme.g:153:8: '(' eq ')' sust
+                    // FOScheme.g:156:8: '(' eq ')' sust
                     {
                     match(input,27,FOLLOW_27_in_neg883); 
                     pushFollow(FOLLOW_eq_in_neg885);
@@ -1076,7 +1079,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "sust"
-    // FOScheme.g:159:1: sust returns [ArrayList<Sust> value] : ( '[' lei= LETTER ':=' led= LETTER ']' su= sust | );
+    // FOScheme.g:162:1: sust returns [ArrayList<Sust> value] : ( '[' lei= LETTER ':=' led= LETTER ']' su= sust | );
     public final ArrayList<Sust> sust() throws RecognitionException {
         ArrayList<Sust> value = null;
 
@@ -1086,7 +1089,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:159:37: ( '[' lei= LETTER ':=' led= LETTER ']' su= sust | )
+            // FOScheme.g:162:37: ( '[' lei= LETTER ':=' led= LETTER ']' su= sust | )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1104,7 +1107,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // FOScheme.g:161:4: '[' lei= LETTER ':=' led= LETTER ']' su= sust
+                    // FOScheme.g:164:4: '[' lei= LETTER ':=' led= LETTER ']' su= sust
                     {
                     match(input,33,FOLLOW_33_in_sust929); 
                     lei=(Token)match(input,LETTER,FOLLOW_LETTER_in_sust933); 
@@ -1130,7 +1133,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:172:44: 
+                    // FOScheme.g:175:44: 
                     {
                     value = new ArrayList<Sust>();
 
@@ -1151,7 +1154,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "instantiate"
-    // FOScheme.g:174:1: instantiate returns [ArrayList<Object> value] : arguments ':=' explist ;
+    // FOScheme.g:177:1: instantiate returns [ArrayList<Object> value] : arguments ':=' explist ;
     public final ArrayList<Object> instantiate() throws RecognitionException {
         ArrayList<Object> value = null;
 
@@ -1161,8 +1164,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:174:46: ( arguments ':=' explist )
-            // FOScheme.g:176:6: arguments ':=' explist
+            // FOScheme.g:177:46: ( arguments ':=' explist )
+            // FOScheme.g:179:6: arguments ':=' explist
             {
             pushFollow(FOLLOW_arguments_in_instantiate1012);
             arguments35=arguments();
@@ -1196,7 +1199,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "explist"
-    // FOScheme.g:182:1: explist returns [ArrayList<Term> value] : eq explisttail ;
+    // FOScheme.g:185:1: explist returns [ArrayList<Term> value] : eq explisttail ;
     public final ArrayList<Term> explist() throws RecognitionException {
         ArrayList<Term> value = null;
 
@@ -1206,8 +1209,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:182:40: ( eq explisttail )
-            // FOScheme.g:184:6: eq explisttail
+            // FOScheme.g:185:40: ( eq explisttail )
+            // FOScheme.g:187:6: eq explisttail
             {
             pushFollow(FOLLOW_eq_in_explist1054);
             eq38=eq();
@@ -1239,7 +1242,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "explisttail"
-    // FOScheme.g:189:1: explisttail returns [ArrayList<Term> value] : ( ',' eq tail7= explisttail | );
+    // FOScheme.g:192:1: explisttail returns [ArrayList<Term> value] : ( ',' eq tail7= explisttail | );
     public final ArrayList<Term> explisttail() throws RecognitionException {
         ArrayList<Term> value = null;
 
@@ -1249,7 +1252,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:189:44: ( ',' eq tail7= explisttail | )
+            // FOScheme.g:192:44: ( ',' eq tail7= explisttail | )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1267,7 +1270,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // FOScheme.g:191:6: ',' eq tail7= explisttail
+                    // FOScheme.g:194:6: ',' eq tail7= explisttail
                     {
                     match(input,36,FOLLOW_36_in_explisttail1102); 
                     pushFollow(FOLLOW_eq_in_explisttail1104);
@@ -1288,7 +1291,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:196:47: 
+                    // FOScheme.g:199:47: 
                     {
                     value = new ArrayList<Term>();
 
@@ -1309,7 +1312,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "arguments"
-    // FOScheme.g:198:1: arguments returns [ArrayList<Var> value] : ( CAPITALLETTER ',' arg= arguments | CAPITALLETTER );
+    // FOScheme.g:201:1: arguments returns [ArrayList<Var> value] : ( CAPITALLETTER ',' arg= arguments | CAPITALLETTER );
     public final ArrayList<Var> arguments() throws RecognitionException {
         ArrayList<Var> value = null;
 
@@ -1319,7 +1322,7 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:198:41: ( CAPITALLETTER ',' arg= arguments | CAPITALLETTER )
+            // FOScheme.g:201:41: ( CAPITALLETTER ',' arg= arguments | CAPITALLETTER )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1347,7 +1350,7 @@ public class FOSchemeParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // FOScheme.g:198:43: CAPITALLETTER ',' arg= arguments
+                    // FOScheme.g:201:43: CAPITALLETTER ',' arg= arguments
                     {
                     CAPITALLETTER40=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1186); 
                     match(input,36,FOLLOW_36_in_arguments1188); 
@@ -1365,7 +1368,7 @@ public class FOSchemeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // FOScheme.g:204:44: CAPITALLETTER
+                    // FOScheme.g:207:44: CAPITALLETTER
                     {
                     CAPITALLETTER41=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1240); 
                     ArrayList<Var> list=new ArrayList<Var>();
@@ -1391,7 +1394,7 @@ public class FOSchemeParser extends Parser {
 
 
     // $ANTLR start "lambda"
-    // FOScheme.g:210:1: lambda returns [Term value] : 'lambda' LETTER '.' eq ;
+    // FOScheme.g:213:1: lambda returns [Term value] : 'lambda' LETTER '.' eq ;
     public final Term lambda() throws RecognitionException {
         Term value = null;
 
@@ -1400,8 +1403,8 @@ public class FOSchemeParser extends Parser {
 
 
         try {
-            // FOScheme.g:210:28: ( 'lambda' LETTER '.' eq )
-            // FOScheme.g:210:30: 'lambda' LETTER '.' eq
+            // FOScheme.g:213:28: ( 'lambda' LETTER '.' eq )
+            // FOScheme.g:213:30: 'lambda' LETTER '.' eq
             {
             match(input,37,FOLLOW_37_in_lambda1255); 
             LETTER42=(Token)match(input,LETTER,FOLLOW_LETTER_in_lambda1257); 
@@ -1496,7 +1499,7 @@ public class FOSchemeParser extends Parser {
             this.transition = DFA6_transition;
         }
         public String getDescription() {
-            return "95:1: neg returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER sust | 'true' sust | 'false' sust | '(' 'forall' LETTER '|' ':' b1= eq ')' sust | '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust | '(' 'exists' LETTER '|' ':' b2= eq ')' sust | '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust | WORD '(' arguments ')' sust | '(' eq ')' sust );";
+            return "98:1: neg returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER sust | 'true' sust | 'false' sust | '(' 'forall' LETTER '|' ':' b1= eq ')' sust | '(' 'forall' LETTER '|' ran1= eq ':' b1= eq ')' sust | '(' 'exists' LETTER '|' ':' b2= eq ')' sust | '(' 'exists' LETTER '|' ran2= eq ':' b2= eq ')' sust | WORD '(' arguments ')' sust | '(' eq ')' sust );";
         }
     }
  

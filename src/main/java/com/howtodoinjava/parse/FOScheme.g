@@ -2,14 +2,17 @@ grammar FOScheme;
 
 @header{package com.howtodoinjava.parse; 
 
+import com.howtodoinjava.service.TerminoManager;
+import com.howtodoinjava.entity.Termino;
+import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Predicado;
 import com.howtodoinjava.entity.PredicadoId;
 import com.howtodoinjava.lambdacalculo.*;
 import com.howtodoinjava.service.PredicadoManager;
 import java.util.Iterator;}
 
-// Parser Rules
-start_rule[PredicadoId predicadoid, PredicadoManager predicadoManager]  returns [Term value]: eq           { $value=$eq.value;};
+// Parser Rules [PredicadoId predicadoid, PredicadoManager predicadoManager]
+start_rule[TerminoId terminoid, TerminoManager terminoManager]  returns [Term value]: eq           { $value=$eq.value;};
 
 eq returns [Term value]: term eqtail          { Term aux=$term.value;
                                                 for(Iterator<Term> i = $eqtail.value.iterator(); i.hasNext();) 

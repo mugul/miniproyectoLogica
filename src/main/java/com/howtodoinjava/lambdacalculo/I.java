@@ -12,17 +12,17 @@ import java.util.List;
  * @author federico
  */
 public class I extends Term {
-    //final String i;
+    final String  i;
 
-    public I() {}
+    //public I() {}
     
-    /*public I(String i) {
-        this.i = i;
+    public I() {
+        this.i = "|";
     }
 
     public String getCon() {
         return i;
-    }*/
+    }
  
     public boolean occur(Var x)
     {
@@ -111,19 +111,20 @@ public class I extends Term {
     
     public String toString()
     {
-        return "I";
+        return " "+this;
     }
    
         @Override
     public String toStringInFin() {
-        return "I";
+        return " "+this;
     }     
         
     @Override
     public String toStringInf() {
-        return "I";
+        return " "+this;
     }
 
+    
     
     public ToString toStringAbrvV1(ToString toString)
     {
@@ -157,4 +158,28 @@ public class I extends Term {
     public List<Term> contandotraducBD() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (this.i != null ? this.i.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final I other = (I) obj;
+        if ((this.i == null) ? (other.i != null) : !this.i.equals(other.i)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
