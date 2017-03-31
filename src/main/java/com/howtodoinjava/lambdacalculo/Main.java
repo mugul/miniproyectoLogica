@@ -25,16 +25,16 @@ public class Main {
         Term t1 = mk.makeTerm("p  /\\  (p  \\/ (p  ==  p))");
 
         Term v = mk.makeTerm("(p \\/ q) \\/ p == (q ==> true)");
-        Term v1 = mk.makeTerm("r");
+        Term v1 = mk.makeCuant("(forallx|:P)");
         Term a = mk.makeApp("p", "r");
         
         //System.out.println(t1.toStringInFin());
         System.out.println("+++++++++++++----------+++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");
-        System.out.println(t1.toStringInFin());
+        System.out.println(v1.toStringInf());
         System.out.println("++++++++++++---------------++++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");
-        System.out.println(t1.toStringInf());
+        //System.out.println(t1.toStringInf());
         System.out.println("++++++++++++---------------++++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");       
         
