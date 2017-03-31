@@ -29,6 +29,13 @@ public class SolucionDaoImpl implements SolucionDAO{
         this.sessionFactory.getCurrentSession().save(solucion);
     }
     
+    
+    @Override   
+    @Transactional
+    public void updateSolucion(Solucion solucion){
+        this.sessionFactory.getCurrentSession().update(solucion);
+    }
+    
     @Override
     @Transactional
     public void deleteSolucion(int id){
