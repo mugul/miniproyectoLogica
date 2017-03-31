@@ -115,8 +115,8 @@ public class PerfilController {
         map.addAttribute("agregarTeorema",new AgregarTeorema());
         map.addAttribute("modificar",new Integer(0));
         map.addAttribute("teorema","");
-//        map.addAttribute("categoria",categoriaManager.getAllCategorias());
-        map.addAttribute("categoria","");
+        map.addAttribute("categoria",categoriaManager.getAllCategorias());
+//        map.addAttribute("categoria","");
         map.addAttribute("numeroTeorema","");
         map.addAttribute("mensaje", "");
         map.addAttribute("admin","admin");
@@ -214,7 +214,7 @@ public class PerfilController {
                 // Se busca si existe la cat, si no existe se crea
 //                System.out.println("La categoria selecionada es: "+agregarTeorema.getCategoria()+" .....................................");
                 Categoria categoria;
-                categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoria()));
+                categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoriaSeleccionada()));
                 if (categoria == null) {
 //                    System.out.println("LA CATEGORIA ES NULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 //                    categoria = new Categoria(agregarTeorema.getCategoria());
