@@ -84,4 +84,13 @@ public class UsuarioManagerImpl implements UsuarioManager {
             }
         }
     }
+    
+    
+    //@Override
+    //@Transactional
+    public void modificarTeorema(Usuario usuario, Teorema teorema) {
+        
+    }
+    
+    
 }

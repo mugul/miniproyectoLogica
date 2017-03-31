@@ -112,6 +112,11 @@ public class Phi extends Term{
         return "\\Phi_{"+ind.toString()+"}";
     }
     
+    public String toStringInFin() {
+        return "\\Phi_{"+ind.toString()+"}";
+    }
+    
+    
     public String toStringInf() {
         return "\\Phi_{"+ind.toString()+"}";
     }

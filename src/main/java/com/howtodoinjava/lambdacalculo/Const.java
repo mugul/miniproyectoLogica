@@ -113,9 +113,9 @@ public class Const extends Term
     {
         return con;
     }
-    
-    @Override
-    public String toStringInf() {
+   
+        @Override
+    public String toStringInFin() {
         String res;
         if (con.startsWith("\\eq")) {
            res =" == ";
@@ -135,6 +135,11 @@ public class Const extends Term
             res = con;
         }
         return res;
+    }     
+        
+    @Override
+    public String toStringInf() {
+        return con;
     }
 
     

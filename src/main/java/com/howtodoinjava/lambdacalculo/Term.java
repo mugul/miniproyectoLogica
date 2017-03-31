@@ -102,6 +102,8 @@ public abstract class Term implements Cloneable, Serializable{
     
     public abstract String toStringInf();
     
+    public abstract String toStringInFin();
+    
     public abstract ToString toStringAbrvV1(ToString toString);
     
     public abstract ToString toStringAbrv(ToString toString);
@@ -120,6 +122,17 @@ public abstract class Term implements Cloneable, Serializable{
     }
     
     public String toStringFinalInf()
+    {
+        String term;
+        String aux= this.toStringInf();
+        if(aux.startsWith("("))            
+            term = aux.substring(1, aux.length()-1);            
+        else{
+            term=aux;
+        }return term;
+    }
+    
+    public String toStringFinalInFin()
     {
         String term;
         String aux= this.toStringInf();
@@ -234,6 +247,7 @@ public abstract class Term implements Cloneable, Serializable{
         
         return tri.term;
     }
+    
     public class Tipo
     {
         public boolean c;

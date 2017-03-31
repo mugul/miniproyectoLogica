@@ -37,9 +37,7 @@ public class Sust extends Term{
     public Term sust(Var x,Term t)
     {
         return this;
-    }
-    
-   
+    }  
     
     public int setAlias(int currentAlia)
     {
@@ -146,6 +144,20 @@ public class Sust extends Term{
         return "["+varss+" := "+termss+"]";
     }
 
+    public String toStringInFin() {
+        String varss = "";
+        String termss = "";
+        for (Var v : vars)
+            varss += v.toStringInFin()+",";
+        
+        for (Term t : terms)
+            termss += t.toStringInFin()+",";
+        
+         varss = varss.substring(0, varss.length()-1);
+         termss = termss.substring(0, termss.length()-1);
+        
+        return "["+varss+" := "+termss+"]";
+    }
     
     public ToString toStringAbrvV1(ToString toString)
     {
