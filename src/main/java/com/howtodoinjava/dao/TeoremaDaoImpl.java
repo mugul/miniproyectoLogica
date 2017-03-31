@@ -25,26 +25,9 @@ public class TeoremaDaoImpl implements TeoremaDAO {
 
     @Override
     public void addTeorema(Teorema teorema) {
-        Teorema teorema2 = this.getTeoremaByEnunciados(teorema.getEnunciadoizq(), teorema.getEnunciadoder());
-        if (teorema2 == null ) {
-            try {
-                throw new TeoremaDaoImpl.TeoremaException("el teorema ya existe");
-            } catch (TeoremaException ex) {
-                Logger.getLogger(TeoremaDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            // Este teorema sera utilizado para ver si el inverso ya existe en la BD
-            Teorema teorema3 = this.getTeoremaByEnunciados(teorema.getEnunciadoder(),teorema.getEnunciadoizq());
-            if(teorema3 != null) {
-                try {
-                    throw new TeoremaDaoImpl.TeoremaException("el teorema ya existe aplicando conmutatividad (p == q) == (q == p)");
-                } catch (TeoremaException ex) {
-                    Logger.getLogger(TeoremaDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else{
-               this.sessionFactory.getCurrentSession().save(teorema); 
-            }
-        } 
+
+        this.sessionFactory.getCurrentSession().save(teorema);
+
     }
 
     @Override
@@ -89,16 +72,14 @@ public class TeoremaDaoImpl implements TeoremaDAO {
     public List<Teorema> getTeoremasByCategoria(int categoriaId) {
         return this.sessionFactory.getCurrentSession().createQuery("FROM Teorema WHERE categoria.id = :categoriaId").setParameter("categoriaId", categoriaId).list();
     }
-    
-    private static class TeoremaException extends Exception
-    {
-
-        public String alias;
-                
-        public TeoremaException(String ali) 
-        {
-            alias=ali;
-        }
-    }
-    
+//    private static class TeoremaException extends Exception
+//    {
+//
+//        public String alias;
+//                
+//        public TeoremaException(String ali) 
+//        {
+//            alias=ali;
+//        }
+//    }
 }

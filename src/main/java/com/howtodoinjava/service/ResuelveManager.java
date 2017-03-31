@@ -14,7 +14,7 @@ import java.util.List;
 public interface ResuelveManager {
     
     
-    public void addResuelve(Resuelve resuelve);
+    public Resuelve addResuelve(Resuelve resuelve);
     
     public void deleteResuelve(int id);
     

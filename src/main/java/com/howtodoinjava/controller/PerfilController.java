@@ -115,7 +115,8 @@ public class PerfilController {
         map.addAttribute("agregarTeorema",new AgregarTeorema());
         map.addAttribute("modificar",new Integer(0));
         map.addAttribute("teorema","");
-        map.addAttribute("categoria",categoriaManager.getAllCategorias());
+//        map.addAttribute("categoria",categoriaManager.getAllCategorias());
+        map.addAttribute("categoria","");
         map.addAttribute("numeroTeorema","");
         map.addAttribute("mensaje", "");
         map.addAttribute("admin","admin");
@@ -206,45 +207,38 @@ public class PerfilController {
                 }
                 
                 
-                // Este teorema sera utilizado para ver si ya existe en la BD
-                Teorema teorema2 = teoremaManager.getTeoremaByEnunciados(izq.toString(), der.toString());
-                if(teorema2 != null) {
-                    throw new TeoremaException("el teorema ya existe");
-                } else {
-                    // Este teorema sera utilizado para ver si el inverso ya existe en la BD
-                    Teorema teorema3 = teoremaManager.getTeoremaByEnunciados(der.toString(),izq.toString());
-                    if(teorema3 != null) {
-                        throw new TeoremaException("el teorema ya existe aplicando conmutatividad (p == q) == (q == p)");
-                    }
-                }
-
+                
                 System.out.println("Hola viteh1");
                 
                 // ESTO DEBE MOSTRAR LAS CATEGORIAS
                 // Se busca si existe la cat, si no existe se crea
-                Categoria categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoria()));
+//                System.out.println("La categoria selecionada es: "+agregarTeorema.getCategoria()+" .....................................");
+                Categoria categoria;
+                categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoria()));
                 if (categoria == null) {
-                    categoria = new Categoria(agregarTeorema.getCategoria());
-                    categoriaManager.addCategoria(categoria);
+//                    System.out.println("LA CATEGORIA ES NULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+//                    categoria = new Categoria(agregarTeorema.getCategoria());
+//                    categoriaManager.addCategoria(categoria);
+                    throw new CategoriaException("Ese numero de categoria no existe");
                 }
 
 
 //              public Teorema(Categoria categoria, String enunciadoizq, String enunciadoder, byte[] teoserializadoizq, byte[] teoserializadoder, boolean ocultartrue, boolean esquema) {
-                Teorema teorema = new Teorema(categoria,izq.traducBD().toStringFinal(),der.traducBD().toStringFinal(),izq,der,!esEq,false);
-                teoremaManager.addTeorema(teorema); 
+                Teorema teoremaAdd = new Teorema(categoria,izq.traducBD().toStringFinal(),der.traducBD().toStringFinal(),izq,der,!esEq,false);
+                Teorema teorema = teoremaManager.addTeorema(teoremaAdd); 
                 System.out.println("Hola viteh");
-                Resuelve resuelve = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
-//                resuelveManager.addResuelve(resuelve);
+                Resuelve resuelveAdd = new Resuelve(user,teorema,agregarTeorema.getNombreTeorema(),agregarTeorema.getNumeroTeorema(),false);
+                Resuelve resuelve = resuelveManager.addResuelve(resuelveAdd);
 
                 // public Metateorema(int id, Categoria categoria, String enunciadoizq, String enunciadoder, String metateoserializadoizq, String metateoserializadoder, boolean ocultartrue)                
-                Metateorema metateorema = new Metateorema(teorema.getId(),categoria,teoTerm.traducBD().toStringFinal(),"true",SerializationUtils.serialize(teoTerm),SerializationUtils.serialize("true"),false);
-//                metateoremaManager.addMetateorema(metateorema);
+                Metateorema metateoremaAdd = new Metateorema(teorema.getId(),categoria,teoTerm.traducBD().toStringFinal(),"true",SerializationUtils.serialize(teoTerm),SerializationUtils.serialize("true"),false);
+                Metateorema metateorema = metateoremaManager.addMetateorema(metateoremaAdd);
                 
                 // public Dispone(int id, Usuario usuario, Metateorema metateorema, String numerometateorema, boolean resuelto)
-                Dispone dispone = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
-//                disponeManager.addDispone(dispone);
+                Dispone disponeAdd = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
+                Dispone dispone = disponeManager.addDispone(disponeAdd);
                 
-                PasoInferencia paso = new PasoInferencia(teoTerm, izq, der, null, "Zzvx");
+                PasoInferencia paso = new PasoInferencia(teoTerm, null, null, null, "");
                 Solucion solucion = new Solucion(resuelve,paso);
                 solucion.setResuelve(resuelve);
                 solucion.addArregloInferencias(paso);
@@ -282,30 +276,12 @@ public class PerfilController {
                 return "perfil";
                 
             }
-            catch(TeoremaException e)
-            {
-                map.addAttribute("usuarioGuardar",new UsuarioGuardar());
-                map.addAttribute("usuario",user);
-                map.addAttribute("modificar",new Integer(0));
-                map.addAttribute("categoria",categoriaManager.getAllCategorias());
-                map.addAttribute("mensaje", "No se puede ingresar su teorema porque "+e.alias);
-                map.addAttribute("admin","admin");
-                map.addAttribute("guardarMenu","");
-                map.addAttribute("listarTerminosMenu","");
-                map.addAttribute("verTerminosPublicosMenu","");
-                map.addAttribute("misPublicacionesMenu","");
-                map.addAttribute("agregarTeoremaMenu","class=\"active\"");
-                map.addAttribute("computarMenu","");
-                map.addAttribute("perfilMenu","");
-                map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
-                return "agregarTeorema";
-            }
-//            catch(CategoriaException e)
+//            catch(TeoremaException e)
 //            {
 //                map.addAttribute("usuarioGuardar",new UsuarioGuardar());
 //                map.addAttribute("usuario",user);
 //                map.addAttribute("modificar",new Integer(0));
+//                map.addAttribute("categoria",categoriaManager.getAllCategorias());
 //                map.addAttribute("mensaje", "No se puede ingresar su teorema porque "+e.alias);
 //                map.addAttribute("admin","admin");
 //                map.addAttribute("guardarMenu","");
@@ -319,6 +295,24 @@ public class PerfilController {
 //                map.addAttribute("anchuraDiv","1100px");
 //                return "agregarTeorema";
 //            }
+            catch(CategoriaException e)
+            {
+                map.addAttribute("usuarioGuardar",new UsuarioGuardar());
+                map.addAttribute("usuario",user);
+                map.addAttribute("modificar",new Integer(0));
+                map.addAttribute("mensaje", "No se puede ingresar su teorema porque "+e.alias);
+                map.addAttribute("admin","admin");
+                map.addAttribute("guardarMenu","");
+                map.addAttribute("listarTerminosMenu","");
+                map.addAttribute("verTerminosPublicosMenu","");
+                map.addAttribute("misPublicacionesMenu","");
+                map.addAttribute("agregarTeoremaMenu","class=\"active\"");
+                map.addAttribute("computarMenu","");
+                map.addAttribute("perfilMenu","");
+                map.addAttribute("overflow","hidden");
+                map.addAttribute("anchuraDiv","1100px");
+                return "agregarTeorema";
+            }
             catch(IsNotInDBException e)
             {
                 String hdr = parser.getErrorHeader(e);
@@ -1187,7 +1181,7 @@ public class PerfilController {
         }
     }
     
-    private static class TeoremaException extends Exception
+    public static class TeoremaException extends Exception
     {
 
         public String alias;
@@ -1198,15 +1192,15 @@ public class PerfilController {
         }
     }
 
-//     
-//    private static class CategoriaException extends Exception
-//    {
-//
-//        public String alias;
-//                
-//        public CategoriaException(String ali) 
-//        {
-//            alias=ali;
-//        }
-//    }   
+     
+    private static class CategoriaException extends Exception
+    {
+
+        public String alias;
+                
+        public CategoriaException(String ali) 
+        {
+            alias=ali;
+        }
+    }   
 }
