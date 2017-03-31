@@ -30,6 +30,12 @@ public class SolucionManagerImpl implements SolucionManager {
     
     @Override
     @Transactional
+    public void updateSolucion(Solucion solucion){
+        solucionDAO.updateSolucion(solucion);
+    }
+    
+    @Override
+    @Transactional
     public void deleteSolucion(int id){
         solucionDAO.deleteSolucion(id);
     }
