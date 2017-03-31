@@ -288,7 +288,7 @@ public class InferController {
             ArrayList<Object> arr;
             try
             {
-               arr=parser2.instantiate();
+               arr=parser2.instantiate(terminoid,terminoManager);
             }
             catch(RecognitionException e)
             {
@@ -322,7 +322,7 @@ public class InferController {
             Term leibnizTerm;
             try
             {
-               leibnizTerm =parser3.lambda();
+               leibnizTerm =parser3.lambda(terminoid,terminoManager);
             }
             catch(RecognitionException e)
             {

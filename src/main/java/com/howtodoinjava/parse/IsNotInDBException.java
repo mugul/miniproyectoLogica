@@ -16,7 +16,7 @@ public class IsNotInDBException extends NoViableAltException {
     /**
      * message 
      */
-    public String message=" no existe el predicado ";
+    public String message=" no existe el t&eacute;rmino ";
     /**
      * Creates a new instance of
      * <code>IsNotInDBException</code> without detail message.

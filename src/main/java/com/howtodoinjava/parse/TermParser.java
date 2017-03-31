@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-28 19:10:48
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 Term.g 2017-03-31 18:41:22
 package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.entity.Termino;
@@ -70,7 +70,7 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "start_rule"
-    // Term.g:12:1: start_rule[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : eq ;
+    // Term.g:13:1: start_rule[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : eq[ terminoid, terminoManager] ;
     public final Term start_rule(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
@@ -78,11 +78,11 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:12:86: ( eq )
-            // Term.g:12:88: eq
+            // Term.g:13:86: ( eq[ terminoid, terminoManager] )
+            // Term.g:13:88: eq[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_eq_in_start_rule22);
-            eq1=eq();
+            pushFollow(FOLLOW_eq_in_start_rule23);
+            eq1=eq(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -103,8 +103,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "eq"
-    // Term.g:14:1: eq returns [Term value] : term eqtail ;
-    public final Term eq() throws RecognitionException {
+    // Term.g:15:1: eq[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : term[ terminoid, terminoManager] eqtail[ terminoid, terminoManager] ;
+    public final Term eq(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term term2 = null;
@@ -113,16 +113,16 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:14:24: ( term eqtail )
-            // Term.g:14:26: term eqtail
+            // Term.g:15:76: ( term[ terminoid, terminoManager] eqtail[ terminoid, terminoManager] )
+            // Term.g:15:78: term[ terminoid, terminoManager] eqtail[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_term_in_eq45);
-            term2=term();
+            pushFollow(FOLLOW_term_in_eq47);
+            term2=term(terminoid, terminoManager);
 
             state._fsp--;
 
-            pushFollow(FOLLOW_eqtail_in_eq47);
-            eqtail3=eqtail();
+            pushFollow(FOLLOW_eqtail_in_eq49);
+            eqtail3=eqtail(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -147,8 +147,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "eqtail"
-    // Term.g:20:1: eqtail returns [ArrayList<Term> value] : ( ( '==' | '\\\\equiv' ) term tail1= eqtail | );
-    public final ArrayList<Term> eqtail() throws RecognitionException {
+    // Term.g:21:1: eqtail[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Term> value] : ( ( '==' | '\\\\equiv' ) term[ terminoid, terminoManager] tail1= eqtail[ terminoid, terminoManager] | );
+    public final ArrayList<Term> eqtail(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Term> value = null;
 
         ArrayList<Term> tail1 = null;
@@ -157,7 +157,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:20:39: ( ( '==' | '\\\\equiv' ) term tail1= eqtail | )
+            // Term.g:21:91: ( ( '==' | '\\\\equiv' ) term[ terminoid, terminoManager] tail1= eqtail[ terminoid, terminoManager] | )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -175,7 +175,7 @@ public class TermParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // Term.g:21:5: ( '==' | '\\\\equiv' ) term tail1= eqtail
+                    // Term.g:22:5: ( '==' | '\\\\equiv' ) term[ terminoid, terminoManager] tail1= eqtail[ terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=12 && input.LA(1)<=13) ) {
                         input.consume();
@@ -186,13 +186,13 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_term_in_eqtail84);
-                    term4=term();
+                    pushFollow(FOLLOW_term_in_eqtail87);
+                    term4=term(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_eqtail_in_eqtail88);
-                    tail1=eqtail();
+                    pushFollow(FOLLOW_eqtail_in_eqtail91);
+                    tail1=eqtail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -201,7 +201,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:23:47: 
+                    // Term.g:24:47: 
                     {
                     value =new ArrayList<Term>();
 
@@ -222,8 +222,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "term"
-    // Term.g:25:1: term returns [Term value] : disyconj disyconjtail ;
-    public final Term term() throws RecognitionException {
+    // Term.g:26:1: term[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : disyconj[ terminoid, terminoManager] disyconjtail[ terminoid, terminoManager] ;
+    public final Term term(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term disyconjtail5 = null;
@@ -232,16 +232,16 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:25:26: ( disyconj disyconjtail )
-            // Term.g:25:28: disyconj disyconjtail
+            // Term.g:26:78: ( disyconj[ terminoid, terminoManager] disyconjtail[ terminoid, terminoManager] )
+            // Term.g:26:80: disyconj[ terminoid, terminoManager] disyconjtail[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_disyconj_in_term156);
-            disyconj6=disyconj();
+            pushFollow(FOLLOW_disyconj_in_term160);
+            disyconj6=disyconj(terminoid, terminoManager);
 
             state._fsp--;
 
-            pushFollow(FOLLOW_disyconjtail_in_term158);
-            disyconjtail5=disyconjtail();
+            pushFollow(FOLLOW_disyconjtail_in_term162);
+            disyconjtail5=disyconjtail(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -267,8 +267,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "disyconjtail"
-    // Term.g:32:1: disyconjtail returns [Term value] : ( ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail | );
-    public final Term disyconjtail() throws RecognitionException {
+    // Term.g:33:1: disyconjtail[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : ( ( '==>' | '\\\\Rightarrow' ) disyconj[ terminoid, terminoManager] tail2= disyconjtail[terminoid, terminoManager] | );
+    public final Term disyconjtail(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term tail2 = null;
@@ -277,7 +277,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:32:34: ( ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail | )
+            // Term.g:33:86: ( ( '==>' | '\\\\Rightarrow' ) disyconj[ terminoid, terminoManager] tail2= disyconjtail[terminoid, terminoManager] | )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -295,7 +295,7 @@ public class TermParser extends Parser {
             }
             switch (alt2) {
                 case 1 :
-                    // Term.g:34:6: ( '==>' | '\\\\Rightarrow' ) disyconj tail2= disyconjtail
+                    // Term.g:35:6: ( '==>' | '\\\\Rightarrow' ) disyconj[ terminoid, terminoManager] tail2= disyconjtail[terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=14 && input.LA(1)<=15) ) {
                         input.consume();
@@ -306,13 +306,13 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_disyconj_in_disyconjtail187);
-                    disyconj7=disyconj();
+                    pushFollow(FOLLOW_disyconj_in_disyconjtail192);
+                    disyconj7=disyconj(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_disyconjtail_in_disyconjtail191);
-                    tail2=disyconjtail();
+                    pushFollow(FOLLOW_disyconjtail_in_disyconjtail196);
+                    tail2=disyconjtail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -326,7 +326,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:41:47: 
+                    // Term.g:42:47: 
                     {
                     value =null;
 
@@ -347,8 +347,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "disyconj"
-    // Term.g:43:1: disyconj returns [Term value] : conc conctail ;
-    public final Term disyconj() throws RecognitionException {
+    // Term.g:44:1: disyconj[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : conc[ terminoid, terminoManager] conctail[ terminoid, terminoManager] ;
+    public final Term disyconj(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term conc8 = null;
@@ -357,16 +357,16 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:43:30: ( conc conctail )
-            // Term.g:43:32: conc conctail
+            // Term.g:44:82: ( conc[ terminoid, terminoManager] conctail[ terminoid, terminoManager] )
+            // Term.g:44:84: conc[ terminoid, terminoManager] conctail[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_conc_in_disyconj252);
-            conc8=conc();
+            pushFollow(FOLLOW_conc_in_disyconj259);
+            conc8=conc(terminoid, terminoManager);
 
             state._fsp--;
 
-            pushFollow(FOLLOW_conctail_in_disyconj254);
-            conctail9=conctail();
+            pushFollow(FOLLOW_conctail_in_disyconj261);
+            conctail9=conctail(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -391,8 +391,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "conctail"
-    // Term.g:49:1: conctail returns [ArrayList<Term> value] : ( ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail | );
-    public final ArrayList<Term> conctail() throws RecognitionException {
+    // Term.g:50:1: conctail[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Term> value] : ( ( '<==' | '\\\\Leftarrow' ) conc[ terminoid, terminoManager] tail3= conctail[terminoid, terminoManager] | );
+    public final ArrayList<Term> conctail(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Term> value = null;
 
         ArrayList<Term> tail3 = null;
@@ -401,7 +401,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:49:41: ( ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail | )
+            // Term.g:50:93: ( ( '<==' | '\\\\Leftarrow' ) conc[ terminoid, terminoManager] tail3= conctail[terminoid, terminoManager] | )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -419,7 +419,7 @@ public class TermParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // Term.g:51:5: ( '<==' | '\\\\Leftarrow' ) conc tail3= conctail
+                    // Term.g:52:5: ( '<==' | '\\\\Leftarrow' ) conc[ terminoid, terminoManager] tail3= conctail[terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=16 && input.LA(1)<=17) ) {
                         input.consume();
@@ -430,13 +430,13 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_conc_in_conctail280);
-                    conc10=conc();
+                    pushFollow(FOLLOW_conc_in_conctail288);
+                    conc10=conc(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_conctail_in_conctail284);
-                    tail3=conctail();
+                    pushFollow(FOLLOW_conctail_in_conctail292);
+                    tail3=conctail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -447,7 +447,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:55:47: 
+                    // Term.g:56:47: 
                     {
                     value =new ArrayList<Term>();
 
@@ -468,8 +468,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "conc"
-    // Term.g:57:1: conc returns [Term value] : neq disytail ;
-    public final Term conc() throws RecognitionException {
+    // Term.g:58:1: conc[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : neq[ terminoid, terminoManager] disytail[ terminoid, terminoManager] ;
+    public final Term conc(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term neq11 = null;
@@ -478,16 +478,16 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:57:26: ( neq disytail )
-            // Term.g:57:28: neq disytail
+            // Term.g:58:78: ( neq[ terminoid, terminoManager] disytail[ terminoid, terminoManager] )
+            // Term.g:58:80: neq[ terminoid, terminoManager] disytail[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_neq_in_conc345);
-            neq11=neq();
+            pushFollow(FOLLOW_neq_in_conc355);
+            neq11=neq(terminoid, terminoManager);
 
             state._fsp--;
 
-            pushFollow(FOLLOW_disytail_in_conc347);
-            disytail12=disytail();
+            pushFollow(FOLLOW_disytail_in_conc357);
+            disytail12=disytail(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -518,8 +518,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "disytail"
-    // Term.g:69:1: disytail returns [ArrayList<ParserPair> value] : ( ( '\\\\/' | '\\\\vee' ) neq tail4= disytail | ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail | );
-    public final ArrayList<ParserPair> disytail() throws RecognitionException {
+    // Term.g:70:1: disytail[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<ParserPair> value] : ( ( '\\\\/' | '\\\\vee' ) neq[ terminoid, terminoManager] tail4= disytail[ terminoid, terminoManager] | ( '/\\\\' | '\\\\wedge' ) neq[ terminoid, terminoManager] tail5= disytail[ terminoid, terminoManager] | );
+    public final ArrayList<ParserPair> disytail(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<ParserPair> value = null;
 
         ArrayList<ParserPair> tail4 = null;
@@ -532,7 +532,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:69:47: ( ( '\\\\/' | '\\\\vee' ) neq tail4= disytail | ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail | )
+            // Term.g:70:99: ( ( '\\\\/' | '\\\\vee' ) neq[ terminoid, terminoManager] tail4= disytail[ terminoid, terminoManager] | ( '/\\\\' | '\\\\wedge' ) neq[ terminoid, terminoManager] tail5= disytail[ terminoid, terminoManager] | )
             int alt4=3;
             switch ( input.LA(1) ) {
             case 18:
@@ -570,7 +570,7 @@ public class TermParser extends Parser {
 
             switch (alt4) {
                 case 1 :
-                    // Term.g:71:6: ( '\\\\/' | '\\\\vee' ) neq tail4= disytail
+                    // Term.g:72:6: ( '\\\\/' | '\\\\vee' ) neq[ terminoid, terminoManager] tail4= disytail[ terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=18 && input.LA(1)<=19) ) {
                         input.consume();
@@ -581,13 +581,13 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_neq_in_disytail385);
-                    neq13=neq();
+                    pushFollow(FOLLOW_neq_in_disytail396);
+                    neq13=neq(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_disytail_in_disytail389);
-                    tail4=disytail();
+                    pushFollow(FOLLOW_disytail_in_disytail400);
+                    tail4=disytail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -598,7 +598,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:75:6: ( '/\\\\' | '\\\\wedge' ) neq tail5= disytail
+                    // Term.g:76:6: ( '/\\\\' | '\\\\wedge' ) neq[ terminoid, terminoManager] tail5= disytail[ terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=20 && input.LA(1)<=21) ) {
                         input.consume();
@@ -609,13 +609,13 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_neq_in_disytail411);
-                    neq14=neq();
+                    pushFollow(FOLLOW_neq_in_disytail422);
+                    neq14=neq(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_disytail_in_disytail415);
-                    tail5=disytail();
+                    pushFollow(FOLLOW_disytail_in_disytail426);
+                    tail5=disytail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -626,7 +626,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Term.g:79:47: 
+                    // Term.g:80:47: 
                     {
                     value =new ArrayList<ParserPair>();
 
@@ -647,8 +647,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "neq"
-    // Term.g:81:1: neq returns [Term value] : neg neqtail ;
-    public final Term neq() throws RecognitionException {
+    // Term.g:82:1: neq[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : neg[ terminoid, terminoManager] neqtail[ terminoid, terminoManager] ;
+    public final Term neq(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Term neg15 = null;
@@ -657,16 +657,16 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:81:25: ( neg neqtail )
-            // Term.g:81:27: neg neqtail
+            // Term.g:82:77: ( neg[ terminoid, terminoManager] neqtail[ terminoid, terminoManager] )
+            // Term.g:82:79: neg[ terminoid, terminoManager] neqtail[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_neg_in_neq480);
-            neg15=neg();
+            pushFollow(FOLLOW_neg_in_neq492);
+            neg15=neg(terminoid, terminoManager);
 
             state._fsp--;
 
-            pushFollow(FOLLOW_neqtail_in_neq482);
-            neqtail16=neqtail();
+            pushFollow(FOLLOW_neqtail_in_neq494);
+            neqtail16=neqtail(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -691,8 +691,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "neqtail"
-    // Term.g:87:1: neqtail returns [ArrayList<Term> value] : ( ( '!==' | '\\\\nequiv' ) neg tail6= neqtail | );
-    public final ArrayList<Term> neqtail() throws RecognitionException {
+    // Term.g:88:1: neqtail[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Term> value] : ( ( '!==' | '\\\\nequiv' ) neg[ terminoid, terminoManager] tail6= neqtail[ terminoid, terminoManager] | );
+    public final ArrayList<Term> neqtail(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Term> value = null;
 
         ArrayList<Term> tail6 = null;
@@ -701,7 +701,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:87:40: ( ( '!==' | '\\\\nequiv' ) neg tail6= neqtail | )
+            // Term.g:88:92: ( ( '!==' | '\\\\nequiv' ) neg[ terminoid, terminoManager] tail6= neqtail[ terminoid, terminoManager] | )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -719,7 +719,7 @@ public class TermParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // Term.g:89:5: ( '!==' | '\\\\nequiv' ) neg tail6= neqtail
+                    // Term.g:90:5: ( '!==' | '\\\\nequiv' ) neg[ terminoid, terminoManager] tail6= neqtail[ terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=22 && input.LA(1)<=23) ) {
                         input.consume();
@@ -730,13 +730,13 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_neg_in_neqtail515);
-                    neg17=neg();
+                    pushFollow(FOLLOW_neg_in_neqtail528);
+                    neg17=neg(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_neqtail_in_neqtail519);
-                    tail6=neqtail();
+                    pushFollow(FOLLOW_neqtail_in_neqtail532);
+                    tail6=neqtail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -747,7 +747,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:93:47: 
+                    // Term.g:94:47: 
                     {
                     value =new ArrayList<Term>();
 
@@ -768,8 +768,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "neg"
-    // Term.g:95:1: neg returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER | LETTER | 'true' | 'false' | CAPITALLETTER '_{' eq '}^{' LETTER '}' | WORD '(' arguments ')' | '(' eq ')' );
-    public final Term neg() throws RecognitionException {
+    // Term.g:96:1: neg[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg[ terminoid, terminoManager] | CAPITALLETTER | LETTER | 'true' | 'false' | CAPITALLETTER '_{' eq[ terminoid, terminoManager] '}^{' LETTER '}' | WORD '(' arguments[ terminoid, terminoManager] ')' | '(' eq[ terminoid, terminoManager] ')' );
+    public final Term neg(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Token CAPITALLETTER18=null;
@@ -787,12 +787,12 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:95:25: ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER | LETTER | 'true' | 'false' | CAPITALLETTER '_{' eq '}^{' LETTER '}' | WORD '(' arguments ')' | '(' eq ')' )
+            // Term.g:96:77: ( ( '!' | '\\\\neg' ) n= neg[ terminoid, terminoManager] | CAPITALLETTER | LETTER | 'true' | 'false' | CAPITALLETTER '_{' eq[ terminoid, terminoManager] '}^{' LETTER '}' | WORD '(' arguments[ terminoid, terminoManager] ')' | '(' eq[ terminoid, terminoManager] ')' )
             int alt6=8;
             alt6 = dfa6.predict(input);
             switch (alt6) {
                 case 1 :
-                    // Term.g:97:7: ( '!' | '\\\\neg' ) n= neg
+                    // Term.g:98:7: ( '!' | '\\\\neg' ) n= neg[ terminoid, terminoManager]
                     {
                     if ( (input.LA(1)>=24 && input.LA(1)<=25) ) {
                         input.consume();
@@ -803,8 +803,8 @@ public class TermParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_neg_in_neg599);
-                    n=neg();
+                    pushFollow(FOLLOW_neg_in_neg613);
+                    n=neg(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -813,50 +813,50 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:99:8: CAPITALLETTER
+                    // Term.g:100:8: CAPITALLETTER
                     {
-                    CAPITALLETTER18=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg629); 
+                    CAPITALLETTER18=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg643); 
                     value = new Var((new Integer((int)(CAPITALLETTER18!=null?CAPITALLETTER18.getText():null).charAt(0))).intValue());
 
                     }
                     break;
                 case 3 :
-                    // Term.g:101:8: LETTER
+                    // Term.g:102:8: LETTER
                     {
-                    LETTER19=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg666); 
+                    LETTER19=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg680); 
                     value = new Var((new Integer((int)(LETTER19!=null?LETTER19.getText():null).charAt(0))).intValue());
 
                     }
                     break;
                 case 4 :
-                    // Term.g:103:8: 'true'
+                    // Term.g:104:8: 'true'
                     {
-                    match(input,26,FOLLOW_26_in_neg710); 
+                    match(input,26,FOLLOW_26_in_neg724); 
                     value = new Const("true ");
 
                     }
                     break;
                 case 5 :
-                    // Term.g:105:8: 'false'
+                    // Term.g:106:8: 'false'
                     {
-                    match(input,27,FOLLOW_27_in_neg754); 
+                    match(input,27,FOLLOW_27_in_neg768); 
                     value = new Const("false ");
 
                     }
                     break;
                 case 6 :
-                    // Term.g:107:8: CAPITALLETTER '_{' eq '}^{' LETTER '}'
+                    // Term.g:108:8: CAPITALLETTER '_{' eq[ terminoid, terminoManager] '}^{' LETTER '}'
                     {
-                    CAPITALLETTER21=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg797); 
-                    match(input,28,FOLLOW_28_in_neg799); 
-                    pushFollow(FOLLOW_eq_in_neg801);
-                    eq22=eq();
+                    CAPITALLETTER21=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_neg811); 
+                    match(input,28,FOLLOW_28_in_neg813); 
+                    pushFollow(FOLLOW_eq_in_neg815);
+                    eq22=eq(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    match(input,29,FOLLOW_29_in_neg803); 
-                    LETTER20=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg805); 
-                    match(input,30,FOLLOW_30_in_neg807); 
+                    match(input,29,FOLLOW_29_in_neg817); 
+                    LETTER20=(Token)match(input,LETTER,FOLLOW_LETTER_in_neg819); 
+                    match(input,30,FOLLOW_30_in_neg821); 
                     Var letter = new Var((new Integer((int)(LETTER20!=null?LETTER20.getText():null).charAt(0))).intValue());
                                                                    Var capl = new Var((new Integer((int)(CAPITALLETTER21!=null?CAPITALLETTER21.getText():null).charAt(0))).intValue());
                                                                    List<Var> vars = new ArrayList<Var>();
@@ -869,34 +869,41 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // Term.g:116:8: WORD '(' arguments ')'
+                    // Term.g:117:8: WORD '(' arguments[ terminoid, terminoManager] ')'
                     {
-                    WORD23=(Token)match(input,WORD,FOLLOW_WORD_in_neg820); 
-                    match(input,31,FOLLOW_31_in_neg822); 
-                    pushFollow(FOLLOW_arguments_in_neg824);
-                    arguments24=arguments();
+                    WORD23=(Token)match(input,WORD,FOLLOW_WORD_in_neg834); 
+                    match(input,31,FOLLOW_31_in_neg836); 
+                    pushFollow(FOLLOW_arguments_in_neg838);
+                    arguments24=arguments(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    match(input,32,FOLLOW_32_in_neg826); 
-                    Term aux = new Const((WORD23!=null?WORD23.getText():null));
+                    match(input,32,FOLLOW_32_in_neg840); 
+                    terminoid.setAlias((WORD23!=null?WORD23.getText():null));
+                                                                   Termino termBD = terminoManager.getTermino(terminoid);
+                                                                   if (termBD == null )
+                                                                        throw new IsNotInDBException("", 1, 1, input, terminoid.getAlias());
+                                                                   Term aux = termBD.getTermObject();
                                                                    for(Iterator<Var> i = arguments24.iterator(); i.hasNext();) 
                                                                       aux=new App(aux,i.next());
+                                                                   String aliasTemp = aux.alias;
+                                                                   aux = aux.reducir();
+                                                                   aux.alias = aliasTemp;
                                                                    value =aux;
                                                                   
 
                     }
                     break;
                 case 8 :
-                    // Term.g:122:8: '(' eq ')'
+                    // Term.g:130:8: '(' eq[ terminoid, terminoManager] ')'
                     {
-                    match(input,31,FOLLOW_31_in_neg854); 
-                    pushFollow(FOLLOW_eq_in_neg856);
-                    eq25=eq();
+                    match(input,31,FOLLOW_31_in_neg868); 
+                    pushFollow(FOLLOW_eq_in_neg870);
+                    eq25=eq(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    match(input,32,FOLLOW_32_in_neg858); 
+                    match(input,32,FOLLOW_32_in_neg872); 
                     value =eq25;
 
                     }
@@ -916,8 +923,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "instantiate"
-    // Term.g:124:1: instantiate returns [ArrayList<Object> value] : arguments ':=' explist ;
-    public final ArrayList<Object> instantiate() throws RecognitionException {
+    // Term.g:132:1: instantiate[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Object> value] : arguments[ terminoid, terminoManager] ':=' explist[ terminoid, terminoManager] ;
+    public final ArrayList<Object> instantiate(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Object> value = null;
 
         ArrayList<Var> arguments26 = null;
@@ -926,17 +933,17 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:124:46: ( arguments ':=' explist )
-            // Term.g:126:6: arguments ':=' explist
+            // Term.g:132:98: ( arguments[ terminoid, terminoManager] ':=' explist[ terminoid, terminoManager] )
+            // Term.g:134:6: arguments[ terminoid, terminoManager] ':=' explist[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_arguments_in_instantiate906);
-            arguments26=arguments();
+            pushFollow(FOLLOW_arguments_in_instantiate921);
+            arguments26=arguments(terminoid, terminoManager);
 
             state._fsp--;
 
-            match(input,33,FOLLOW_33_in_instantiate908); 
-            pushFollow(FOLLOW_explist_in_instantiate910);
-            explist27=explist();
+            match(input,33,FOLLOW_33_in_instantiate923); 
+            pushFollow(FOLLOW_explist_in_instantiate925);
+            explist27=explist(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -961,8 +968,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "explist"
-    // Term.g:132:1: explist returns [ArrayList<Term> value] : eq explisttail ;
-    public final ArrayList<Term> explist() throws RecognitionException {
+    // Term.g:140:1: explist[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Term> value] : eq[ terminoid, terminoManager] explisttail[ terminoid, terminoManager] ;
+    public final ArrayList<Term> explist(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Term> value = null;
 
         ArrayList<Term> explisttail28 = null;
@@ -971,16 +978,16 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:132:40: ( eq explisttail )
-            // Term.g:134:6: eq explisttail
+            // Term.g:140:92: ( eq[ terminoid, terminoManager] explisttail[ terminoid, terminoManager] )
+            // Term.g:142:6: eq[ terminoid, terminoManager] explisttail[ terminoid, terminoManager]
             {
-            pushFollow(FOLLOW_eq_in_explist948);
-            eq29=eq();
+            pushFollow(FOLLOW_eq_in_explist964);
+            eq29=eq(terminoid, terminoManager);
 
             state._fsp--;
 
-            pushFollow(FOLLOW_explisttail_in_explist951);
-            explisttail28=explisttail();
+            pushFollow(FOLLOW_explisttail_in_explist967);
+            explisttail28=explisttail(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -1004,8 +1011,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "explisttail"
-    // Term.g:139:1: explisttail returns [ArrayList<Term> value] : ( ',' eq tail7= explisttail | );
-    public final ArrayList<Term> explisttail() throws RecognitionException {
+    // Term.g:147:1: explisttail[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Term> value] : ( ',' eq[ terminoid, terminoManager] tail7= explisttail[ terminoid, terminoManager] | );
+    public final ArrayList<Term> explisttail(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Term> value = null;
 
         ArrayList<Term> tail7 = null;
@@ -1014,7 +1021,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:139:44: ( ',' eq tail7= explisttail | )
+            // Term.g:147:96: ( ',' eq[ terminoid, terminoManager] tail7= explisttail[ terminoid, terminoManager] | )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1032,16 +1039,16 @@ public class TermParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // Term.g:141:6: ',' eq tail7= explisttail
+                    // Term.g:149:6: ',' eq[ terminoid, terminoManager] tail7= explisttail[ terminoid, terminoManager]
                     {
-                    match(input,34,FOLLOW_34_in_explisttail996); 
-                    pushFollow(FOLLOW_eq_in_explisttail998);
-                    eq30=eq();
+                    match(input,34,FOLLOW_34_in_explisttail1013); 
+                    pushFollow(FOLLOW_eq_in_explisttail1015);
+                    eq30=eq(terminoid, terminoManager);
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_explisttail_in_explisttail1002);
-                    tail7=explisttail();
+                    pushFollow(FOLLOW_explisttail_in_explisttail1019);
+                    tail7=explisttail(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -1053,7 +1060,7 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:146:47: 
+                    // Term.g:154:47: 
                     {
                     value = new ArrayList<Term>();
 
@@ -1074,8 +1081,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "arguments"
-    // Term.g:153:1: arguments returns [ArrayList<Var> value] : ( LETTER ',' arg= arguments | CAPITALLETTER ',' arg= arguments | LETTER | CAPITALLETTER );
-    public final ArrayList<Var> arguments() throws RecognitionException {
+    // Term.g:161:1: arguments[TerminoId terminoid, TerminoManager terminoManager] returns [ArrayList<Var> value] : ( LETTER ',' arg= arguments[ terminoid, terminoManager] | CAPITALLETTER ',' arg= arguments[ terminoid, terminoManager] | LETTER | CAPITALLETTER );
+    public final ArrayList<Var> arguments(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         ArrayList<Var> value = null;
 
         Token LETTER31=null;
@@ -1086,7 +1093,7 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:153:41: ( LETTER ',' arg= arguments | CAPITALLETTER ',' arg= arguments | LETTER | CAPITALLETTER )
+            // Term.g:161:93: ( LETTER ',' arg= arguments[ terminoid, terminoManager] | CAPITALLETTER ',' arg= arguments[ terminoid, terminoManager] | LETTER | CAPITALLETTER )
             int alt8=4;
             int LA8_0 = input.LA(1);
 
@@ -1130,12 +1137,12 @@ public class TermParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // Term.g:153:43: LETTER ',' arg= arguments
+                    // Term.g:161:95: LETTER ',' arg= arguments[ terminoid, terminoManager]
                     {
-                    LETTER31=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1101); 
-                    match(input,34,FOLLOW_34_in_arguments1103); 
-                    pushFollow(FOLLOW_arguments_in_arguments1107);
-                    arg=arguments();
+                    LETTER31=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1119); 
+                    match(input,34,FOLLOW_34_in_arguments1121); 
+                    pushFollow(FOLLOW_arguments_in_arguments1125);
+                    arg=arguments(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -1148,12 +1155,12 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Term.g:159:44: CAPITALLETTER ',' arg= arguments
+                    // Term.g:167:44: CAPITALLETTER ',' arg= arguments[ terminoid, terminoManager]
                     {
-                    CAPITALLETTER32=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1155); 
-                    match(input,34,FOLLOW_34_in_arguments1157); 
-                    pushFollow(FOLLOW_arguments_in_arguments1161);
-                    arg=arguments();
+                    CAPITALLETTER32=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1173); 
+                    match(input,34,FOLLOW_34_in_arguments1175); 
+                    pushFollow(FOLLOW_arguments_in_arguments1179);
+                    arg=arguments(terminoid, terminoManager);
 
                     state._fsp--;
 
@@ -1166,9 +1173,9 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Term.g:165:44: LETTER
+                    // Term.g:173:44: LETTER
                     {
-                    LETTER33=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1209); 
+                    LETTER33=(Token)match(input,LETTER,FOLLOW_LETTER_in_arguments1227); 
                     ArrayList<Var> list=new ArrayList<Var>();
                                                                                 Var v=new Var((new Integer((LETTER33!=null?LETTER33.getText():null).charAt(0))).intValue());
                                                                                 list.add(0,v);
@@ -1178,9 +1185,9 @@ public class TermParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Term.g:171:44: CAPITALLETTER
+                    // Term.g:179:44: CAPITALLETTER
                     {
-                    CAPITALLETTER34=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1266); 
+                    CAPITALLETTER34=(Token)match(input,CAPITALLETTER,FOLLOW_CAPITALLETTER_in_arguments1284); 
                     ArrayList<Var> list=new ArrayList<Var>();
                                                                            Var v=new Var((new Integer((CAPITALLETTER34!=null?CAPITALLETTER34.getText():null).charAt(0))).intValue());
                                                                                  list.add(0,v);
@@ -1204,8 +1211,8 @@ public class TermParser extends Parser {
 
 
     // $ANTLR start "lambda"
-    // Term.g:177:1: lambda returns [Term value] : 'lambda' LETTER '.' eq ;
-    public final Term lambda() throws RecognitionException {
+    // Term.g:185:1: lambda[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : 'lambda' LETTER '.' eq[ terminoid, terminoManager] ;
+    public final Term lambda(TerminoId terminoid, TerminoManager terminoManager) throws RecognitionException {
         Term value = null;
 
         Token LETTER35=null;
@@ -1213,14 +1220,14 @@ public class TermParser extends Parser {
 
 
         try {
-            // Term.g:177:28: ( 'lambda' LETTER '.' eq )
-            // Term.g:177:30: 'lambda' LETTER '.' eq
+            // Term.g:185:80: ( 'lambda' LETTER '.' eq[ terminoid, terminoManager] )
+            // Term.g:185:82: 'lambda' LETTER '.' eq[ terminoid, terminoManager]
             {
-            match(input,35,FOLLOW_35_in_lambda1281); 
-            LETTER35=(Token)match(input,LETTER,FOLLOW_LETTER_in_lambda1283); 
-            match(input,36,FOLLOW_36_in_lambda1285); 
-            pushFollow(FOLLOW_eq_in_lambda1287);
-            eq36=eq();
+            match(input,35,FOLLOW_35_in_lambda1300); 
+            LETTER35=(Token)match(input,LETTER,FOLLOW_LETTER_in_lambda1302); 
+            match(input,36,FOLLOW_36_in_lambda1304); 
+            pushFollow(FOLLOW_eq_in_lambda1306);
+            eq36=eq(terminoid, terminoManager);
 
             state._fsp--;
 
@@ -1300,78 +1307,78 @@ public class TermParser extends Parser {
             this.transition = DFA6_transition;
         }
         public String getDescription() {
-            return "95:1: neg returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg | CAPITALLETTER | LETTER | 'true' | 'false' | CAPITALLETTER '_{' eq '}^{' LETTER '}' | WORD '(' arguments ')' | '(' eq ')' );";
+            return "96:1: neg[TerminoId terminoid, TerminoManager terminoManager] returns [Term value] : ( ( '!' | '\\\\neg' ) n= neg[ terminoid, terminoManager] | CAPITALLETTER | LETTER | 'true' | 'false' | CAPITALLETTER '_{' eq[ terminoid, terminoManager] '}^{' LETTER '}' | WORD '(' arguments[ terminoid, terminoManager] ')' | '(' eq[ terminoid, terminoManager] ')' );";
         }
     }
  
 
-    public static final BitSet FOLLOW_eq_in_start_rule22 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_term_in_eq45 = new BitSet(new long[]{0x0000000000003000L});
-    public static final BitSet FOLLOW_eqtail_in_eq47 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_eqtail77 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_term_in_eqtail84 = new BitSet(new long[]{0x0000000000003000L});
-    public static final BitSet FOLLOW_eqtail_in_eqtail88 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_disyconj_in_term156 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_disyconjtail_in_term158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_disyconjtail180 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_disyconj_in_disyconjtail187 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_disyconjtail_in_disyconjtail191 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_conc_in_disyconj252 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_conctail_in_disyconj254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_conctail273 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_conc_in_conctail280 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_conctail_in_conctail284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_neq_in_conc345 = new BitSet(new long[]{0x00000000003C0000L});
-    public static final BitSet FOLLOW_disytail_in_conc347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_disytail378 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_neq_in_disytail385 = new BitSet(new long[]{0x00000000003C0000L});
-    public static final BitSet FOLLOW_disytail_in_disytail389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_disytail404 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_neq_in_disytail411 = new BitSet(new long[]{0x00000000003C0000L});
-    public static final BitSet FOLLOW_disytail_in_disytail415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_neg_in_neq480 = new BitSet(new long[]{0x0000000000C00000L});
-    public static final BitSet FOLLOW_neqtail_in_neq482 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_neqtail508 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_neg_in_neqtail515 = new BitSet(new long[]{0x0000000000C00000L});
-    public static final BitSet FOLLOW_neqtail_in_neqtail519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_neg589 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_neg_in_neg599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_neg629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LETTER_in_neg666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_neg710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_neg754 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_neg797 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_neg799 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_eq_in_neg801 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_neg803 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_LETTER_in_neg805 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_neg807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_neg820 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_neg822 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_arguments_in_neg824 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_neg826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_neg854 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_eq_in_neg856 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_neg858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arguments_in_instantiate906 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_instantiate908 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_explist_in_instantiate910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_eq_in_explist948 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_explisttail_in_explist951 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_explisttail996 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_eq_in_explisttail998 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_explisttail_in_explisttail1002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LETTER_in_arguments1101 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_arguments1103 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_arguments_in_arguments1107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1155 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_arguments1157 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_arguments_in_arguments1161 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LETTER_in_arguments1209 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_lambda1281 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_LETTER_in_lambda1283 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_lambda1285 = new BitSet(new long[]{0x000000008F000070L});
-    public static final BitSet FOLLOW_eq_in_lambda1287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_eq_in_start_rule23 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_term_in_eq47 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_eqtail_in_eq49 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_eqtail80 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_term_in_eqtail87 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_eqtail_in_eqtail91 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_disyconj_in_term160 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_disyconjtail_in_term162 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_disyconjtail185 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_disyconj_in_disyconjtail192 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_disyconjtail_in_disyconjtail196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_conc_in_disyconj259 = new BitSet(new long[]{0x0000000000030000L});
+    public static final BitSet FOLLOW_conctail_in_disyconj261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_conctail281 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_conc_in_conctail288 = new BitSet(new long[]{0x0000000000030000L});
+    public static final BitSet FOLLOW_conctail_in_conctail292 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_neq_in_conc355 = new BitSet(new long[]{0x00000000003C0000L});
+    public static final BitSet FOLLOW_disytail_in_conc357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_disytail389 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_neq_in_disytail396 = new BitSet(new long[]{0x00000000003C0000L});
+    public static final BitSet FOLLOW_disytail_in_disytail400 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_disytail415 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_neq_in_disytail422 = new BitSet(new long[]{0x00000000003C0000L});
+    public static final BitSet FOLLOW_disytail_in_disytail426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_neg_in_neq492 = new BitSet(new long[]{0x0000000000C00000L});
+    public static final BitSet FOLLOW_neqtail_in_neq494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_neqtail521 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_neg_in_neqtail528 = new BitSet(new long[]{0x0000000000C00000L});
+    public static final BitSet FOLLOW_neqtail_in_neqtail532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_neg603 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_neg_in_neg613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_neg643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LETTER_in_neg680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_neg724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_neg768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_neg811 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_neg813 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_eq_in_neg815 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_neg817 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LETTER_in_neg819 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_neg821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_neg834 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_neg836 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_arguments_in_neg838 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_neg840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_neg868 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_eq_in_neg870 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_neg872 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arguments_in_instantiate921 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_instantiate923 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_explist_in_instantiate925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_eq_in_explist964 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_explisttail_in_explist967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_explisttail1013 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_eq_in_explisttail1015 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_explisttail_in_explisttail1019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LETTER_in_arguments1119 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_arguments1121 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_arguments_in_arguments1125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1173 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_arguments1175 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_arguments_in_arguments1179 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LETTER_in_arguments1227 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAPITALLETTER_in_arguments1284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_lambda1300 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LETTER_in_lambda1302 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_lambda1304 = new BitSet(new long[]{0x000000008F000070L});
+    public static final BitSet FOLLOW_eq_in_lambda1306 = new BitSet(new long[]{0x0000000000000002L});
 
 }
