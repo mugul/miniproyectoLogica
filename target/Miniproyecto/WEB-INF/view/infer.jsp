@@ -71,9 +71,10 @@
       <%--${mensaje}<br>--%>
       Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
       <br>$$ ${formula} $$
+      ${mensaje}<br>
       <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
-      Numero de statement:<br><sf:input path="nStatement" id="n_statement" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" /></br>
-      Instaciacion:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+      Número de teorema:<br><sf:input path="nStatement" id="n_statement" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" /></br>
+      Instaciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
       Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
       <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
     </sf:form>
