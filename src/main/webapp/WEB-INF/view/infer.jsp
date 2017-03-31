@@ -37,54 +37,37 @@
   </head>
   <body>
     <tiles:insertDefinition name="header" />
-    <div style="float: right; width: 600px;">
-      <article id="teoremas">  
-        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('teoremas')">Teoremas</a></h3>
-        <ul>
-          <c:forEach items="${teoremas}" var="teo">
-            <li><p>${teo.getId()}</p></li>
-          </c:forEach>
-        </ul>
-      </article>
-      <c:choose>
-        <c:when test="${!usuario.getLogin().equals(admin)}">
-          <article id="predefinidos" >
-            <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('predefinidos')">Predicados predefinidos</a></h3>
-            <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/predef?comb=n">
-            </iframe>
-          </article>
-        </c:when>
-      </c:choose>
-      <article id="misTerminos" >
-        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('misTerminos')">Mis predicados</a></h3>
-        <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/listarocult?comb=n">        
-        </iframe>
-      </article>
-    </div>
+
     
         
     <div style="margin-top: 20px">
-      <h1>
+<!--      <h1>
         ...aquí va la demostración...
-      </h1>
+      </h1>-->
     </div>    
-    <h4>Inserte su inferencia</h4>
+    <h4>${formula}</h4>
     <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
       <%--${mensaje}<br>--%>
       Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-      <br>${formula}
-      ${mensaje}<br>
+      <br><br>
 
       <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
-
-      Número de teorema:<br><sf:input path="nStatement" id="n_statement" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" /></br>
+      Teorema a usar:<br>
+            <select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
+            <c:forEach items="${mensaje}" var="cat">
+              <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
+            </c:forEach>  
+            </select>
+      <br>
       Instaciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
       Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
       <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
 
     </sf:form>
          <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
+         <br>
 
+              
     <script>
       t=document.getElementById('termino_string');
       t.innerText="${termino}";
