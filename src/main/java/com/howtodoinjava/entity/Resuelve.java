@@ -45,10 +45,11 @@ public class Resuelve  implements java.io.Serializable {
         this.numeroteorema = numeroteorema;
         this.resuelto = resuelto;
     }
-   
+
     public int getId() {
-        return this.id;
+        return id;
     }
+   
     
     public void setId(int id) {
         this.id = id;

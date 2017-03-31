@@ -10,6 +10,7 @@ import com.howtodoinjava.entity.Metateorema;
 import com.howtodoinjava.entity.Publicacion;
 import com.howtodoinjava.entity.PublicacionId;
 import com.howtodoinjava.entity.Resuelve;
+import com.howtodoinjava.entity.Solucion;
 import com.howtodoinjava.entity.Teorema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ import com.howtodoinjava.lambdacalculo.App;
 import com.howtodoinjava.lambdacalculo.Brackear;
 import com.howtodoinjava.lambdacalculo.Comprobacion;
 import com.howtodoinjava.lambdacalculo.Const;
+import com.howtodoinjava.lambdacalculo.PasoInferencia;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
 import com.howtodoinjava.lambdacalculo.Term;
@@ -44,6 +46,7 @@ import com.howtodoinjava.service.CategoriaManager;
 import com.howtodoinjava.service.DisponeManager;
 import com.howtodoinjava.service.MetateoremaManager;
 import com.howtodoinjava.service.ResuelveManager;
+import com.howtodoinjava.service.SolucionManager;
 import com.howtodoinjava.service.TeoremaManager;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -70,6 +73,8 @@ public class PerfilController {
     private MetateoremaManager metateoremaManager;
     @Autowired
     private CategoriaManager categoriaManager;
+    @Autowired
+    private SolucionManager solucionManager;
     @Autowired
     private HttpSession session;
     
@@ -239,6 +244,26 @@ public class PerfilController {
                 Dispone dispone = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
                 disponeManager.addDispone(dispone);
                 
+                PasoInferencia paso = new PasoInferencia(teoTerm, izq, der, null, "Zzvx");
+                Solucion solucion = new Solucion(resuelve,paso);
+                solucion.setResuelve(resuelve);
+                solucion.addArregloInferencias(paso);
+                solucionManager.addSolucion(solucion);
+//             
+//                System.out.println("El serializado es: "+SerializationUtils.serialize(paso));
+//                solucion.addArregloInferencias(paso);
+//                solucionManager.addSolucion(solucion);
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                 map.addAttribute("usuario", usuarioManager.getUsuario(username));
                 map.addAttribute("mensaje", "Su teorema ha sido guardado con exito");
                 map.addAttribute("admin","admin");

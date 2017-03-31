@@ -8,6 +8,7 @@ import com.howtodoinjava.entity.Categoria;
 import com.howtodoinjava.entity.Dispone;
 import com.howtodoinjava.entity.Metateorema;
 import com.howtodoinjava.entity.Resuelve;
+import com.howtodoinjava.entity.Solucion;
 import com.howtodoinjava.entity.Teorema;
 import com.howtodoinjava.entity.TerminoId;
 import com.howtodoinjava.entity.Usuario;
@@ -16,6 +17,7 @@ import com.howtodoinjava.forms.InsertarEvaluar;
 import com.howtodoinjava.lambdacalculo.App;
 import com.howtodoinjava.lambdacalculo.Const;
 import com.howtodoinjava.lambdacalculo.Corrida;
+import com.howtodoinjava.lambdacalculo.PasoInferencia;
 import com.howtodoinjava.lambdacalculo.Term;
 import com.howtodoinjava.lambdacalculo.Tripla;
 import com.howtodoinjava.parse.IsNotInDBException;
@@ -87,16 +89,15 @@ public class EvaluarController {
         ////// ESTE CODIGO ES SOLO DE PRUEBAS
         ////// ESTE CODIGO ES SOLO DE PRUEBA
         
-//            solucionManager.getAllSolucionesByResuelve(resuelveId);
-        
+    
             
-            List<Teorema> teoList = teoremaManager.getTeoremasByCategoria(1);
-            for (Teorema x: teoList) {
-                System.out.print("El teorema ");
-                System.out.print(x.getId());
-                System.out.print(" es de la categoria ");
-                System.out.println(x.getCategoria().getId());
-            }
+//            List<Teorema> teoList = teoremaManager.getTeoremasByCategoria(1);
+//            for (Teorema x: teoList) {
+//                System.out.print("El teorema ");
+//                System.out.print(x.getId());
+//                System.out.print(" es de la categoria ");
+//                System.out.println(x.getCategoria().getId());
+//            }
             
             
             AgregarTeorema agregarTeorema = new AgregarTeorema("(p == p) == (q == q)", "45", "3.23", "El 3.23");
@@ -137,6 +138,49 @@ public class EvaluarController {
                 }
 
 
+//    public class PasoInferencia
+//    {
+//        public  Term expresion; // Teorema a demostrar 
+//        public  Term teoIzq;  // Teorema a utilizar, parte izquierda
+//        public  Term teoDer;  // Teorema a utilizar, parte derecha  
+//        public  Term leibniz;
+//        public  String  instancia;
+//     
+//    public Solucion(Resuelve resuelve, byte[] arregloSerializado, List<PasoInferencia> arregloInferencias) {
+//        this.resuelve = resuelve;
+//        this.arregloSerializado = SerializationUtils.serialize(arregloInferencias);
+//        this.arregloInferencias = arregloInferencias;
+//    }
+    
+//            System.out.println("Llego hasta aqui");
+//            Solucion solucion = new Solucion();
+//            solucion.setResuelve(resuelveManager.getResuelve(1));
+//            PasoInferencia paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la instanciacion");
+//            solucion.addArregloInferencias(paso);
+//            paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la segunda instanciacion");
+//            solucion.addArregloInferencias(paso);
+//            System.out.println("Aqui se imprime la solucion");
+//            for (PasoInferencia x: solucion.getArregloInferencias()) {
+//                System.out.println("=============================");
+//                System.out.print("El teorema a resolver: ");
+//                System.out.println(x.getExpresion().toStringInf());
+//                System.out.print("El lado izq del teo es: ");
+//                System.out.println(x.getTeoIzq().toStringInf());
+//                System.out.print("El lado der del teo es: ");
+//                System.out.println(x.getTeoDer().toStringInf());
+//                System.out.print("El leibniz es: ");
+//                System.out.println(x.getLeibniz().toStringInf());
+//                System.out.print("Finalmente, instanciacion es: ");
+//                System.out.println(x.getInstancia().toString());
+//                System.out.println("------------------------------");
+//            }
+//            
+//            
+//            System.out.println(solucion.getArregloInferencias());
+//            System.out.println("Y aqui el toString()");
+//            System.out.println(solucion.getArregloInferencias().toString());
+//            
+            
                 // Este teorema sera utilizado para ver si ya existe en la BD
                 Teorema teorema2 = teoremaManager.getTeoremaByEnunciados(izq.toString(), der.toString());
                 if (teorema2 != null) {

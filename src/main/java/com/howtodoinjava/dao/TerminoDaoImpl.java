@@ -6,7 +6,6 @@ package com.howtodoinjava.dao;
 
 import com.howtodoinjava.entity.Termino;
 import com.howtodoinjava.entity.TerminoId;
-import com.howtodoinjava.entity.Usuario;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

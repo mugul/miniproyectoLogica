@@ -38,10 +38,11 @@
         <h1>Inserte su inferencia</h1>
     <center>
 
-    <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+
+        <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+        ${formula}
         ${mensaje}<br>
         Paso anterior: <sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-        $$ ${formula} $$
         <!--$$ \cssId{eq}{\style{cursor:pointer;}{p\equiv q}}  $$-->
         <br>Numero de statement: <sf:input path="nStatement" id="n_statement" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" /></br>
         <br>Instaciacion: <sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
