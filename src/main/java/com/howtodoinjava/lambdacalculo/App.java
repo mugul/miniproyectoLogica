@@ -406,7 +406,7 @@ public class App extends Term{
         boolean pp =  p instanceof App;
         boolean qq = q instanceof App;
         System.out.println(pp +"+++++++++++++++++"+qq);
-        if(  (p.alias == null) && (q.alias == null) ) {      
+        if( ((p.alias == null) && (q.alias == null) ) ) {      
            if((p instanceof App) && (q instanceof App)){
                System.out.println("+++++++++++++111111111111111+++++++++++++++++"); 
                return q.toStringInf()+" "+p.toStringInf();  
@@ -429,10 +429,10 @@ public class App extends Term{
                         return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
                     }else{
                         return q.toStringInf()+" "+sim+" ("+((App) p).q.toStringInf()+")";
-                    }
+                    }                       
                }else{
                     return "("+q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf()+")";
-                }
+               }
            }else{
                 System.out.println("+++++++++++++44444444+++++++++++++++++"); 
                 return p.toStringInf()+" "+q.toStringInf();

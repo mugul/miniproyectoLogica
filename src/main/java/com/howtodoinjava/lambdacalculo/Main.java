@@ -25,13 +25,15 @@ public class Main {
         Term t1 = mk.makeTerm("p  /\\  (p  \\/ (p  ==  p))");
 
         Term v = mk.makeTerm("(p \\/ q) \\/ p == (q ==> true)");
-        Term v1 = mk.makeCuant("(forallx|:P)");
+        Term v1 = mk.makeCuant("(forallx|R:P) == (forallx|P:Q)");
         Term a = mk.makeApp("p", "r");
         
         //System.out.println(t1.toStringInFin());
         System.out.println("+++++++++++++----------+++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");
-        System.out.println(v1.toStringInf());
+        //System.out.println(v1 instanceof Bracket);
+        //System.out.println(v1.toString());
+        System.out.println(v1.toStringInFin());
         System.out.println("++++++++++++---------------++++++++++++++++++");
         System.out.println("++++++++++++++++++++++++++++++");
         //System.out.println(t1.toStringInf());

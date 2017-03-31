@@ -122,32 +122,60 @@ public class Bracket extends Term{
     }
     
     public String toString()
-    {
+    {   
         if(t.alias == null)
             return "(\\lambda "+x.toString()+"."+t.toStringFinal()+")";
-        else
-            return "(\\lambda "+x.toString()+"."+t.alias.split("@")[0].replace("_", "\\_") +")";
+        else{
+            return "(\\lambda "+x.toStringInFin()+"."+t.alias +")";
+            //return "(\\lambda "+x.toString()+"."+t.alias.split("@")[0].replace("_", "\\_") +")";
+        }
     }
+    
     
     public String toStringInFin()
     {
+        if(t.alias == null) {
+            //FALTA IMPLEMENTAR FINAL
+            if (t instanceof App) {
+                return "(forall "+ x.toStringInFin()+"|"+((App) t).p.toStringInFin()+":"+ ((App) t).p.toStringFinalInFin()+")";
+            }else{
+                //FALTA IMPLEMENTAR FINAL
+                //return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
+                return "(\\forall "+x.toStringInFin()+"|:"+t.toStringFinalInFin()+")";
+            }
+        }else {
+            if (t instanceof App) {
+                return "(forall "+ x.toStringInFin()+"|:"+ t.alias+")" ;
+            }else{
+                return "(\\forall "+x.toStringInFin()+"|:"+t.toStringFinalInFin()+")";
+            }
+        }//.split("@")[0].replace("_", "\\_") +")";
+    }
+    
+    public String toStringInf()
+    {
+       /* if(t.alias == null) {
+            System.out.println(t instanceof App);
+            if (t instanceof App) {
+                if (((App) t).p instanceof App ) {
+                    return "(forall "+x.toStringInf()+"|"+t.toStringFinalInf()+")";
+                }
+                return "(forall "+x.toStringInf()+"|"+t.toStringFinalInf()+")";
+            }else{
+                //FALTA IMPLEMENTAR FINAL
+                //return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
+                return "(\\forall "+x.toStringInf()+"|:"+t.toStringFinalInf()+")";
+            }
+        }else {
+            //return "(\\lambda "+x.toStringInf()+"."+t.alias +")";
+            return "(forall "+x.toStringInf()+"|"+t.toStringFinalInf()+")";
+        }*/
         if(t.alias == null) {
             //FALTA IMPLEMENTAR FINAL
             return "(\\lambda "+x.toStringInFin()+"."+t.toStringFinalInFin()+")";
         }
         else {
             return "(\\lambda "+x.toStringInFin()+"."+t.alias +")";
-        }//.split("@")[0].replace("_", "\\_") +")";
-    }
-    
-    public String toStringInf()
-    {
-        if(t.alias == null) {
-            //FALTA IMPLEMENTAR FINAL
-            return "(\\lambda "+x.toStringInf()+"."+t.toStringFinalInf()+")";
-        }
-        else {
-            return "(\\lambda "+x.toStringInf()+"."+t.alias +")";
         }//.split("@")[0].replace("_", "\\_") +")";
     }
     
