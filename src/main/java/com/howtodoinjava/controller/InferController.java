@@ -87,7 +87,8 @@ public class InferController {
         map.addAttribute("perfilMenu","");
         map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
+        map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
         return "infer";
     }
      
@@ -117,7 +118,7 @@ public class InferController {
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "infer";
             }
         
@@ -162,7 +163,7 @@ public class InferController {
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "infer";
             }
             catch(RecognitionException e)
@@ -186,7 +187,7 @@ public class InferController {
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "infer";
             }
        
@@ -309,7 +310,7 @@ public class InferController {
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "infer";
             }
             
@@ -343,7 +344,7 @@ public class InferController {
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "infer";
             }
             term = term.sustParall((ArrayList<Var>)arr.get(0), (ArrayList<Term>)arr.get(1));
@@ -417,7 +418,7 @@ public class InferController {
             map.addAttribute("perfilMenu","");
             map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
             map.addAttribute("overflow","hidden");
-            map.addAttribute("anchuraDiv","1100px");
+            map.addAttribute("anchuraDiv","1200px");
             return "infer";
 //            
 //            

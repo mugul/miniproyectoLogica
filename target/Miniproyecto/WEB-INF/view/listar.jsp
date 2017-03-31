@@ -64,7 +64,7 @@
     </script>
 
     <table class="table table-hover" border="1">
-      <thead><tr><th style="width: 300px;">Alias</th><th>Término</th></tr></thead>
+      <thead><tr><th style="width: 180px;">Alias</th><th>Término</th></tr></thead>
       <tbody>  
         <c:forEach var="termino" items="${terminos}"> 
           <tr>

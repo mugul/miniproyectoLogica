@@ -35,9 +35,40 @@
   </head>
   <body>
     <tiles:insertDefinition name="header" />
-    <h1>Inserte su inferencia</h1>
+    <div style="float: right; width: 600px;">
+      <article id="teoremas">  
+        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('teoremas')">Teoremas</a></h3>
+        <ul>
+          <c:forEach items="${teoremas}" var="teo">
+            <li><p>${teo.getId}</p></li>
+          </c:forEach>
+        </ul>
+      </article>
+      <c:choose>
+        <c:when test="${!usuario.getLogin().equals(admin)}">
+          <article id="predefinidos" >
+            <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('predefinidos')">Predicados predefinidos</a></h3>
+            <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/predef?comb=n">
+            </iframe>
+          </article>
+        </c:when>
+      </c:choose>
+      <article id="misTerminos" >
+        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('misTerminos')">Mis predicados</a></h3>
+        <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/listarocult?comb=n">        
+        </iframe>
+      </article>
+    </div>
+    
+        
+    <div style="margin-top: 20px">
+      <h1>
+        ...aquí va la demostración...
+      </h1>
+    </div>    
+    <h4>Inserte su inferencia</h4>
     <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-      ${mensaje}<br>
+      <%--${mensaje}<br>--%>
       Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
       <br>$$ ${formula} $$
       <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->

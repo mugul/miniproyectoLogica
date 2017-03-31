@@ -1,4 +1,8 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="page-header" style="margin-bottom: 0 !important;">
+  <h1 style="color: #03A9F4; font-size: 60px;">Título <small>desmotraciones de Lógica Simbólica \forall</small></h1>
+</div>
+
+<div class="navbar navbar-default ">
   <div class="navbar-inner">
     <div class="container">
       <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
