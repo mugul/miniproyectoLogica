@@ -101,7 +101,7 @@ public class PerfilController {
         map.addAttribute("computarMenu","");
         map.addAttribute("perfilMenu","class=\"active\"");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         return "perfil";
     }
     
@@ -115,8 +115,8 @@ public class PerfilController {
         map.addAttribute("agregarTeorema",new AgregarTeorema());
         map.addAttribute("modificar",new Integer(0));
         map.addAttribute("teorema","");
-//        map.addAttribute("categoria",categoriaManager.getAllCategorias());
-        map.addAttribute("categoria","");
+        map.addAttribute("categoria",categoriaManager.getAllCategorias());
+//        map.addAttribute("categoria","");
         map.addAttribute("numeroTeorema","");
         map.addAttribute("mensaje", "");
         map.addAttribute("admin","admin");
@@ -128,7 +128,7 @@ public class PerfilController {
         map.addAttribute("computarMenu","");
         map.addAttribute("perfilMenu","");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         
         return "agregarTeorema";
     }
@@ -165,7 +165,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "agregarTeorema";
             }
             
@@ -214,7 +214,7 @@ public class PerfilController {
                 // Se busca si existe la cat, si no existe se crea
 //                System.out.println("La categoria selecionada es: "+agregarTeorema.getCategoria()+" .....................................");
                 Categoria categoria;
-                categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoria()));
+                categoria = categoriaManager.getCategoria(new Integer(agregarTeorema.getCategoriaSeleccionada()));
                 if (categoria == null) {
 //                    System.out.println("LA CATEGORIA ES NULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 //                    categoria = new Categoria(agregarTeorema.getCategoria());
@@ -270,7 +270,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","class=\"active\"");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 System.out.println("El valor de la categoria");
                 System.out.println(agregarTeorema.getCategoriaSeleccionada());
                 return "perfil";
@@ -336,7 +336,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "agregarTeorema";
             }
             catch(RecognitionException e)
@@ -363,7 +363,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "agregarTeorema";
             }
     }
@@ -395,7 +395,7 @@ public class PerfilController {
         map.addAttribute("computarMenu","");
         map.addAttribute("perfilMenu","");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         
         return "introducirTermino";
     }
@@ -427,7 +427,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
             
@@ -502,7 +502,7 @@ public class PerfilController {
                     map.addAttribute("computarMenu","");
                     map.addAttribute("perfilMenu","class=\"active\"");
                     map.addAttribute("overflow","hidden");
-                    map.addAttribute("anchuraDiv","1100px");
+                    map.addAttribute("anchuraDiv","1200px");
                     return "introducirTermino";
                 }
                 else
@@ -521,7 +521,7 @@ public class PerfilController {
                     map.addAttribute("computarMenu","");
                     map.addAttribute("perfilMenu","");
                     map.addAttribute("overflow","hidden");
-                    map.addAttribute("anchuraDiv","1100px");
+                    map.addAttribute("anchuraDiv","1200px");
                     return "introducirTermino";
                 }
             }
@@ -541,7 +541,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
             catch(IsNotInDBException e)
@@ -562,7 +562,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
             catch(RecognitionException e)
@@ -583,7 +583,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
     }
@@ -607,7 +607,7 @@ public class PerfilController {
         map.addAttribute("mensaje", "");
         map.addAttribute("admin","admin");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         
         return "introducirTermino";
     }
@@ -635,7 +635,7 @@ public class PerfilController {
         map.addAttribute("mensaje", "");
         map.addAttribute("admin","admin");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         
         return "introducirTermino";
     }
@@ -662,7 +662,7 @@ public class PerfilController {
                 map.addAttribute("mensaje", "");
                 map.addAttribute("admin","admin");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
         
@@ -695,7 +695,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","class=\"active\"");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "perfil";
             }
             else
@@ -711,7 +711,7 @@ public class PerfilController {
                 else
                     map.addAttribute("alias",aliasNuevo);
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
     }
@@ -738,7 +738,7 @@ public class PerfilController {
                 map.addAttribute("mensaje", "");
                 map.addAttribute("admin","admin");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
         
@@ -789,7 +789,7 @@ public class PerfilController {
                 map.addAttribute("computarMenu","");
                 map.addAttribute("perfilMenu","class=\"active\"");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "perfil";
             }
             catch(AlphaEquivalenceException e)
@@ -802,7 +802,7 @@ public class PerfilController {
                 map.addAttribute("alias","");
                 map.addAttribute("admin","admin");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
             catch(IsNotInDBException e)
@@ -817,7 +817,7 @@ public class PerfilController {
                 map.addAttribute("alias","");
                 map.addAttribute("admin","admin");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
             catch(RecognitionException e)
@@ -832,7 +832,7 @@ public class PerfilController {
                 map.addAttribute("alias","");
                 map.addAttribute("admin","admin");
                 map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1100px");
+                map.addAttribute("anchuraDiv","1200px");
                 return "introducirTermino";
             }
     }
@@ -1127,7 +1127,7 @@ public class PerfilController {
         map.addAttribute("computarMenu","");
         map.addAttribute("perfilMenu","class=\"active\"");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         
         return "perfil";
     }
@@ -1155,7 +1155,7 @@ public class PerfilController {
         map.addAttribute("perfilMenu","");
         map.addAttribute("hrefAMiMismo","href=ingresar#!");
         map.addAttribute("overflow","hidden");
-        map.addAttribute("anchuraDiv","1100px");
+        map.addAttribute("anchuraDiv","1200px");
         
         return "insertarEvaluar";
     }

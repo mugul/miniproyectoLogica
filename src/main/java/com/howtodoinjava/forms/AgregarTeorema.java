@@ -16,7 +16,7 @@ public class AgregarTeorema {
 
      @NotEmpty(message="no debe dejar este campo vacío")
      private String teorema;
-     @NotEmpty(message="no debe dejar este campo vacío")
+//     @NotEmpty(message="no debe dejar este campo vacío")
      private String categoria;
      @NotEmpty(message="no debe dejar este campo vacío")
      private String numeroTeorema;

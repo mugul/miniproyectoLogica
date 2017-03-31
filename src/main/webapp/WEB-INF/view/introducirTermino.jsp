@@ -22,6 +22,24 @@
   <body>
     <tiles:insertDefinition name="header" />
     <h1>Introduzca el predicado que desee guardar</h1>
+    
+    <div style="float: right; width: 600px;">
+      <c:choose>
+        <c:when test="${!usuario.getLogin().equals(admin)}">
+          <article id="predefinidos" >
+            <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('predefinidos')">Predicados predefinidos</a></h3>
+            <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/predef?comb=n">
+            </iframe>
+          </article>
+        </c:when>
+      </c:choose>
+      <article id="misTerminos" >
+        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('misTerminos')">Mis predicados</a></h3>
+        <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/listarocult?comb=n">        
+        </iframe>
+      </article>
+    </div>
+    
     <c:choose>
       <c:when test="${modificar.intValue()==0}">
         <sf:form method="POST" modelAttribute="usuarioGuardar">
@@ -53,20 +71,7 @@
         t=document.getElementById('termino_string');
         t.innerText="${termino}";
     </script>
-      <c:choose>
-        <c:when test="${!usuario.getLogin().equals(admin)}">
-          <article id="predefinidos" >
-            <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('predefinidos')">Predicados predefinidos</a></h3>
-            <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/predef?comb=n">
-            </iframe>
-          </article>
-        </c:when>
-      </c:choose>
-      <article id="misTerminos" >
-        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('misTerminos')">Mis predicados</a></h3>
-        <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/listarocult?comb=n">        
-        </iframe>
-      </article>
+      
 <!--        <article id="publicos" >
           <h2 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('publicos')">Predicados públicos</a></h2>
       <iframe width="100%" height="100%" src="../${usuario.getLogin()}/publiconoclick?comb=n">
