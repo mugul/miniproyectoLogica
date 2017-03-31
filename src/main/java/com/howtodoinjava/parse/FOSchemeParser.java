@@ -1,5 +1,5 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 FOScheme.g 2017-03-31 00:00:37
-package com.howtodoinjava.parse;
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 FOScheme.g 2017-03-31 07:36:10
+package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.entity.Predicado;
 import com.howtodoinjava.entity.PredicadoId;
@@ -570,7 +570,6 @@ public class FOSchemeParser extends Parser {
                 throw nvae;
             }
 
-            
             switch (alt4) {
                 case 1 :
                     // FOScheme.g:71:6: ( '\\\\/' | '\\\\vee' ) neq tail4= disytail
