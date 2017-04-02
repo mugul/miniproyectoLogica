@@ -27,7 +27,19 @@
     <c:choose>
       <c:when test="${modificar.intValue()==0}">
         <sf:form method="POST" modelAttribute="agregarTeorema">
+          <c:choose>
+            <c:when test='${usuario.getLogin().equals(admin)}'>
+              <label style="display: -webkit-inline-box; margin-right: 4px;"><input type="checkbox" style="margin: 0 4px 0 0;" value="" >Axioma</label>
+            </c:when>
+          </c:choose>
+          <label style="display: -webkit-inline-box"><input type="checkbox" style="margin: 0 4px 0 0;" value="" >Es Esquema</label>
+          <br>
           Teorema:<br><sf:input path="teorema" value="${teorema}"/><sf:errors path="teorema" cssClass="error" /><br/>
+          Tipo: <br>
+          <select class="form-control" id="selecTipo" name="tipoSeleccionado">
+            <option value="">Lógica Propocisional</option>
+            <option value="">Lógica de Predicado</option>
+          </select><br>
           Categoría:<br>
           <select class="form-control" id="selecCateg" name="categoriaSeleccionada">
             <c:forEach items="${categoria}" var="cat">
