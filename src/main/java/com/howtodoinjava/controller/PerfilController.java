@@ -844,7 +844,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }    
-        map.addAttribute("titulo", "Mis T&eacute;rminos");
+        map.addAttribute("titulo", "Mis Abreviaciones");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -912,7 +912,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "Mis T&eacute;rminos");
+        map.addAttribute("titulo", "Mis Abreviaciones");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -938,7 +938,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "T&eacute;rminos publicos");
+        map.addAttribute("titulo", "Abreviaciones publicas");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -972,7 +972,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "T&eacute;rminos publicos");
+        map.addAttribute("titulo", "Abreviaciones publicas");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -998,7 +998,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "T&eacute;rminos predefinidos");
+        map.addAttribute("titulo", "Abreviaciones predefinidas");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -1056,7 +1056,7 @@ public class PerfilController {
         Termino termino0 = terminoManager.getTermino(publicTerminoid);
         if(termino0 != null)
         {
-            map.addAttribute("titulo", "Mis T&eacute;rminos");
+            map.addAttribute("titulo", "Mis Abreviaciones");
             map.addAttribute("publico", "publico");
             map.addAttribute("admin","admin");
             map.addAttribute("usuario", usuarioManager.getUsuario(username));
@@ -1087,7 +1087,7 @@ public class PerfilController {
         }
         catch(AlphaEquivalenceException e)
         {
-            map.addAttribute("titulo", "Mis T&eacute;rminos");
+            map.addAttribute("titulo", "Mis Abreviaciones");
             map.addAttribute("publico", "publico");
             map.addAttribute("admin","admin");
             map.addAttribute("usuario", usuarioManager.getUsuario(username));

@@ -27,39 +27,93 @@
               texArea.value="";
         }
       }
+      
+
     </script>
     <base href="/Miniproyecto/perfil/${usuario.login}/"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" >
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
     <tiles:insertDefinition name="style" />
-    <title>Miniproyecto</title>
+    <title>MP|Demostrar</title>
   </head>
   <body>
     <tiles:insertDefinition name="header" />
-
     
-        
-    <div style="margin-top: 20px">
-<!--      <h1>
-        ...aquí va la demostración...
-      </h1>-->
-    </div>    
-    <h4>${formula}</h4>
-    <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-      <%--${mensaje}<br>--%>
-      Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-      <br><br>
+    <script>
+            function insertAtCursor(myField, myValue) 
+      {            
+        myValue+="";
+        //IE support
+        if (parent.window.document.selection) {
+          parent.window.document.getElementById(myField).focus();
+          sel = parent.window.document.selection.createRange();
+          sel.text = myValue;
+        }
+        //MOZILLA and others
+        else if (parent.window.document.getElementById(myField).selectionStart || 
+                 parent.window.document.getElementById(myField).selectionStart == '0') {
+          var startPos = parent.window.document.getElementById(myField).selectionStart;
+          var endPos = parent.window.document.getElementById(myField).selectionEnd;
+          var newPos = startPos + myValue.length
+          parent.window.document.getElementById(myField).value = parent.window.document.getElementById(myField).value.substring(0, startPos)
+              + myValue
+              + parent.window.document.getElementById(myField).value.substring(endPos, parent.window.document.getElementById(myField).value.length);
+          parent.window.document.getElementById(myField).selectionStart = newPos;
+          parent.window.document.getElementById(myField).selectionEnd = newPos;
+        } else {
+          parent.window.document.getElementById(myField).value += myValue;
+          parent.window.document.getElementById(myField).selectionStart = newPos;
+          parent.window.document.getElementById(myField).selectionEnd = newPos;
+        }
+        parent.window.document.getElementById(myField).focus();
+      }
+    </script>
 
+    <div style="float: right; width: 600px;">
+      <p>${categorias}</p>
+      <article id="teoremas" >
+        <h3 style="margin: 0px;padding:0px;height:40px;"><a onclick="desplegar('teoremas')">Teoremas</a></h3>
+      
+        <ul>
+          <%-- <c:forEach items="${categorias}" var="cat"> --%>
+            <!--<li style="list-style: none;"><h4>${cat.getNombre()}</h4>-->
+              <!--<ul>-->
+                 <c:forEach items="${mensaje}" var="teo">
+              <%-- <c:choose>
+                    <c:when test="${teo.getCategoria().getId()}==${cat.getId()}"> --%>
+                    <c:choose>
+                      <c:when test="${click.equals(yes)}">
+                        <li><a onclick="insertAtCursor('pasoAnt_id', '${teo.getEnunciadoizq()} == ${teo.getEnunciadoder()}')">${teo.getEnunciadoizq()} == ${teo.getEnunciadoder()}</a></li>
+                      </c:when>
+                    </c:choose>                
+                      <li style="list-style: none;" ><a style="text-align: left;">${teo.getEnunciadoizq()} == ${teo.getEnunciadoder()} </a></li>
+              <%--  </c:when>
+                  </c:choose>--%>
+                </c:forEach>
+<!--          </ul>
+            </li>-->
+      <%--</c:forEach> --%>
+        </ul>
+      </article>     
+    </div>
+        
+    <div style="width: 500px;">
+        <h5>${formula}</h5>
+    </div>    
+
+    <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+      Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
+      <br>
       <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
       Teorema a usar:<br>
-            <select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
+       <select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
             <c:forEach items="${mensaje}" var="cat">
               <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
             </c:forEach>  
             </select>
       <br>
-      Instaciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+      Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
       Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
       <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
 

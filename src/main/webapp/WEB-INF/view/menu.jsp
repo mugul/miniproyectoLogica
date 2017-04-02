@@ -13,7 +13,7 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li ${computarMenu}><a href="../../infer/${usuario.login}">Demostrar</a></li>   
-          <li ${listarTerminosMenu}><a href="listar?comb=n">Mis Términos</a></li>
+          <li ${listarTerminosMenu}><a href="listar?comb=n">Mis Abreviaciones</a></li>
           <li ${guardarMenu}><a href="guardar">Agregar Predicado</a></li>
           <li ${agregarTeoremaMenu}><a href="guardarteo">Agregar Teorema</a></li>
 <!--      <li ${verTerminosPublicosMenu}><a href="publico?comb=n">Ver T&eacute;rminos Publicos</a></li>

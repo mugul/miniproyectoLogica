@@ -23,6 +23,7 @@ import com.howtodoinjava.service.SolucionManager;
 import com.howtodoinjava.service.TeoremaManager;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
+import com.howtodoinjava.service.CategoriaManager;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -63,6 +64,8 @@ public class InferController {
     private ResuelveManager resuelveManager;
     @Autowired
     private HttpSession session;
+    @Autowired
+    private CategoriaManager categoriaManager;
     
     @RequestMapping(value="/{username}", method=RequestMethod.GET)
     public String inferView(@PathVariable String username, ModelMap map) {
@@ -120,6 +123,7 @@ public class InferController {
                 map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
                 map.addAttribute("overflow","hidden");
                 map.addAttribute("anchuraDiv","1200px");
+                map.addAttribute("categorias",categoriaManager.getAllCategorias());
                 return "infer";
             }
         
