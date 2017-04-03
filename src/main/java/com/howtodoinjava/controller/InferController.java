@@ -24,6 +24,7 @@ import com.howtodoinjava.service.TeoremaManager;
 import com.howtodoinjava.service.TerminoManager;
 import com.howtodoinjava.service.UsuarioManager;
 import com.howtodoinjava.service.CategoriaManager;
+import com.howtodoinjava.service.MetateoremaManager;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -61,6 +62,8 @@ public class InferController {
     @Autowired
     private TeoremaManager teoremaManager;
     @Autowired
+    private MetateoremaManager metateoremaManager;
+    @Autowired
     private ResuelveManager resuelveManager;
     @Autowired
     private HttpSession session;
@@ -93,6 +96,7 @@ public class InferController {
         map.addAttribute("anchuraDiv","1200px");
         map.addAttribute("categorias",categoriaManager.getAllCategorias());
         map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
+        map.addAttribute("metateoremas",metateoremaManager);
         return "infer";
     }
      

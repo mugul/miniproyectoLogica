@@ -19,7 +19,7 @@
             }
             
             article.teoremas{
-                height:250px;
+                height:350px;
                 outline: none;
                 overflow: scroll;
             }
