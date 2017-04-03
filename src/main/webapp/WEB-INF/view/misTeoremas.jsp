@@ -17,15 +17,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" >
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
-    <title>MP|Mis Teoremas</title>
+    <title>David | Mis Teoremas</title>
+    <tiles:insertDefinition name="style" />
   </head>
   <body>
+    <tiles:insertDefinition name="header" />
+    <h1>Mis Teoremas</h1>
     
     
-    <c:choose>
-      <c:when test="${perfil.intValue()==1}">
-        <tiles:insertDefinition name="footer" />
-      </c:when>
-    </c:choose>
+    <tiles:insertDefinition name="footer" />
   </body>
 </html>
