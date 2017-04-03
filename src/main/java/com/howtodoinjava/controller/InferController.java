@@ -71,12 +71,11 @@ public class InferController {
     public String inferView(@PathVariable String username, ModelMap map) {
         if ( (Usuario)session.getAttribute("user") == null || !((Usuario)session.getAttribute("user")).getLogin().equals(username))
         {
-            Teorema teo;
             return "redirect:/index";
         }
         map.addAttribute("usuario", usuarioManager.getUsuario(username));
         map.addAttribute("infer",new InfersForm());
-        map.addAttribute("mensaje",usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
+        map.addAttribute("mensaje","");
         map.addAttribute("pasoAnt","");
         map.addAttribute("nStatement","");
         map.addAttribute("instanciacion","");
@@ -92,6 +91,7 @@ public class InferController {
         map.addAttribute("hrefAMiMismo","href=../../eval/"+username+"#!");
         map.addAttribute("overflow","hidden");
         map.addAttribute("anchuraDiv","1200px");
+        map.addAttribute("categorias",categoriaManager.getAllCategorias());
         map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
         return "infer";
     }
@@ -106,12 +106,13 @@ public class InferController {
             if( bindingResult.hasErrors() )
             {
                 map.addAttribute("usuario", usuarioManager.getUsuario(username));
-                map.addAttribute("mensaje",usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
+                map.addAttribute("mensaje","");
                 map.addAttribute("infer", infersForm);
                 map.addAttribute("pasoAnt",infersForm.getPasoAnt());
                 map.addAttribute("nStatement",infersForm.getnStatement());
                 map.addAttribute("instanciacion",infersForm.getInstanciacion());
                 map.addAttribute("leibniz",infersForm.getLeibniz()); 
+                map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
                 map.addAttribute("formula","");
                 map.addAttribute("guardarMenu","");
                 map.addAttribute("admin","admin");
