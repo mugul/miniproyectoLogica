@@ -96,8 +96,12 @@ public class TeoremaManagerImpl implements TeoremaManager {
     public List<Teorema> getTeoremaByResuelveList(List<Resuelve> resList) {
         List<Teorema> teoList = new ArrayList<Teorema>();
         System.out.println("AQUI SE AGREGAN A LA LISTA");
+        Teorema teorema;
         for (Resuelve res : resList) {
-            teoList.add(res.getTeorema());
+            teorema = res.getTeorema();
+            teorema.setTeoIzqTerm((Term) SerializationUtils.deserialize(teorema.getTeoserializadoizq()));
+            teorema.setTeoDerTerm((Term) SerializationUtils.deserialize(teorema.getTeoserializadoder()));
+            teoList.add(teorema);
             System.out.println(res.getTeorema().getId());
         }
 
