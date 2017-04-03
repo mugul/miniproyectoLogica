@@ -23,7 +23,23 @@
   <body>
     <tiles:insertDefinition name="header" />
     <h1>Mis Teoremas</h1>
-    
+    <ul>
+      <c:forEach items="${categorias}" var="cat"> 
+        <li style="list-style: none; color: #03A9F4"><h3>${cat.getNombre()}</h3>
+          <ul>
+            <c:forEach items="${teoremas}" var="teo">
+              <c:choose>
+                <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
+                  <li style="list-style: none;">
+                    <p style="color: #000;">${teo.getTeoIzqTerm().toStringFinalInFin()} == ${teo.getTeoDerTerm().toStringFinalInFin()}</p>
+                  </li>
+                </c:when>
+              </c:choose>
+            </c:forEach>
+          </ul>
+        </li>
+      </c:forEach> 
+    </ul>
     
     <tiles:insertDefinition name="footer" />
   </body>

@@ -21,6 +21,7 @@
             article.teoremas{
                 height:250px;
                 outline: none;
+                overflow: scroll;
             }
             
             iframe{
