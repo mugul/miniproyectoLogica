@@ -140,6 +140,19 @@ public class InferController {
             TerminoId terminoid=new TerminoId();
             terminoid.setLogin(username);
             
+//            Solucion solucion = null;
+//            if (solucionId == 0) {
+//              
+//                List<Solucion> solList =  solucionManager.getAllSolucionesByResuelve(resuelveManager.getResuelveByUserAndTeorema(username,infersForm.getnStatement()).getId());
+//                solucion = solList.get(0);
+//                solucionId = solucion.getId();
+//                
+//            } else {
+//                solucion = solucionManager.getSolucion(solucionId);
+//                
+//            }
+            
+            
             ANTLRStringStream in0 = new ANTLRStringStream(pasoAnt);
             TermLexer lexer0 = new TermLexer(in0);
             CommonTokenStream tokens0 = new CommonTokenStream(lexer0);
@@ -400,7 +413,7 @@ public class InferController {
                 System.out.print("Finalmente, instanciacion es: ");
                 System.out.println(x.getInstancia().toString());
                 System.out.println("------------------------------");
-                infersForm.setHistorial(infersForm.getHistorial()+x.getExpresion().toStringInf()+" \n $$" + " $$ < " + new MakeTerm().makeApp(x.getTeoIzq().toStringInf(), x.getTeoDer().toStringInf()).toStringInf() + " - " + x.getLeibniz().toStringInf() + "  -  " + x.getInstancia().toString()+" > \n$$");
+                infersForm.setHistorial(infersForm.getHistorial()+x.getExpresion().toStringInFin()+" \n $$" + " $$ < " + new MakeTerm().makeApp(x.getTeoIzq().toStringInFin(), x.getTeoDer().toStringInFin()).toStringInFin() + " - " + x.getLeibniz().toStringInf() + "  -  " + x.getInstancia().toString()+" > \n$$");
             }
 
               solucionManager.updateSolucion(solucion);
