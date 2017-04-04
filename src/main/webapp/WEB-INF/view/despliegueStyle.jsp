@@ -2,8 +2,8 @@
             article{
                 height: 40px;
                 overflow:hidden;
-                transition: height 2s;
-                -webkit-transition: height 2s;
+                transition: height 1s;
+                -webkit-transition: height 1s;
             }
             article.misTerminos{
                 height:250px;
@@ -17,6 +17,13 @@
                 height:210px;
                 outline: none;
             }
+            
+            article.teoremas{
+                height:350px;
+                outline: none;
+                overflow: scroll;
+            }
+            
             iframe{
                 overflow-y:scroll;
             }

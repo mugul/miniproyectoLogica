@@ -105,6 +105,29 @@ public class PerfilController {
         return "perfil";
     }
     
+    @RequestMapping(value="/{username}/misTeoremas", method=RequestMethod.GET)
+    public String misTeoremasView(@PathVariable String username, ModelMap map) {
+        if ( (Usuario)session.getAttribute("user") == null || !((Usuario)session.getAttribute("user")).getLogin().equals(username))
+        {
+            return "redirect:/index";
+        }
+        map.addAttribute("usuario", usuarioManager.getUsuario(username));
+        map.addAttribute("mensaje","");
+        map.addAttribute("guardarMenu","");
+        map.addAttribute("listarTerminosMenu","");
+        map.addAttribute("verTerminosPublicosMenu","");
+        map.addAttribute("misPublicacionesMenu","");
+        map.addAttribute("misTeoremasMenu","class=\"active\"");
+        map.addAttribute("computarMenu","");
+        map.addAttribute("perfilMenu","");
+        map.addAttribute("categorias",categoriaManager.getAllCategorias());
+        map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
+        map.addAttribute("metateoremas",metateoremaManager);
+        map.addAttribute("overflow","hidden");
+        map.addAttribute("anchuraDiv","1200px");
+        return "misTeoremas";
+    }
+    
     @RequestMapping(value="/{username}/guardarteo", method=RequestMethod.GET)
     public String guardarTeoView(@PathVariable String username,ModelMap map) {
         if ( (Usuario)session.getAttribute("user") == null || !((Usuario)session.getAttribute("user")).getLogin().equals(username))
@@ -844,7 +867,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }    
-        map.addAttribute("titulo", "Mis T&eacute;rminos");
+        map.addAttribute("titulo", "Mis Abreviaciones");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -912,7 +935,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "Mis T&eacute;rminos");
+        map.addAttribute("titulo", "Mis Abreviaciones");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -938,7 +961,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "T&eacute;rminos publicos");
+        map.addAttribute("titulo", "Abreviaciones publicas");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -972,7 +995,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "T&eacute;rminos publicos");
+        map.addAttribute("titulo", "Abreviaciones publicas");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -998,7 +1021,7 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
-        map.addAttribute("titulo", "T&eacute;rminos predefinidos");
+        map.addAttribute("titulo", "Abreviaciones predefinidas");
         map.addAttribute("publico", "publico");
         map.addAttribute("admin","admin");
         map.addAttribute("yes","yes");
@@ -1056,7 +1079,7 @@ public class PerfilController {
         Termino termino0 = terminoManager.getTermino(publicTerminoid);
         if(termino0 != null)
         {
-            map.addAttribute("titulo", "Mis T&eacute;rminos");
+            map.addAttribute("titulo", "Mis Abreviaciones");
             map.addAttribute("publico", "publico");
             map.addAttribute("admin","admin");
             map.addAttribute("usuario", usuarioManager.getUsuario(username));
@@ -1087,7 +1110,7 @@ public class PerfilController {
         }
         catch(AlphaEquivalenceException e)
         {
-            map.addAttribute("titulo", "Mis T&eacute;rminos");
+            map.addAttribute("titulo", "Mis Abreviaciones");
             map.addAttribute("publico", "publico");
             map.addAttribute("admin","admin");
             map.addAttribute("usuario", usuarioManager.getUsuario(username));

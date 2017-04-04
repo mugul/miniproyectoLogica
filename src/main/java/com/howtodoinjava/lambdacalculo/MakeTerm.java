@@ -26,7 +26,8 @@ public class MakeTerm {
     }
     
     public Term makeTerm(String str){
-        TerminoId terminoid = null;
+        TerminoId terminoid = new TerminoId();
+        terminoid.setLogin("admin");
         TerminoManager terminoManager = null;
         ANTLRStringStream in = new ANTLRStringStream(str);
         TermLexer lexer = new TermLexer(in);
@@ -90,7 +91,7 @@ public class MakeTerm {
         ArrayList<Object> listObj;
                
         try{  
-            listObj = parser.instantiate(); 
+            listObj = parser.instantiate(terminoid,terminoManager); 
             return listObj;
         }
         catch(IsNotInDBException e)
