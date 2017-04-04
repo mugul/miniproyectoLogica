@@ -374,7 +374,7 @@ public class App extends Term{
         return "("+izq+" "+der+")";
     }
     
-    public String toStringInFin()
+    public String toStringInf()
     {
         String izq;
         String der;
@@ -399,50 +399,52 @@ public class App extends Term{
         return "("+der+" "+izq+")";
     }
     
-    public String toStringInf() {
+    public String toStringInFin() {
         
         String izq; 
         String der; 
         boolean pp =  p instanceof App;
         boolean qq = q instanceof App;
         System.out.println(pp +"+++++++++++++++++"+qq);
-        if(  (p.alias == null) && (q.alias == null) ) {      
+        if( ((p.alias == null) && (q.alias == null) ) ) {      
            if((p instanceof App) && (q instanceof App)){
                System.out.println("+++++++++++++111111111111111+++++++++++++++++"); 
-               return q.toStringInf()+" "+p.toStringInf();  
+               return q.toStringInFin()+" "+p.toStringInFin();  
                
            }else if(!(p instanceof App) && (q instanceof App)){
                  System.out.println("++++++++++++++222222222222222222++++++++++++++++"); 
                  if( ((App) q).p instanceof Const ){
                      System.out.println("++++++++++2222aaaaaaaaaaaa++++++++++++++++++++"); 
-                     return p.toStringInf()+" "+q.toStringInf();
+                     return p.toStringInFin()+" "+q.toStringInFin();
                  }else{
                      System.out.println("++++++++++++2222bbbbbb++++++++++++++++++"); 
-                     return p.toStringInf()+" ("+q.toStringInf()+")" ;
+                     return p.toStringInFin()+" ("+q.toStringInFin()+")" ;
                  } 
                  
            }else if( (p instanceof App) && !(q instanceof App)){ 
                 System.out.println("+++++++++++++++3333333333333+++++++++++++++"); 
-                String sim = ((App) p).p.toStringInf();
-                if (((App) p).p instanceof Const ) {                    
-                    if ( ((App) p).q instanceof Var){
-                        return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
+                String sim = ((App) p).p.toStringInFin();
+                if (((App) p).p instanceof Const ) {    
+                    System.out.println("+++aaaaaaaaaaaaaaaaaaaaaa+++++");
+                    if ( (((App) p).q instanceof Var) | (((App) p).q instanceof Bracket)){
+                        return q.toStringInFin()+" "+sim+" "+((App) p).q.toStringInFin();
                     }else{
-                        return q.toStringInf()+" "+sim+" ("+((App) p).q.toStringInf()+")";
-                    }
+                        return q.toStringInFin()+" "+sim+" ("+((App) p).q.toStringInFin()+")";
+                    }                       
                }else{
-                    return "("+q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf()+")";
-                }
+                    System.out.println("+++bbbbbbbbbbbbb+++++");
+                    return "("+q.toStringInFin()+" "+sim+" "+((App) p).q.toStringInFin()+")";
+               }
            }else{
                 System.out.println("+++++++++++++44444444+++++++++++++++++"); 
-                return p.toStringInf()+" "+q.toStringInf();
+                return p.toStringInFin()+" "+q.toStringInFin();
             }   
            
         }else if( (q.alias == null) &&  (p.alias != null)) {
-            return q.toStringInf()+" "+p.alias;
+            return q.toStringInFin()+" "+p.alias;
             
         }else if( (q.alias != null) && (p.alias == null)) {
-            return q.alias +" "+p.toStringInf();
+            return q.alias +" "+p.toStringInFin();
             
         }else{ 
             return p.alias+" "+q.alias;

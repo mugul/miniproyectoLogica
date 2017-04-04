@@ -22,6 +22,7 @@ public class InfersForm {
      @NotEmpty(message="no debe dejar este campo vacío")
      private String leibniz;
      private String historial;
+     private String categorias;
 
     public  InfersForm() {
     }
@@ -74,6 +75,14 @@ public class InfersForm {
 
     public String getLeibniz() {
         return leibniz;
+    }
+    
+    public String getCategorias() {
+      return categorias;
+    }
+    
+    public void setCategorias(String categorias) {
+      this.categorias = categorias;
     }
 
     @Override

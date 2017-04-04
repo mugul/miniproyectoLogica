@@ -117,6 +117,9 @@ public class Const extends Term
         @Override
     public String toStringInFin() {
         String res;
+        System.out.println("++++++");
+        System.out.println(con);
+        System.out.println("++++++");
         if (con.startsWith("\\eq")) {
            res =" == ";
         }else if (con.startsWith("\\Rightarrow")){

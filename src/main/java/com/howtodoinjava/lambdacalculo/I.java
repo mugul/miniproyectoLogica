@@ -111,19 +111,22 @@ public class I extends Term {
     
     public String toString()
     {
-        return " "+this;
+        return ""; //"|";
     }
    
-        @Override
-    public String toStringInFin() {
-        return " "+this;
-    }     
-        
     @Override
     public String toStringInf() {
-        return " "+this;
+            return ""; //"|";
+    }     
+        
+    
+    public String toStringInFin() {
+        return ""; //"|";
     }
 
+    public String toStringInFin2() {
+        return ""; //"|:";
+    }
     
     
     public ToString toStringAbrvV1(ToString toString)

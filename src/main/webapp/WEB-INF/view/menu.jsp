@@ -1,5 +1,5 @@
-<div class="page-header" style="margin-bottom: 0 !important;">
-  <h1 style="color: #03A9F4; font-size: 60px;">Título <small>demostraciones de Lógica Simbólica</small></h1>
+<div class="page-header">
+  <h1 style="color: #03A9F4; font-size: 70px; margin-left: 20px;">David <small>Demostraciones de Lógica Simbólica</small></h1>
 </div>
 
 <div class="navbar navbar-default ">
@@ -13,8 +13,9 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li ${computarMenu}><a href="../../infer/${usuario.login}">Demostrar</a></li>   
-          <li ${listarTerminosMenu}><a href="listar?comb=n">Mis Términos</a></li>
-          <li ${guardarMenu}><a href="guardar">Agregar Predicado</a></li>
+          <li ${listarTerminosMenu}><a href="listar?comb=n">Mis Abreviaciones</a></li>
+          <li ${guardarMenu}><a href="guardar">Agregar Abreviación</a></li>
+          <li ${misTeoremasMenu}><a href="misTeoremas">Mis Teoremas</a></li>
           <li ${agregarTeoremaMenu}><a href="guardarteo">Agregar Teorema</a></li>
 <!--      <li ${verTerminosPublicosMenu}><a href="publico?comb=n">Ver T&eacute;rminos Publicos</a></li>
           <li ${misPublicacionesMenu}><a href="mispublic?comb=n">Mis Publicaciones</a></li>
@@ -26,4 +27,4 @@
     </div>
   </div>
 </div>
-<div class="row-fluid" style="margin-left: 50px; margin-top: 69px; height:552px; width: ${anchuraDiv}; overflow-y:${overflow};">
+<div class="row-fluid" style="margin-left: 50px; margin-top: 40px; height:552px; width: ${anchuraDiv}; overflow-y:${overflow};">

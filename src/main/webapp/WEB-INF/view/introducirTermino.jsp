@@ -16,25 +16,25 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/desplegar.js"></script>
-    <title>MP|Agregar Predicado</title>
+    <title>David|Agregar Abreviación</title>
     <tiles:insertDefinition name="style" />
   </head>
   <body>
     <tiles:insertDefinition name="header" />
-    <h1>Introduzca el predicado que desee guardar</h1>
+    <h1>Introduzca la abreviación que desee guardar</h1>
     
     <div style="float: right; width: 600px;">
       <c:choose>
         <c:when test="${!usuario.getLogin().equals(admin)}">
           <article id="predefinidos" >
-            <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('predefinidos')">Predicados predefinidos</a></h3>
+            <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('predefinidos')">Abreviaciones predefinidas</a></h3>
             <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/predef?comb=n">
             </iframe>
           </article>
         </c:when>
       </c:choose>
       <article id="misTerminos" >
-        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('misTerminos')">Mis predicados</a></h3>
+        <h3 style="margin: 0px;padding:0px;height:40px;"><a href="#!" onclick="desplegar('misTerminos')">Mis abreviaciones</a></h3>
         <iframe style="width: 100%; height: 100%; border: none;" src="../${usuario.getLogin()}/listarocult?comb=n">        
         </iframe>
       </article>

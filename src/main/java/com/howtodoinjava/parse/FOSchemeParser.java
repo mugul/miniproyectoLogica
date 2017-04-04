@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 FOScheme.g 2017-03-31 08:39:06
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 FOScheme.g 2017-03-31 17:37:48
 package com.howtodoinjava.parse; 
 
 import com.howtodoinjava.service.TerminoManager;
@@ -913,7 +913,7 @@ public class FOSchemeParser extends Parser {
                     state._fsp--;
 
                     Var v = new Var((int)(LETTER22!=null?LETTER22.getText():null).charAt(0));
-                                                                        Term aux =new Bracket(v,b1);
+                                                                        Term aux =new Bracket(v,b1, "\\forall");
                                                                         for(Iterator<Sust> i = sust23.iterator(); i.hasNext();)
                                                                            aux=new App(aux,i.next()); 
                                                                         value =aux;
@@ -946,7 +946,7 @@ public class FOSchemeParser extends Parser {
                     state._fsp--;
 
                     Var v = new Var((int)(LETTER24!=null?LETTER24.getText():null).charAt(0));
-                                                                   Term aux = new Bracket(v,new App(new App(new I(),ran1),b1));
+                                                                   Term aux = new Bracket(v,new App(new App(new I(),ran1),b1), "\\forall");
                                                                                for(Iterator<Sust> i = sust25.iterator(); i.hasNext();)
                                                                                    aux=new App(aux,i.next()); 
                                                                                value =aux;
@@ -974,7 +974,7 @@ public class FOSchemeParser extends Parser {
                     state._fsp--;
 
                     Var v = new Var((int)(LETTER26!=null?LETTER26.getText():null).charAt(0));
-                                                                       Term aux = (new Bracket(v,b2));
+                                                                       Term aux = new Bracket(v,b2, "\\exists");
                                                                        for(Iterator<Sust> i = sust27.iterator(); i.hasNext();)
                                                                            aux=new App(aux,i.next()); 
                                                                        value =aux;
@@ -1007,7 +1007,7 @@ public class FOSchemeParser extends Parser {
                     state._fsp--;
 
                     Var v = new Var((int)(LETTER28!=null?LETTER28.getText():null).charAt(0));
-                                                                         Term aux = new Bracket(v,new App(new App(new I(),ran2),b2));
+                                                                         Term aux = new Bracket(v,new App(new App(new I(),ran2),b2), "\\exists");
                                                                                for(Iterator<Sust> i = sust29.iterator(); i.hasNext();)
                                                                                   aux=new App(aux,i.next()); 
                                                                                value =aux;

@@ -11,70 +11,97 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Desde aqui -->
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/desplegar.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/mathjax-MathJax-v2.3-248-g60e0a8c/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript">
-      function limpiar()
-      {
-        var texArea=document.getElementById('termino_string');
-        if(texArea.value != "")
-        {
-          if(confirm("Seguro que desea borrar el contenido del área de texto"))
-              texArea.value="";
-        }
-      }
-    </script>
-    <base href="/Miniproyecto/perfil/${usuario.login}/"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" >
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
-    <tiles:insertDefinition name="style" />
-    <title>Miniproyecto</title>
-  </head>
-  <body>
-    <tiles:insertDefinition name="header" />
-
-    
-        
-    <div style="margin-top: 20px">
-<!--      <h1>
-        ...aquí va la demostración...
-      </h1>-->
-    </div>    
-    <h4>${formula}</h4>
-    <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-      <%--${mensaje}<br>--%>
-      Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-      <br><br>
-
-      <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
-      Teorema a usar:<br>
-            <select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
-            <c:forEach items="${mensaje}" var="cat">
-              <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
-            </c:forEach>  
-            </select>
-      <br>
-      Instaciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
-      Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
-      <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
-
-    </sf:form>
-         <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
-         <br>
-
-              
-    <script>
-      t=document.getElementById('termino_string');
-      t.innerText="${termino}";
-    </script>
-    
-    
+    <!-- Desde aqui -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/desplegar.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/mathjax-MathJax-v2.3-248-g60e0a8c/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript">
+            function limpiar()
+            {
+                var texArea=document.getElementById('termino_string');
+                if(texArea.value != "")
+                {
+                    if(confirm("Seguro que desea borrar el contenido del área de texto"))
+                        texArea.value="";
+                }
+            }
       
-    <tiles:insertDefinition name="footer" />
-  </body>
+
+        </script>
+        <base href="/Miniproyecto/perfil/${usuario.login}/"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
+        <tiles:insertDefinition name="style" />
+        <title>David | Demostrar</title>
+    </head>
+    <body>
+        <tiles:insertDefinition name="header" />
+
+        <script>
+            function insertAtCursor(myField, myValue) 
+            {            
+                myValue+="";
+                parent.window.document.getElementById(myField).value = myValue;
+            }
+        </script>
+
+        <div style="float: right; width: 600px;">
+          <article id="teoremas">
+            <h3 style="margin: 0px;padding:0px;height:40px;"><a onclick="desplegar('teoremas')">Teoremas</a></h3>
+            <ul>
+              <c:forEach items="${categorias}" var="cat"> 
+                <li style="list-style: none; color: #03A9F4"><h4>${cat.getNombre()}</h4>
+                  <ul>
+                    <c:forEach items="${teoremas}" var="teo">
+                      <c:choose>
+                        <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
+                          <li style="list-style: none;">
+                            <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
+                              <h6 style="color: #000;">${teo.getTeoIzqTerm().toStringFinalInFin()} == ${teo.getTeoDerTerm().toStringFinalInFin()}</h6>
+                            </a>
+                          </li>
+                        </c:when>
+                      </c:choose>
+                    </c:forEach>
+                  </ul>
+                </li>
+              </c:forEach> 
+            </ul>
+          </article>     
+        </div>
+
+        <script>
+          t=document.getElementById('pasoAnt');
+          t.innerText="${pasoAnt}";
+        </script>
+        
+        <div style="width: 500px;">
+            <h5>${formula}</h5>
+        </div>    
+
+        <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+            Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
+            <br>
+            <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
+            Teorema a usar:<br>
+            <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
+            <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
+                <c:forEach items="${teoremas}" var="cat">
+                    <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
+                </c:forEach>  
+            </select>--%>
+            <br>
+            Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+            Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
+            <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
+
+        </sf:form>
+        <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
+        <br>
+        
+        <tiles:insertDefinition name="footer" />
+    </body>
 </html>
