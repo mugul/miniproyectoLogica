@@ -44,6 +44,11 @@
   width: 45%;
   display: inline;
 }
+
+#row-fluid {
+  margin-top: 0 !important;
+}
+
 /*************************************/
 
 input[type="submit"], 
