@@ -122,6 +122,7 @@ public class PerfilController {
         map.addAttribute("perfilMenu","");
         map.addAttribute("categorias",categoriaManager.getAllCategorias());
         map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
+        map.addAttribute("metateoremas",metateoremaManager);
         map.addAttribute("overflow","hidden");
         map.addAttribute("anchuraDiv","1200px");
         return "misTeoremas";

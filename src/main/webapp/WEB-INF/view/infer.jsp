@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" >
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <tiles:insertDefinition name="style" />
         <title>David | Demostrar</title>
     </head>
@@ -58,11 +59,36 @@
                     <c:forEach items="${teoremas}" var="teo">
                       <c:choose>
                         <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
-                          <li style="list-style: none;">
-                            <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                              <h6 style="color: #000;">${teo.getTeoIzqTerm().toStringFinalInFin()} == ${teo.getTeoDerTerm().toStringFinalInFin()}</h6>
-                            </a>
-                          </li>
+                          <c:choose>
+                            <c:when test="false">
+                              <li style="list-style: none;">
+                                <h6 style="color: #000;">
+                                 <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i>
+                                 <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
+                                   ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
+                                 </a>
+                                 <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                 <span style="display: none;" id="${teo.getId()}">
+                                   ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                 </span>
+                               </h6>
+                              </li>
+                            </c:when>
+                            <c:otherwise>
+                              <li style="list-style: none;">
+                                <h6 style="color: #000;">
+                                  <i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i>
+                                  <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
+                                    ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
+                                  </a>
+                                  <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                  <span style="display: none;" id="${teo.getId()}">
+                                    ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                  </span>
+                                </h6>
+                              </li>
+                            </c:otherwise>
+                          </c:choose>
                         </c:when>
                       </c:choose>
                     </c:forEach>
@@ -74,11 +100,26 @@
         </div>
 
         <script>
+          function expandMeta(id) {
+            elem = document.getElementById(id);
+            if (elem.style.display == "inline")
+              elem.style.display = "none";
+            else
+              elem.style.display = "inline";
+
+          };
+        
+          function getMetateo(id) {
+            
+          }
+        </script>
+        
+        <script>
           t=document.getElementById('pasoAnt');
           t.innerText="${pasoAnt}";
         </script>
         
-        <div style="width: 500px;">
+        <div style="width: 500px; height: 100px;">
             <h5>${formula}</h5>
         </div>    
 
