@@ -23,6 +23,7 @@ public class InfersForm {
      private String leibniz;
      private String historial;
      private String categorias;
+     private int solucionId;
 
     public  InfersForm() {
     }
@@ -36,6 +37,14 @@ public class InfersForm {
     }
 
 //    public void addHistorial(ArrayList)
+
+    public int getSolucionId() {
+        return solucionId;
+    }
+
+    public void setSolucionId(int solucionId) {
+        this.solucionId = solucionId;
+    }
     
     
     public InfersForm(String pasoAnt, int nStatement, String instanciacion, String leibniz) {
