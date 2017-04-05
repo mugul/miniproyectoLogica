@@ -32,27 +32,44 @@
               <c:choose>
                 <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
                   <c:choose>
-                    <c:when test="false">
+                    <c:when test="${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).isResuelto() == false}">
                       <li style="list-style: none;">
                         <p style="color: #000;">
-                          <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i>
-                          ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}  
-                          <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
-                          <span style="display: none;" id="${teo.getId()}">
-                            ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
-                          </span>                          
+                          <table>
+                            <tr>
+                              <td><i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i></td>
+                              <td>
+                                $$ ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()} $$
+                              </td>
+                              <td>
+                                <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                <span style="display: none;" id="${teo.getId()}">
+                                  ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                </span>
+                              </td>
+                            </tr>
+                          </table>                         
                         </p>              
                       </li>
                     </c:when>
                     <c:otherwise>
                       <li style="list-style: none;">
                         <p style="color: #000;">
-                          <i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i>
-                          ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}  
-                          <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
-                          <span style="display: none;" id="${teo.getId()}">
-                            ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq().toStringInFin()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
-                          </span>
+                          <table style="color: #000;">
+                            <tr>
+                              <td><i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i></td>
+                              <td>
+                                $$ ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()} $$
+                              </td>
+                              <td>
+                                <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                <span style="display: none;" id="${teo.getId()}">
+                                  ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                </span>
+                              </td>
+                            </tr>
+                          </table>
+
                         </p>
                       </li>
                     </c:otherwise>

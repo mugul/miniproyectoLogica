@@ -20,7 +20,7 @@
         <script type="text/javascript">
             function limpiar()
             {
-                var texArea=document.getElementById('termino_string');
+                var texArea=document.getElementById("asdasd");
                 if(texArea.value != "")
                 {
                     if(confirm("Seguro que desea borrar el contenido del área de texto"))
@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" >
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-responsive.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </style>
         <tiles:insertDefinition name="style" />
         <title>David | Demostrar</title>
     </head>
@@ -50,53 +51,80 @@
         </script>
 
         <div style="float: right; width: 600px;">
-            <article id="teoremas">
-                <h3 style="margin: 0px;padding:0px;height:40px;"><a onclick="desplegar('teoremas')">Teoremas</a></h3>
-                <ul>
-                    <c:forEach items="${categorias}" var="cat"> 
-                        <li style="list-style: none; color: #03A9F4"><h4>${cat.getNombre()}</h4>
-                            <ul>
-                                <c:forEach items="${teoremas}" var="teo">
-                                    <c:choose>
-                                        <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
-                                            <c:choose>
-                                                <c:when test="${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).isResuelto() == false}">
-                                                    <li style="list-style: none;">
-                                                        <h6 style="color: #000;">
-                                                            <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i>
-                                                            <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                                                                ${teo.getId()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
-                                                            </a>
-                                                            <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
-                                                            <span style="display: none;" id="${teo.getId()}">
-                                                                ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
-                                                            </span>
-                                                        </h6>
-                                                    </li>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <li style="list-style: none;">
-                                                        <h6 style="color: #000;">
-                                                            <i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i>
-                                                            <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                                                                ${teo.getId()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
-                                                            </a>
-                                                            <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
-                                                            <span style="display: none;" id="${teo.getId()}">
-                                                                ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
-                                                            </span>
-                                                        </h6>
-                                                    </li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:when>
-                                    </c:choose>
-                                </c:forEach>
-                            </ul>
-                        </li>
-                    </c:forEach> 
-                </ul>
-            </article>     
+
+          
+          <h3 style="color: #08c; margin: 0px;padding:0px;height:40px;">Método de demostración</h3>
+            <select class="form-control">
+              <option>Método Directo</option>
+              <option>Debilitamiento</option>
+              <option>Fortalecimiento</option>
+              <option>Prueba por casos</option>
+              <option>Prueba por contradicción</option>
+              
+            </select>
+          
+          <article id="teoremas">
+            <h3 style="margin: 0px;padding:0px;height:40px;"><a onclick="desplegar('teoremas')">Teoremas</a></h3>
+            <ul>
+              <c:forEach items="${categorias}" var="cat"> 
+                <li style="list-style: none; color: #03A9F4"><h4>${cat.getNombre()}</h4>
+                  <ul>
+                    <c:forEach items="${teoremas}" var="teo">
+                      <c:choose>
+                        <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
+                          <c:choose>
+                            <c:when test="${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).isResuelto() == false}">
+                              <li style="list-style: none;">
+                                <h6 style="color: #000;">
+                                  <table>
+                                    <tr>
+                                      <td><i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i></td>
+                                      <td>
+                                        $$ ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()} $$
+                                      </td>
+                                      <td>
+                                        <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                        <span style="display: none;" id="${teo.getId()}">
+                                          ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </h6>
+                              </li>
+                            </c:when>
+                            <c:otherwise>
+                              <li style="list-style: none;">
+                                <h6 style="color: #000;">
+                                  <table>
+                                    <tr>
+                                      <td><i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i></td>
+                                      <td>
+                                        <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
+                                          $$ ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()} $$
+                                        </a>
+                                      </td>
+                                      <td>
+                                        <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                        <span style="display: none;" id="${teo.getId()}">
+                                          ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </h6>
+                              </li>
+                            </c:otherwise>
+                          </c:choose>
+                        </c:when>
+                      </c:choose>
+                    </c:forEach>
+                  </ul>
+                </li>
+              </c:forEach> 
+            </ul>
+          </article>     
+
         </div>
 
         <script>
@@ -119,31 +147,32 @@
             t.innerText="${pasoAnt}";
         </script>
 
-        <div style="width: 500px; height: 100px;">
+        <div style="width: 550px; height: 200px; overflow: scroll;">
             <h5>${formula}</h5>
         </div>    
+        
+          <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+              Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
+              <br>
+              <sf:input type="hidden" name="solucionId" path="solucionId" id="solucionId" value="${solucionId}"/>
+              <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
+              Teorema a usar:<br>
+              <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
+              <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
+                  <c:forEach items="${teoremas}" var="cat">
+                      <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
+                  </c:forEach>  
+              </select>--%>
+              <br>
+              Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+              Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
+              <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
 
-        <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-            Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-            <br>
-            <sf:input type="hidden" name="solucionId" path="solucionId" id="solucionId" value="${solucionId}"/>
-            <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
-            Teorema a usar:<br>
-            <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
-            <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
-                <c:forEach items="${teoremas}" var="cat">
-                    <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
-                </c:forEach>  
-            </select>--%>
-            <br>
-            Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
-            Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
-            <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
 
-        </sf:form>
-        <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
-        <br>
+          </sf:form>
+          <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
+          <br>
 
-        <tiles:insertDefinition name="footer" />
+          <tiles:insertDefinition name="footer" />
     </body>
 </html>

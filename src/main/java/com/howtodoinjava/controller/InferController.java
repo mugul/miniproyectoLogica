@@ -368,15 +368,42 @@ public class InferController {
             
 
             boolean valida = true;
-
+            boolean resuelto = false;
+            
+            
             if (izq.equals(pasoAntTerm)) {
                 pasoPost = der.toStringInFin();
+//                Term pasoPostTerm = new MakeTerm().makeTerm(pasoPost);
+//                if ((pasoPostTerm instanceof Const) && (pasoPost.contains("true"))){
+//                    resuelto = true;
+//                }
             }else if(der.equals(pasoAntTerm)) {
                 pasoPost = izq.toStringInFin();
+//                Term pasoPostTerm = new MakeTerm().makeTerm(pasoPost);
+//                if ((pasoPostTerm instanceof Const) && (pasoPost.contains("true"))){
+//                    resuelto = true;
+//                }
             }else{
                 pasoPost = "Regla~de~inferencia~no~validad";
                 valida = false;
             }
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("El paso es "+pasoPost);
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+                System.out.println("PASOPOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
             
             int solucionId = infersForm.getSolucionId();
             Solucion solucion = null;
@@ -384,7 +411,12 @@ public class InferController {
             System.out.println("La solucion en el formulario tiene id numero: "+solucionId);
             Resuelve resuelve = resuelveManager.getResuelveByUserAndTeorema(username,infersForm.getnStatement());
             
-            if (pasoPost.contains("true")) {
+            
+            
+            if (pasoPost.equalsIgnoreCase("true") || pasoPost.equalsIgnoreCase("(true)") || pasoPost.equalsIgnoreCase("true ") || pasoPost.equalsIgnoreCase(" true") || pasoPost.equalsIgnoreCase(" true ") ||
+                    pasoPost.equalsIgnoreCase(" (true)") || pasoPost.equalsIgnoreCase("(true) ") || pasoPost.equalsIgnoreCase("( true)") || pasoPost.equalsIgnoreCase("(true )") || 
+                    pasoPost.equalsIgnoreCase(" ( true)") || pasoPost.equalsIgnoreCase(" (true )") || pasoPost.equalsIgnoreCase("( true) ") || pasoPost.equalsIgnoreCase("(true ) ")) {
+//            if (resuelto) {
                 resuelve.setResuelto(true);
                 resuelveManager.updateResuelve(resuelve);
             }
@@ -412,9 +444,10 @@ public class InferController {
 //            
 //
 ////            solucion.setResuelve(resuelveManager.getResuelve(1));
-              solucionManager.addPaso(solucionId,paso);
+//              solucionManager.addPaso(solucionId,paso);
 ////            paso = new PasoInferencia(teoTerm, izq, der, teoTerm, "Aqui va la segunda instanciacion");
-////            solucion.addArregloInferencias(paso);
+            solucion.addArregloInferencias(paso);
+            solucionManager.updateSolucion(solucion);
             infersForm.setHistorial("$$ ");  
             System.out.println("Aqui se imprime la solucion");
             for (PasoInferencia x: solucion.getArregloInferencias()) {
