@@ -50,7 +50,7 @@
           Número de Teorema:<br><sf:input path="numeroTeorema" value="${numeroTeorema}"/><sf:errors path="numeroTeorema" cssClass="error" /><br/>
           Nombre de Teorema (Opcional):<br><sf:input path="nombreTeorema" value="${nombreTeorema}"/><sf:errors path="nombreTeorema" cssClass="error" /><br/>
           <input class="btn" type="submit" value="Guardar">
-        </sf:form>${mensaje}
+        </sf:form><br>${mensaje}
       </c:when>
       <c:otherwise>
         <c:choose>
