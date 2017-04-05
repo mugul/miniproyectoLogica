@@ -56,8 +56,8 @@ public class UsuarioManagerImpl implements UsuarioManager {
         List<Resuelve> resuelveList = resuelveManager.getAllResuelveByUser(usuario.getLogin());
         List<Teorema> teoremaList = teoremaManager.getTeoremaByResuelveList(resuelveList);
         for (Teorema teo : teoremaList) {
-            System.out.println("Ya tiene el teorema de id:");
-            System.out.println(teo.getId());
+//            System.out.println("Ya tiene el teorema de id:");
+//            System.out.println(teo.getId());
         }
         return teoremaList;
     }

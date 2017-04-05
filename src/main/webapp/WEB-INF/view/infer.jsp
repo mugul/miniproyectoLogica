@@ -50,75 +50,75 @@
         </script>
 
         <div style="float: right; width: 600px;">
-          <article id="teoremas">
-            <h3 style="margin: 0px;padding:0px;height:40px;"><a onclick="desplegar('teoremas')">Teoremas</a></h3>
-            <ul>
-              <c:forEach items="${categorias}" var="cat"> 
-                <li style="list-style: none; color: #03A9F4"><h4>${cat.getNombre()}</h4>
-                  <ul>
-                    <c:forEach items="${teoremas}" var="teo">
-                      <c:choose>
-                        <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
-                          <c:choose>
-                            <c:when test="false">
-                              <li style="list-style: none;">
-                                <h6 style="color: #000;">
-                                 <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i>
-                                 <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                                   ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
-                                 </a>
-                                 <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
-                                 <span style="display: none;" id="${teo.getId()}">
-                                   ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
-                                 </span>
-                               </h6>
-                              </li>
-                            </c:when>
-                            <c:otherwise>
-                              <li style="list-style: none;">
-                                <h6 style="color: #000;">
-                                  <i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i>
-                                  <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                                    ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
-                                  </a>
-                                  <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
-                                  <span style="display: none;" id="${teo.getId()}">
-                                    ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
-                                  </span>
-                                </h6>
-                              </li>
-                            </c:otherwise>
-                          </c:choose>
-                        </c:when>
-                      </c:choose>
-                    </c:forEach>
-                  </ul>
-                </li>
-              </c:forEach> 
-            </ul>
-          </article>     
+            <article id="teoremas">
+                <h3 style="margin: 0px;padding:0px;height:40px;"><a onclick="desplegar('teoremas')">Teoremas</a></h3>
+                <ul>
+                    <c:forEach items="${categorias}" var="cat"> 
+                        <li style="list-style: none; color: #03A9F4"><h4>${cat.getNombre()}</h4>
+                            <ul>
+                                <c:forEach items="${teoremas}" var="teo">
+                                    <c:choose>
+                                        <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
+                                            <c:choose>
+                                                <c:when test="${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).isResuelto() == false}">
+                                                    <li style="list-style: none;">
+                                                        <h6 style="color: #000;">
+                                                            <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i>
+                                                            <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
+                                                                ${teo.getId()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
+                                                            </a>
+                                                            <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                                            <span style="display: none;" id="${teo.getId()}">
+                                                                ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                                            </span>
+                                                        </h6>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li style="list-style: none;">
+                                                        <h6 style="color: #000;">
+                                                            <i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i>
+                                                            <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
+                                                                ${teo.getId()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
+                                                            </a>
+                                                            <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
+                                                            <span style="display: none;" id="${teo.getId()}">
+                                                                ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                                                            </span>
+                                                        </h6>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:forEach> 
+                </ul>
+            </article>     
         </div>
 
         <script>
-          function expandMeta(id) {
-            elem = document.getElementById(id);
-            if (elem.style.display == "inline")
-              elem.style.display = "none";
-            else
-              elem.style.display = "inline";
+            function expandMeta(id) {
+                elem = document.getElementById(id);
+                if (elem.style.display == "inline")
+                    elem.style.display = "none";
+                else
+                    elem.style.display = "inline";
 
-          };
+            };
         
-          function getMetateo(id) {
+            function getMetateo(id) {
             
-          }
+            }
         </script>
-        
+
         <script>
-          t=document.getElementById('pasoAnt');
-          t.innerText="${pasoAnt}";
+            t=document.getElementById('pasoAnt');
+            t.innerText="${pasoAnt}";
         </script>
-        
+
         <div style="width: 500px; height: 100px;">
             <h5>${formula}</h5>
         </div>    
@@ -126,6 +126,7 @@
         <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
             Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
             <br>
+            <sf:input type="hidden" name="solucionId" path="solucionId" id="solucionId" value="${solucionId}"/>
             <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
             Teorema a usar:<br>
             <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
@@ -142,7 +143,7 @@
         </sf:form>
         <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
         <br>
-        
+
         <tiles:insertDefinition name="footer" />
     </body>
 </html>
