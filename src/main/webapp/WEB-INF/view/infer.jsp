@@ -65,7 +65,7 @@
                                                         <h6 style="color: #000;">
                                                             <i class="fa fa-lock" aria-hidden="true" style="margin-right: 10px;"></i>
                                                             <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                                                                ${teo.getId()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
+                                                                ${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).getNumeroteorema()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
                                                             </a>
                                                             <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
                                                             <span style="display: none;" id="${teo.getId()}">
@@ -79,7 +79,7 @@
                                                         <h6 style="color: #000;">
                                                             <i class="fa fa-unlock" aria-hidden="true" style="margin-right: 10px;"></i>
                                                             <a onclick="insertAtCursor('nStatement_id', '${teo.getId()}')">
-                                                                ${teo.getId()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
+                                                                ${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).getNumeroteorema()}.- ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}
                                                             </a>
                                                             <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
                                                             <span style="display: none;" id="${teo.getId()}">

@@ -463,7 +463,7 @@ public class InferController {
                 System.out.print("Finalmente, instanciacion es: ");
                 System.out.println(x.getInstancia().toString());
                 System.out.println("------------------------------");
-                infersForm.setHistorial("$$ "+infersForm.getHistorial()+x.getExpresion().toStringInFin()+" \n $$" + " $$ < " + new MakeTerm().makeApp(x.getTeoIzq().toStringInFin(), x.getTeoDer().toStringInFin()).toStringInFin() + " - " + x.getLeibniz().toStringInf() + "  -  " + x.getInstancia().toString()+" > \n$$");
+                infersForm.setHistorial(infersForm.getHistorial()+x.getExpresion().toStringInFin()+" \n $$" + " $$ < " + new MakeTerm().makeApp(x.getTeoIzq().toStringInFin(), x.getTeoDer().toStringInFin()).toStringInFin() + " - " + x.getLeibniz().toStringInf() + "  -  " + x.getInstancia().toString()+" > \n$$");
             }
 
 //            
