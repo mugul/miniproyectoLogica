@@ -119,31 +119,31 @@
             t.innerText="${pasoAnt}";
         </script>
 
-        <div style="width: 500px; height: 100px;">
+        <div style="width: 550px; height: 200px; overflow: scroll;">
             <h5>${formula}</h5>
         </div>    
+        
+          <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+              Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
+              <br>
+              <sf:input type="hidden" name="solucionId" path="solucionId" id="solucionId" value="${solucionId}"/>
+              <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
+              Teorema a usar:<br>
+              <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
+              <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
+                  <c:forEach items="${teoremas}" var="cat">
+                      <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
+                  </c:forEach>  
+              </select>--%>
+              <br>
+              Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+              Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
+              <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
 
-        <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-            Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-            <br>
-            <sf:input type="hidden" name="solucionId" path="solucionId" id="solucionId" value="${solucionId}"/>
-            <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
-            Teorema a usar:<br>
-            <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
-            <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
-                <c:forEach items="${teoremas}" var="cat">
-                    <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
-                </c:forEach>  
-            </select>--%>
-            <br>
-            Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
-            Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
-            <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
+          </sf:form>
+          <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
+          <br>
 
-        </sf:form>
-        <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
-        <br>
-
-        <tiles:insertDefinition name="footer" />
+          <tiles:insertDefinition name="footer" />
     </body>
 </html>
