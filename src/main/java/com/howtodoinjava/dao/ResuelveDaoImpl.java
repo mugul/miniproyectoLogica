@@ -5,6 +5,7 @@
 package com.howtodoinjava.dao;
 
 import com.howtodoinjava.entity.Resuelve;
+import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,21 @@ public class ResuelveDaoImpl implements ResuelveDAO {
         this.sessionFactory.getCurrentSession().save(resuelve);
     }
     
+    @Override   
+    @Transactional
+    public void updateResuelve(Resuelve resuelve){
+        this.sessionFactory.getCurrentSession().update(resuelve);
+        System.out.println("ENTRO AL UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println("ENTRO AL UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println("ENTRO AL UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println("ResuelveID = "+resuelve.getId()+" Resuelto = "+resuelve.isResuelto());
+        System.out.println("ENTRO AL UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println("ENTRO AL UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        System.out.println("ENTRO AL UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+//        try {sessionFactory.getCurrentSession().connection().setAutoCommit(true);} catch 
+//                (SQLException e ) { }
+    }
+        
     @Override
     @Transactional
     public void deleteResuelve(int id){

@@ -32,6 +32,13 @@ public class ResuelveManagerImpl implements ResuelveManager {
         return resuelve;
     }
     
+    
+    @Override   
+    @Transactional
+    public void updateResuelve(Resuelve resuelve){
+        resuelveDAO.updateResuelve(resuelve);
+    }
+    
     @Override
     @Transactional
     public void deleteResuelve(int id){
