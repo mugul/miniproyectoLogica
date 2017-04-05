@@ -51,7 +51,7 @@
                           ${teo.getTeoIzqTerm().toStringInFin()} == ${teo.getTeoDerTerm().toStringInFin()}  
                           <a onclick="expandMeta(${teo.getId().toString()})"><i class="fa fa-plus-circle" aria-hidden="true"  style="margin-left: 10px; margin-right: 10px;"></i></a>
                           <span style="display: none;" id="${teo.getId()}">
-                            ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq().toStringInFin()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
+                            ${metateoremas.getMetateorema(teo.getId()).getEnunciadoizq()} == ${metateoremas.getMetateorema(teo.getId()).getEnunciadoder()}
                           </span>
                         </p>
                       </li>

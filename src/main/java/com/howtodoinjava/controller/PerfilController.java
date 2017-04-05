@@ -261,11 +261,11 @@ public class PerfilController {
                 Dispone disponeAdd = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
                 Dispone dispone = disponeManager.addDispone(disponeAdd);
                 
-                PasoInferencia paso = new PasoInferencia(teoTerm, null, null, null, "");
-                Solucion solucion = new Solucion(resuelve,paso);
-                solucion.setResuelve(resuelve);
-                solucion.addArregloInferencias(paso);
-                solucionManager.addSolucion(solucion);
+//                PasoInferencia paso = new PasoInferencia(teoTerm, null, null, null, "");
+//                Solucion solucion = new Solucion(resuelve,paso);
+//                solucion.setResuelve(resuelve);
+//                solucion.addArregloInferencias(paso);
+//                solucionManager.addSolucion(solucion);
 //             
 //                System.out.println("El serializado es: "+SerializationUtils.serialize(paso));
 //                solucion.addArregloInferencias(paso);

@@ -39,8 +39,8 @@ public class Solucion implements java.io.Serializable {
     }
 
     public Solucion(Resuelve resuelve, PasoInferencia paso) {
-        this.arregloInferencias.add(paso);
         this.resuelve = resuelve;
+        this.arregloInferencias.add(paso);
 //        this.arregloSerializado = SerializationUtils.serialize(this.arregloInferencias);
         this.serialize();
         this.deserialize();
