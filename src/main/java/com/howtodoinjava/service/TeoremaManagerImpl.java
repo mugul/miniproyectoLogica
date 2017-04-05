@@ -95,26 +95,26 @@ public class TeoremaManagerImpl implements TeoremaManager {
     @Transactional
     public List<Teorema> getTeoremaByResuelveList(List<Resuelve> resList) {
         List<Teorema> teoList = new ArrayList<Teorema>();
-//        System.out.println("AQUI SE AGREGAN A LA LISTA");
+        System.out.println("AQUI SE AGREGAN A LA LISTA");
         Teorema teorema;
         for (Resuelve res : resList) {
             teorema = res.getTeorema();
             teorema.setTeoIzqTerm((Term) SerializationUtils.deserialize(teorema.getTeoserializadoizq()));
             teorema.setTeoDerTerm((Term) SerializationUtils.deserialize(teorema.getTeoserializadoder()));
             teoList.add(teorema);
-//            System.out.println(res.getTeorema().getId());
+            System.out.println(res.getTeorema().getId());
         }
 
         Collections.sort(teoList, new TeoremaComparator());
 
-//        System.out.println("AQUI SE SUPONE Q ESTAN ORDENADOS POR CATEGORIA");
+        System.out.println("AQUI SE SUPONE Q ESTAN ORDENADOS POR CATEGORIA");
         for (Teorema teo : teoList) {
-//            System.out.print("El teorema: ");
-//            System.out.print(teo.getId());
-//            System.out.print(" tiene asociada la categoria: ");
-//            System.out.println(teo.getCategoria().getId());
+            System.out.print("El teorema: ");
+            System.out.print(teo.getId());
+            System.out.print(" tiene asociada la categoria: ");
+            System.out.println(teo.getCategoria().getId());
         }
-//        System.out.println("YA HA FINALIZADO LA FUNCION DE GET TEOREMA");
+        System.out.println("YA HA FINALIZADO LA FUNCION DE GET TEOREMA");
         return teoList;
     }
 

@@ -30,6 +30,8 @@ public class Teorema  implements java.io.Serializable {
      private byte[] teoserializadoder;
      private Term teoIzqTerm;
      private Term teoDerTerm;
+     private Term teoTerm;
+     private Term metateoTerm;
      private boolean ocultartrue;
      private boolean esquema;
      private Set resuelves = new HashSet(0);
@@ -47,6 +49,22 @@ public class Teorema  implements java.io.Serializable {
         this.teoDerTerm = teoDerTerm;
         this.ocultartrue = ocultartrue;
         this.esquema = esquema;
+    }
+
+    public void setMetateoTerm(Term metateoTerm) {
+        this.metateoTerm = metateoTerm;
+    }
+
+    public Term getMetateoTerm() {
+        return metateoTerm;
+    }
+
+    public void setTeoTerm(Term teoTerm) {
+        this.teoTerm = teoTerm;
+    }
+
+    public Term getTeoTerm() {
+        return teoTerm;
     }
 
 

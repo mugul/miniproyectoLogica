@@ -38,3 +38,19 @@ function clickAlias(Math1,alias,valorAlias)
     }
     
 }
+
+function clickOperator(Math1,myField,teoid)
+{
+    var render=document.getElementById(Math1);
+    
+    render.onclick = function (event) {
+      if (!event) {event = window.event}
+      var target = event.toElement || event.target;
+      while (target && (!target.id || target.id.substring(0,5) != 'click' )) {target = target.parentNode}
+      if(target)
+      {
+         teoid+="";
+         parent.window.document.getElementById(myField).value = teoid;
+      }
+    }
+}

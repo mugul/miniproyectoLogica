@@ -205,6 +205,23 @@ public class Bracket extends Term{
         
     }
     
+    public ToString toStringInfAbrv(ToString toString)
+    {
+        if(t.alias == null)
+        {
+            t.toStringInfAbrvFinal(toString);
+            toString.term= "(\\lambda "+x.toStringInf()+"."+toString.term+")";
+            return toString;
+        }
+        else
+        {
+            toString.setNuevoAlias(t.alias, t);
+            toString.term="(\\lambda "+x.toStringInf()+"."+toString.term+")";
+            return toString;
+        }
+        
+    }
+    
     public ToString toStringAbrvV1(ToString toString)
     {
         if(t.alias == null)

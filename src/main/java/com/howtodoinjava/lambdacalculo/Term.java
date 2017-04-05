@@ -108,6 +108,8 @@ public abstract class Term implements Cloneable, Serializable{
     
     public abstract ToString toStringAbrv(ToString toString);
     
+    public abstract ToString toStringInfAbrv(ToString toString);
+    
     
     public String toStringFinal()
     {
@@ -156,6 +158,19 @@ public abstract class Term implements Cloneable, Serializable{
         st.term = term;
     }
     
+    public void toStringInfAbrvFinal(ToString toString)
+    {
+        String term;
+        ToString st=this.toStringInfAbrv(toString);
+        String aux= st.term;
+        if(aux.startsWith("("))
+            term=aux.substring(1, aux.length()-1);
+        else
+            term=aux;
+        
+        st.term = term;
+    }
+    
     public void toStringAbrvFinalV1(ToString toString)
     {
         String term;
@@ -170,6 +185,31 @@ public abstract class Term implements Cloneable, Serializable{
     }
     
     public Tripla toStringAbrvFinal()
+    {
+        String term;
+        ToString toString=new ToString();
+        /*for (int i=0; i<=25;i++)
+        {
+            toString.alias.add("");
+            toString.valores.add("");
+        }*/
+        ToString st=this.toStringAbrv(toString);
+        String aux= st.term;
+        if(aux.startsWith("("))
+            term=aux.substring(1, aux.length()-1);
+        else
+            term=aux;
+        
+        Tripla tripla = new Tripla();
+        tripla.term=term;
+        tripla.alias = st.alias;
+        tripla.valores= st.valores;
+                
+        
+        return tripla;
+    }
+    
+    public Tripla toStringInfAbrvFinal()
     {
         String term;
         ToString toString=new ToString();
@@ -227,6 +267,23 @@ public abstract class Term implements Cloneable, Serializable{
     public String toStringJavascript(String id)
     {
         Tripla tri = this.toStringAbrvFinalV1();
+        
+        String st="<span id=\"Math"+id+"\">$$"+tri.term +"$$</span>";
+        st+="<script>var alias=[";
+        for(String it:tri.alias)
+            st+="\""+it+"\",\n";
+
+        st+= "];\n valorAlias=[";
+        for(String it2:tri.valores)
+            st+="\""+it2+"\",\n";
+        st+="];\n clickAlias(\"Math"+id +"\",alias, valorAlias);</script>";
+        
+        return st;
+    }
+    
+    public String toStringInfJavascript(String id)
+    {
+        Tripla tri = this.toStringAbrvFinal();
         
         String st="<span id=\"Math"+id+"\">$$"+tri.term +"$$</span>";
         st+="<script>var alias=[";

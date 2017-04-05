@@ -5,7 +5,6 @@
 package com.howtodoinjava.service;
 
 import com.howtodoinjava.entity.Solucion;
-import com.howtodoinjava.lambdacalculo.PasoInferencia;
 import java.util.List;
 
 /**
@@ -16,8 +15,6 @@ public interface SolucionManager {
         
     public void addSolucion(Solucion solucion);
 
-    public void addPaso(int solucionId, PasoInferencia paso);
-    
     public void updateSolucion(Solucion solucion);
     
     public void deleteSolucion(int id);

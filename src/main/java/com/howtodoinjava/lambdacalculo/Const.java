@@ -157,6 +157,12 @@ public class Const extends Term
         toString.term=this.toString();
         return toString;
     }
+    
+    public ToString toStringInfAbrv(ToString toString)
+    {
+        toString.term=this.toStringInf();
+        return toString;
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -186,6 +186,37 @@ public class Var extends Term{
         return toString;
     }
     
+    public ToString toStringInfAbrv(ToString toString)
+    {
+        if(alias == null)
+            toString.term=this.toStringInf();
+        else
+        {
+            /*toString.currentnAlias++;
+                int index=toString.aliasIndex.size();
+                toString.aliasIndex.put(alias, index);
+                toString.valores.add(this.toString());
+                toString.alias.add(alias);
+            toString.term="\\cssId{agru@alias@"+toString.currentnAlias+"}{\\style{cursor:pointer; color:blue;}{"+alias+"}}";*/
+            String aux="0";
+            String[] Aux = alias.split("@");
+            if(Aux.length == 2)
+            {
+                aux = alias.split("@")[1];
+                toString.alias.add(Aux[0].replace("_", "\\\\_"));
+            }
+            else
+                toString.alias.add(alias.replace("_", "\\\\_"));
+            aux="\\cssId{agru@alias@"+aux+"}{\\style{cursor:pointer; color:blue;}{"+alias.replace("_", "\\_") +"}}";
+            toString.currentnAlias++;
+            toString.valores.add(this.toString().replace(alias.replace("_", "\\_"), "x_{"+indice+"}").replace("\\", "\\\\"));
+            
+            toString.term=aux;
+        }
+        
+        return toString;
+    }
+    
     public ToString toStringAbrvV1(ToString toString)
     {
         if(alias == null)

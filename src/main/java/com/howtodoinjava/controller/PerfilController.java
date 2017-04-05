@@ -48,6 +48,7 @@ import com.howtodoinjava.service.MetateoremaManager;
 import com.howtodoinjava.service.ResuelveManager;
 import com.howtodoinjava.service.SolucionManager;
 import com.howtodoinjava.service.TeoremaManager;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.antlr.runtime.ANTLRStringStream;
@@ -111,6 +112,12 @@ public class PerfilController {
         {
             return "redirect:/index";
         }
+        List<Teorema> teoremas = usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username));
+        for (Teorema t: teoremas)
+        {
+            t.setTeoTerm(new App(new App(new Const("\\equiv "),t.getTeoDerTerm()),t.getTeoIzqTerm()));
+            t.setMetateoTerm(new App(new App(new Const("\\equiv "),new Const("true ")),t.getTeoTerm()));
+        }
         map.addAttribute("usuario", usuarioManager.getUsuario(username));
         map.addAttribute("mensaje","");
         map.addAttribute("guardarMenu","");
@@ -121,7 +128,7 @@ public class PerfilController {
         map.addAttribute("computarMenu","");
         map.addAttribute("perfilMenu","");
         map.addAttribute("categorias",categoriaManager.getAllCategorias());
-        map.addAttribute("teoremas", usuarioManager.getAllTeoremas(usuarioManager.getUsuario(username)));
+        map.addAttribute("teoremas", teoremas);
         map.addAttribute("metateoremas",metateoremaManager);
         map.addAttribute("overflow","hidden");
         map.addAttribute("anchuraDiv","1200px");
@@ -261,15 +268,24 @@ public class PerfilController {
                 Dispone disponeAdd = new Dispone(resuelve.getId(),user,metateorema,agregarTeorema.getNumeroTeorema(),false);
                 Dispone dispone = disponeManager.addDispone(disponeAdd);
                 
-//                PasoInferencia paso = new PasoInferencia(teoTerm, null, null, null, "");
-//                Solucion solucion = new Solucion(resuelve,paso);
-//                solucion.setResuelve(resuelve);
-//                solucion.addArregloInferencias(paso);
-//                solucionManager.addSolucion(solucion);
+                PasoInferencia paso = new PasoInferencia(teoTerm, null, null, null, "");
+                Solucion solucion = new Solucion(resuelve,paso);
+                solucion.setResuelve(resuelve);
+                solucion.addArregloInferencias(paso);
+                solucionManager.addSolucion(solucion);
 //             
 //                System.out.println("El serializado es: "+SerializationUtils.serialize(paso));
 //                solucion.addArregloInferencias(paso);
 //                solucionManager.addSolucion(solucion);
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         
                 map.addAttribute("usuario", usuarioManager.getUsuario(username));
@@ -288,28 +304,27 @@ public class PerfilController {
                 System.out.println("El valor de la categoria");
                 System.out.println(agregarTeorema.getCategoriaSeleccionada());
                 return "perfil";
+                
             }
-            catch(NullPointerException e)
-            {
-                map.addAttribute("usuario", usuarioManager.getUsuario(username));
-                map.addAttribute("agregarTeorema",agregarTeorema);
-                map.addAttribute("modificar",new Integer(0));
-                map.addAttribute("teorema",agregarTeorema.getTeorema());
-                map.addAttribute("categoria",agregarTeorema.getCategoria());
-                map.addAttribute("numeroTeorema",agregarTeorema.getNumeroTeorema());
-                map.addAttribute("mensaje", "No se puede ingresar su teorema porque es invalido");
-                map.addAttribute("admin","admin");
-                map.addAttribute("guardarMenu","");
-                map.addAttribute("agregarTeoremaMenu","class=\"active\"");
-                map.addAttribute("listarTerminosMenu","");
-                map.addAttribute("verTerminosPublicosMenu","");
-                map.addAttribute("misPublicacionesMenu","");
-                map.addAttribute("computarMenu","");
-                map.addAttribute("perfilMenu","");
-                map.addAttribute("overflow","hidden");
-                map.addAttribute("anchuraDiv","1200px");
-                return "agregarTeorema";
-            }
+//            catch(TeoremaException e)
+//            {
+//                map.addAttribute("usuarioGuardar",new UsuarioGuardar());
+//                map.addAttribute("usuario",user);
+//                map.addAttribute("modificar",new Integer(0));
+//                map.addAttribute("categoria",categoriaManager.getAllCategorias());
+//                map.addAttribute("mensaje", "No se puede ingresar su teorema porque "+e.alias);
+//                map.addAttribute("admin","admin");
+//                map.addAttribute("guardarMenu","");
+//                map.addAttribute("listarTerminosMenu","");
+//                map.addAttribute("verTerminosPublicosMenu","");
+//                map.addAttribute("misPublicacionesMenu","");
+//                map.addAttribute("agregarTeoremaMenu","class=\"active\"");
+//                map.addAttribute("computarMenu","");
+//                map.addAttribute("perfilMenu","");
+//                map.addAttribute("overflow","hidden");
+//                map.addAttribute("anchuraDiv","1100px");
+//                return "agregarTeorema";
+//            }
             catch(CategoriaException e)
             {
                 map.addAttribute("usuarioGuardar",new UsuarioGuardar());

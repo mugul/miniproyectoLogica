@@ -376,7 +376,56 @@ public class App extends Term{
     
     public String toStringInf()
     {
-        String izq;
+        String izq; 
+        String der; 
+        boolean pp =  p instanceof App;
+        boolean qq = q instanceof App;
+        System.out.println(pp +"+++++++++++++++++"+qq);
+        if( ((p.alias == null) && (q.alias == null) ) ) {      
+           if((p instanceof App) && (q instanceof App)){
+               System.out.println("+++++++++++++111111111111111+++++++++++++++++"); 
+               return q.toStringInf()+" "+p.toStringInf();  
+               
+           }else if(!(p instanceof App) && (q instanceof App)){
+                 System.out.println("++++++++++++++222222222222222222++++++++++++++++"); 
+                 if( ((App) q).p instanceof Const ){
+                     System.out.println("++++++++++2222aaaaaaaaaaaa++++++++++++++++++++"); 
+                     return p.toStringInf()+" "+q.toStringInf();
+                 }else{
+                     System.out.println("++++++++++++2222bbbbbb++++++++++++++++++"); 
+                     return p.toStringInf()+" ("+q.toStringInf()+")" ;
+                 } 
+                 
+           }else if( (p instanceof App) && !(q instanceof App)){ 
+                System.out.println("+++++++++++++++3333333333333+++++++++++++++"); 
+                String sim = ((App) p).p.toStringInf();
+                if (((App) p).p instanceof Const ) {    
+                    System.out.println("+++aaaaaaaaaaaaaaaaaaaaaa+++++");
+                    if ( (((App) p).q instanceof Var) | (((App) p).q instanceof Bracket)){
+                        return q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf();
+                    }else{
+                        return q.toStringInf()+" "+sim+" ("+((App) p).q.toStringInf()+")";
+                    }                       
+               }else{
+                    System.out.println("+++bbbbbbbbbbbbb+++++");
+                    return "("+q.toStringInf()+" "+sim+" "+((App) p).q.toStringInf()+")";
+               }
+           }else{
+                System.out.println("+++++++++++++44444444+++++++++++++++++"); 
+                return p.toStringInf()+" "+q.toStringInf();
+            }   
+           
+        }else if( (q.alias == null) &&  (p.alias != null)) {
+            return q.toStringInf()+" "+p.alias;
+            
+        }else if( (q.alias != null) && (p.alias == null)) {
+            return q.alias +" "+p.toStringInf();
+            
+        }else{ 
+            return p.alias+" "+q.alias;
+        }    
+        
+        /*String izq;
         String der;
         
         if(p.alias == null)
@@ -384,19 +433,19 @@ public class App extends Term{
             if(p instanceof App)
                 izq=p.toStringFinalInFin();
             else{
-                izq=p.toStringInFin();
+                izq=p.toStringInf();
                 
             }
         }else
             izq = p.alias;
         
         if(q.alias == null)
-            der=q.toStringInFin();
+            der=q.toStringInf();
         else{
             der=q.alias;
             return "("+izq+" "+der+")";
         }
-        return "("+der+" "+izq+")";
+        return "("+der+" "+izq+")";*/
     }
     
     public String toStringInFin() {
@@ -476,6 +525,43 @@ public class App extends Term{
         if(q.alias == null)
         {
             q.toStringAbrv(toString);
+            der = toString.term;
+        }
+        else
+        {
+            toString.setNuevoAlias(q.alias, q);
+            der = toString.term;
+        }
+        
+        toString.term="("+izq+der+")";
+        return toString;
+    }
+    
+    public ToString toStringInfAbrv(ToString toString)
+    {
+        
+        String izq;
+        String der;
+        
+        if(p.alias == null)
+        {
+/*            if(p instanceof App)
+                p.toStringInfAbrvFinal(toString);
+            else
+*/
+                p.toStringInfAbrv(toString);
+            
+            izq = toString.term;
+        }
+        else
+        {
+            toString.setNuevoAlias(p.alias, p);
+            izq = toString.term;
+        }
+        
+        if(q.alias == null)
+        {
+            q.toStringInfAbrv(toString);
             der = toString.term;
         }
         else

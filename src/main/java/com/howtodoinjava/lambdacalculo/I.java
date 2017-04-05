@@ -140,7 +140,12 @@ public class I extends Term {
         toString.term=this.toString();
         return toString;
     }
-
+    
+    public ToString toStringInfAbrv(ToString toString)
+    {
+        toString.term=this.toString();
+        return toString;
+    }
         
     @Override
     protected Object clone() throws CloneNotSupportedException{
