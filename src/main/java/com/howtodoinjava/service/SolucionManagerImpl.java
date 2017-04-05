@@ -6,6 +6,7 @@ package com.howtodoinjava.service;
 
 import com.howtodoinjava.dao.SolucionDAO;
 import com.howtodoinjava.entity.Solucion;
+import com.howtodoinjava.lambdacalculo.PasoInferencia;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,16 @@ public class SolucionManagerImpl implements SolucionManager {
     @Transactional
     public void addSolucion(Solucion solucion){
         solucionDAO.addSolucion(solucion);
+    }
+    
+    
+    
+    @Override
+    @Transactional
+    public void addPaso(int solucionId, PasoInferencia paso){
+        Solucion sol = solucionDAO.getSolucion(solucionId);
+        sol.addArregloInferencias(paso);
+        solucionDAO.updateSolucion(sol);
     }
     
     @Override

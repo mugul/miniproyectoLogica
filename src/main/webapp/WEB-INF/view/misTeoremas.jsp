@@ -32,7 +32,7 @@
               <c:choose>
                 <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
                   <c:choose>
-                    <c:when test="false">
+                    <c:when test="${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).isResuelto() == false}">
                       <li style="list-style: none;">
                         <p style="color: #000;">
                           <table>
@@ -69,6 +69,7 @@
                               </td>
                             </tr>
                           </table>
+
                         </p>
                       </li>
                     </c:otherwise>

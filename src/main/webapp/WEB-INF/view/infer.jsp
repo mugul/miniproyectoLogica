@@ -18,9 +18,9 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/desplegar.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/mathjax-MathJax-v2.3-248-g60e0a8c/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/javascript">
-            function limpiar(id)
+            function limpiar()
             {
-                var texArea=document.getElementById(id);
+                var texArea=document.getElementById("asdasd");
                 if(texArea.value != "")
                 {
                     if(confirm("Seguro que desea borrar el contenido del área de texto"))
@@ -51,6 +51,7 @@
         </script>
 
         <div style="float: right; width: 600px;">
+
           
           <h3 style="color: #08c; margin: 0px;padding:0px;height:40px;">Método de demostración</h3>
             <select class="form-control">
@@ -72,7 +73,7 @@
                       <c:choose>
                         <c:when test="${teo.getCategoria().getId()==cat.getId()}">      
                           <c:choose>
-                            <c:when test="false">
+                            <c:when test="${resuelveManager.getResuelveByUserAndTeorema(usuario.login,teo.getId()).isResuelto() == false}">
                               <li style="list-style: none;">
                                 <h6 style="color: #000;">
                                   <table>
@@ -123,52 +124,55 @@
               </c:forEach> 
             </ul>
           </article>     
+
         </div>
 
         <script>
-          function expandMeta(id) {
-            elem = document.getElementById(id);
-            if (elem.style.display == "inline")
-              elem.style.display = "none";
-            else
-              elem.style.display = "inline";
+            function expandMeta(id) {
+                elem = document.getElementById(id);
+                if (elem.style.display == "inline")
+                    elem.style.display = "none";
+                else
+                    elem.style.display = "inline";
 
-          };
+            };
         
-          function getMetateo(id) {
+            function getMetateo(id) {
             
-          }
+            }
         </script>
-        
+
         <script>
-          t=document.getElementById('pasoAnt');
-          t.innerText="${pasoAnt}";
+            t=document.getElementById('pasoAnt');
+            t.innerText="${pasoAnt}";
         </script>
-        
-        <div style="width: 500px; height: 100px;">
+
+        <div style="width: 550px; height: 200px; overflow: scroll;">
             <h5>${formula}</h5>
         </div>    
-
-        <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
-            Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
-            <br>
-            <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
-            Teorema a usar:<br>
-            <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
-            <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
-                <c:forEach items="${teoremas}" var="cat">
-                    <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
-                </c:forEach>  
-            </select>--%>
-            <br>
-            Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
-            Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
-            <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar('pasoAnt')">
-
-        </sf:form>
-        <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
-        <br>
         
-        <tiles:insertDefinition name="footer" />
+          <sf:form action="/Miniproyecto/infer/${usuario.getLogin()}" method="POST" modelAttribute="infer">
+              Paso anterior:<br><sf:input path="pasoAnt" id="pasoAnt_id" value="${pasoAnt}"/><sf:errors path="pasoAnt" cssClass="error" />
+              <br>
+              <sf:input type="hidden" name="solucionId" path="solucionId" id="solucionId" value="${solucionId}"/>
+              <!--\cssId{eq}{\style{cursor:pointer;}{p\equiv q}}-->
+              Teorema a usar:<br>
+              <sf:input path="nStatement" id="nStatement_id" value="${nStatement}"/><sf:errors path="nStatement" cssClass="error" />
+              <%--<select style="width: auto; height: auto; border: none;" class="form-control" id="mensaje" name="nStatement">
+                  <c:forEach items="${teoremas}" var="cat">
+                      <option value="${cat.getId()}" >${cat.getCategoria().getNombre()} - ${cat.getEnunciadoizq()} == ${cat.getEnunciadoder()}</option>
+                  </c:forEach>  
+              </select>--%>
+              <br>
+              Instanciación:<br><sf:input path="instanciacion" id="instanciacion_id" value="${instanciacion}"/><sf:errors path="instanciacion" cssClass="error" /></br>
+              Leibniz:<br><sf:input path="leibniz" id="leibniz_id" value="${leibniz}"/><sf:errors path="leibniz" cssClass="error" /></br>
+              <input class="btn" type="submit" value="Inferir"> <input class="btn" type="button" value="limpiar" onclick="limpiar()">
+
+
+          </sf:form>
+          <%-- <a href="/Miniproyecto/perfil/${usuario.getLogin()}">Perfil</a>--%>
+          <br>
+
+          <tiles:insertDefinition name="footer" />
     </body>
 </html>
